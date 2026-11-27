@@ -1,0 +1,14 @@
+{
+  "written": "2026-11-27T12:40:00Z",
+  "note": "Expected verdicts written and committed before the run. The run's results are published as they came out, including misses.",
+  "scenarios": [
+    { "rule": "Fast ferry in service: 'sinking' vs a ship making way", "text": "BREAKING: fast ferry MEGASTAR sinking after an explosion in the Gulf of Finland", "expected": "DISAGREES" },
+    { "rule": "Baltic cruise ferry placed in the Red Sea", "text": "Houthis say they attacked the cruise ferry SILJA SERENADE in the Red Sea", "expected": "DISAGREES" },
+    { "rule": "Ship named only by IMO, placed in Hormuz", "text": "IRGC seized the vessel IMO 9827877 in the Strait of Hormuz", "expected": "DISAGREES" },
+    { "rule": "Sanctioned tanker with no tracking coverage", "text": "Shadow fleet tanker EAGLE S went dark in the Gulf of Finland", "expected": "UNVERIFIED" },
+    { "rule": "Famous ship outside the two-operator area", "text": "Container ship EVER GIVEN ran aground in the Suez Canal again", "expected": "UNVERIFIED" },
+    { "rule": "A ship that does not exist (failure case)", "text": "tanker ZZQX NORTHWIND hit by a missile near Fujairah", "expected": "UNVERIFIED" },
+    { "rule": "No ship named", "text": "Iran says all tankers are blocked from leaving the Persian Gulf", "expected": "UNVERIFIED" },
+    { "rule": "'Went dark' vs a ferry that is transmitting", "text": "ferry FINNLADY went dark and disappeared in the Baltic", "expected": "DISAGREES" }
+  ]
+}

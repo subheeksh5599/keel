@@ -6,12 +6,19 @@ import { join } from "node:path";
 
 const dir = process.argv[2] || "receipts";
 const NODE = process.env.TELEGRAPH_URL || "https://devnode.telegraphprotocol.com";
-const files = readdirSync(dir).filter((f) => f.endsWith(".json"));
+// Every .json receipt and every line of a .jsonl watch log, in this folder and its subfolders.
+const walk = (d) => readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(join(d, e.name)) : [join(d, e.name)]));
+const files = walk(dir).filter((f) => f.endsWith(".json") || f.endsWith(".jsonl"));
 const rows = [];
+const PAYER = (process.env.KEEL_PAYER || "0x2925d43C1e21888706D8b3b2223050aF14dDAEd4").toLowerCase();
 for (const f of files) {
-  const doc = JSON.parse(readFileSync(join(dir, f), "utf8"));
-  const checks = doc.runs ? doc.runs.map((r) => r.check) : [doc];
-  for (const c of checks) for (const p of c.purchases || []) if (p.signal) rows.push({ file: f, payer: String(doc.payer || "").toLowerCase(), p });
+  const docs = f.endsWith(".jsonl")
+    ? readFileSync(f, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l))
+    : [JSON.parse(readFileSync(f, "utf8"))];
+  for (const doc of docs) {
+    const checks = doc.runs ? doc.runs.map((r) => r.check) : [doc];
+    for (const c of checks) for (const p of c.purchases || []) if (p.signal) rows.push({ file: f, payer: String(doc.payer || PAYER).toLowerCase(), p });
+  }
 }
 
 let ok = 0, missing = 0, mismatch = 0, spent = 0;

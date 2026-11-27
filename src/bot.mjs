@@ -1,5 +1,5 @@
 // Keel Telegram bot: long polling, no framework. Logs command names only — never message text or the token.
-import { mkdirSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { Telegraph } from "./telegraph.mjs";
 import { Budget } from "./budget.mjs";
 import { OfacList } from "./ofac.mjs";
@@ -13,7 +13,10 @@ const RATE = { perHour: 12 }; // rumour checks per chat per hour
 const CACHE_MIN = 10; // the same rumour within 10 minutes reuses the last answer: no second payment
 
 export class KeelBot {
-  constructor({ token, telegraph, budget, ofac, dataDir = "data", maxCheckUsd = 0.3, verdictChatId = null, api = null, now = () => new Date() }) {
+  constructor({ token, telegraph, budget, ofac, dataDir = "data", maxCheckUsd = 0.3, verdictChatId = null, ownerChatId = null, lowEscrowUsd = 3, api = null, now = () => new Date() }) {
+    this.dataDir = dataDir;
+    this.ownerChatId = ownerChatId;
+    this.lowEscrowUsd = lowEscrowUsd;
     this.token = token;
     this.api = api || ((method, body) => telegramApi(token, method, body));
     this.telegraph = telegraph;
@@ -26,7 +29,7 @@ export class KeelBot {
     if (verdictChatId) this.config.value.verdictChatId = verdictChatId;
     this.rate = new Map();
     this.cache = new Map();
-    this.watcher = new Watcher({ file: `${dataDir}/watches.json`, telegraph, budget, now, send: (chatId, html) => this.send(chatId, html) });
+    this.watcher = new Watcher({ file: `${dataDir}/watches.json`, logFile: `${dataDir}/receipts/watch-log.jsonl`, telegraph, budget, now, send: (chatId, html) => this.send(chatId, html) });
     this.username = null;
   }
 
@@ -45,6 +48,8 @@ export class KeelBot {
       { command: "about", description: "Method and source code" },
     ] }).catch(() => {});
     setInterval(() => this.watcher.tick().catch((e) => console.log("watch tick failed:", e.message)), 10 * 60 * 1000).unref();
+    this.checkEscrow().catch(() => {});
+    setInterval(() => this.checkEscrow().catch((e) => console.log("escrow check failed:", e.message)), 60 * 60 * 1000).unref();
     for (;;) {
       try {
         const updates = await this.api("getUpdates", { offset: this.config.value.offset || 0, timeout: 50, allowed_updates: ["message", "callback_query", "my_chat_member"] });
@@ -132,6 +137,7 @@ export class KeelBot {
     const html = formatCheck(c, { budgetLeftUsd: this.budget.remainingUsd() });
     this.cache.set(key, { at: this.now(), html });
     this.log.add(chat.id, c);
+    this.saveReceipt(c);
     const buttons = c.shipQuery ? { inline_keyboard: [[{ text: "👁 Watch this ship", callback_data: `w:${c.shipQuery}`.slice(0, 60) }]] } : undefined;
     await this.edit(chat.id, ack?.message_id, html, buttons);
     if (c.result?.best && c.result.ageMin != null && c.result.ageMin <= 180) await this.api("sendLocation", { chat_id: chat.id, latitude: c.result.best.lat, longitude: c.result.best.lon, reply_to_message_id: ack?.message_id, disable_notification: true }).catch(() => {});
@@ -158,6 +164,34 @@ export class KeelBot {
     const chat = cm.chat;
     console.log(`membership ${chat.type} → ${cm.new_chat_member?.status}`);
     if (chat.type !== "private") this.rememberGroup(chat);
+  }
+
+  // Hourly: warn once a day when the escrow balance runs low, so the bot never stops quietly.
+  async checkEscrow() {
+    if (!this.telegraph?.escrowBalance) return null;
+    const { availableUsd } = await this.telegraph.escrowBalance();
+    this.escrowUsd = availableUsd;
+    const day = this.now().toISOString().slice(0, 10);
+    const to = this.ownerChatId || this.config.value.verdictChatId;
+    if (availableUsd < this.lowEscrowUsd && this.config.value.lowEscrowAlerted !== day && to) {
+      this.config.value.lowEscrowAlerted = day;
+      this.config.write();
+      console.log(`escrow low: $${availableUsd.toFixed(2)}`);
+      await this.send(to, `⚠️ Keel's escrow balance is $${availableUsd.toFixed(2)} test USDC, under $${this.lowEscrowUsd}. Top it up with <code>npm run fund</code> or checks will start failing.`);
+    }
+    return availableUsd;
+  }
+
+  // Every check made through Telegram is kept as a receipt file (the rumour, every purchase and signal hash; no chat id).
+  saveReceipt(c) {
+    try {
+      const dir = `${this.dataDir}/receipts`;
+      mkdirSync(dir, { recursive: true });
+      const file = `${dir}/telegram-${(c.checkedAt || new Date().toISOString()).replace(/[:.]/g, "-")}.json`;
+      writeFileSync(file, JSON.stringify({ source: "telegram", input: c.extracted?.text || "", payer: this.telegraph?.account?.address || null, ...c }, null, 1));
+    } catch (e) {
+      console.log("receipt save failed:", e.message);
+    }
   }
 
   // The verdict group is found automatically the first time the bot sees it (title contains "verdict").
@@ -269,7 +303,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const ofac = new OfacList({ file: `${dataDir}/sdn.csv` });
   ofac.load().then((n) => console.log(`OFAC SDN vessels loaded: ${n}`));
   setInterval(() => ofac.load().catch(() => {}), 12 * 3600 * 1000).unref();
-  const bot = new KeelBot({ token: env.TELEGRAM_BOT_TOKEN, telegraph, budget, ofac, dataDir, maxCheckUsd: money("KEEL_MAX_CHECK_USD", 0.3), verdictChatId: env.KEEL_VERDICT_CHAT_ID ? Number(env.KEEL_VERDICT_CHAT_ID) : null });
+  const bot = new KeelBot({ token: env.TELEGRAM_BOT_TOKEN, telegraph, budget, ofac, dataDir, maxCheckUsd: money("KEEL_MAX_CHECK_USD", 0.3), verdictChatId: env.KEEL_VERDICT_CHAT_ID ? Number(env.KEEL_VERDICT_CHAT_ID) : null, ownerChatId: env.KEEL_OWNER_CHAT_ID ? Number(env.KEEL_OWNER_CHAT_ID) : null, lowEscrowUsd: money("KEEL_LOW_ESCROW_USD", 3) });
   console.log(`payer ${telegraph.account.address}`);
   bot.start();
 }

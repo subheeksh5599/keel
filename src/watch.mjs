@@ -5,12 +5,15 @@ import { distanceKm, impliedKnots, regionOf, fmtCoord } from "./geo.mjs";
 import { fmtAge } from "./assess.mjs";
 import { TRACKERS, INTENTS } from "./check.mjs";
 import { JsonFile } from "./store.mjs";
+import { appendFileSync, mkdirSync } from "node:fs";
+import { dirname } from "node:path";
 
 export const WATCH_LIMITS = { perChat: 2, total: 10, pollMinutes: 120, quietHours: 3, reserveUsd: 0.5 };
 
 export class Watcher {
-  constructor({ file, telegraph, budget, send, now = () => new Date(), limits = WATCH_LIMITS, trackers = TRACKERS }) {
+  constructor({ file, logFile = null, telegraph, budget, send, now = () => new Date(), limits = WATCH_LIMITS, trackers = TRACKERS }) {
     this.store = new JsonFile(file, { watches: [] });
+    this.logFile = logFile; // one line per poll: what was bought, what was seen, what was sent
     this.telegraph = telegraph;
     this.budget = budget;
     this.send = send; // async (chatId, html) => void
@@ -53,10 +56,12 @@ export class Watcher {
     for (const w of this.store.value.watches) {
       if (!this.due(w)) continue;
       if (this.budget && this.budget.remainingUsd() < this.limits.reserveUsd) break; // keep money for rumour checks
-      const fix = await this.locate(w.query);
+      const bought = [];
+      const fix = await this.locate(w.query, bought);
       w.lastCheckAt = this.now().toISOString();
       const msgs = this.compare(w, fix);
       if (fix) w.lastFix = fix;
+      this.record({ at: w.lastCheckAt, ship: w.query, fix, purchases: bought, alerts: msgs.map((m) => m.replace(/<[^>]+>/g, "")) });
       for (const m of msgs) {
         alerts.push({ chatId: w.chatId, text: m });
         try { await this.send(w.chatId, m); } catch {}
@@ -66,12 +71,21 @@ export class Watcher {
     return alerts;
   }
 
-  async locate(query) {
+  record(entry) {
+    if (!this.logFile) return;
+    try {
+      mkdirSync(dirname(this.logFile), { recursive: true });
+      appendFileSync(this.logFile, JSON.stringify(entry) + "\n");
+    } catch {}
+  }
+
+  async locate(query, bought = []) {
     for (const t of this.trackers) {
       let r;
       try {
         r = await this.telegraph.ask({ intent: INTENTS.vessel, params: { vessel: query }, miner: t.id, budget: this.budget });
       } catch { continue; }
+      bought.push({ label: `Position (${t.source})`, intent: INTENTS.vessel, miner: r.miner, ok: r.ok, costUsd: r.costUsd || 0, signal: r.signal || null, signalUrl: r.signalUrl || null, latencyMs: r.latencyMs || null });
       const a = r.answer || {};
       if (r.ok && a.latitude != null && a.longitude != null) {
         return { lat: Number(a.latitude), lon: Number(a.longitude), speed: a.speed_knots ?? null, at: a.observed_at || null, source: t.source, signalUrl: r.signalUrl };

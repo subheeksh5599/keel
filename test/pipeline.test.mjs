@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync } from "node:fs";
+import { mkdtempSync, readFileSync, readdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { runCheck } from "../src/check.mjs";
@@ -197,4 +197,36 @@ test("bot: in a group, a forwarded rumour and any rumour in the verdict group ar
   await bot.handle({ update_id: 3, message: { message_id: 3, chat: verdict, text: "tanker NORDIC hit near Hormuz" } });
   assert.ok(sent.some((s) => s.method === "editMessageText" && /NORDIC/.test(s.body.text) && s.body.chat_id === -9));
   assert.equal(sent.filter((s) => s.method === "sendMessage" && s.body.chat_id === -9 && /Checked via/.test(s.body.text)).length, 0, "no duplicate post into the group it was asked in");
+});
+
+test("every watch poll is logged with what it bought and what it alerted", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "keel-"));
+  let t = new Date("2026-11-27T10:00:00Z");
+  const tg = { ask: async () => ({ ok: false, miner: "Quay", costUsd: 0.01, signal: "0xabc", signalUrl: "https://node/s/0xabc" }) };
+  const w = new Watcher({ file: join(dir, "w.json"), logFile: join(dir, "receipts", "watch-log.jsonl"), telegraph: tg, now: () => t, send: async () => {} });
+  w.add(1, "EAGLE S");
+  await w.tick();
+  const lines = readFileSync(join(dir, "receipts", "watch-log.jsonl"), "utf8").trim().split("\n").map((l) => JSON.parse(l));
+  assert.equal(lines.length, 1);
+  assert.equal(lines[0].ship, "EAGLE S");
+  assert.ok(lines[0].purchases.length >= 1 && lines[0].purchases[0].signal === "0xabc");
+  assert.match(lines[0].alerts[0], /gone quiet/);
+});
+
+test("bot: each Telegram check is saved as a receipt file, and a low escrow balance warns once a day", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "keel-"));
+  const sent = [];
+  const api = async (method, body) => { sent.push({ method, body }); return { message_id: sent.length }; };
+  const tg = { ...fakeTelegraph(() => null), account: { address: "0xpayer" }, escrowBalance: async () => ({ availableUsd: 1.5, chargedUsd: 13 }) };
+  const bot = new KeelBot({ token: "t", api, telegraph: tg, budget: new Budget({ dailyCapUsd: 1 }), dataDir: dir, ownerChatId: 42, now: () => NOW });
+  bot.username = "keel567_bot";
+  await bot.handle({ update_id: 1, message: { message_id: 1, chat: { id: 7, type: "private" }, text: "tanker ELISE hit near Hormuz" } });
+  const files = readdirSync(join(dir, "receipts")).filter((f) => f.startsWith("telegram-"));
+  assert.equal(files.length, 1);
+  const rec = JSON.parse(readFileSync(join(dir, "receipts", files[0]), "utf8"));
+  assert.equal(rec.payer, "0xpayer");
+  assert.ok(!JSON.stringify(rec).includes('"chat"'), "no chat id in the receipt");
+  await bot.checkEscrow();
+  await bot.checkEscrow();
+  assert.equal(sent.filter((s) => s.body.chat_id === 42 && /escrow balance is \$1.50/.test(s.body.text)).length, 1);
 });
