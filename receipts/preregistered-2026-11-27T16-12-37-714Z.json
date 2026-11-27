@@ -1,0 +1,2782 @@
+{
+  "payer": "0x2925d43C1e21888706D8b3b2223050aF14dDAEd4",
+  "node": "https://devnode.telegraphprotocol.com",
+  "ranAt": "2026-11-27T16:12:37.714Z",
+  "plan": "evidence/preregistered-2026-11-27.json",
+  "written": "2026-11-27T12:40:00Z",
+  "runs": [
+    {
+      "rule": "Fast ferry in service: 'sinking' vs a ship making way (expected DISAGREES)",
+      "text": "BREAKING: fast ferry MEGASTAR sinking after an explosion in the Gulf of Finland",
+      "expected": "DISAGREES",
+      "actual": "DISAGREES",
+      "match": true,
+      "check": {
+        "kind": "ship",
+        "extracted": {
+          "text": "BREAKING: fast ferry MEGASTAR sinking after an explosion in the Gulf of Finland",
+          "ships": [
+            "MEGASTAR"
+          ],
+          "imos": [],
+          "mmsis": [],
+          "claims": [
+            "sinking",
+            "struck"
+          ],
+          "places": [
+            "Gulf of Finland"
+          ],
+          "media": [],
+          "urls": []
+        },
+        "shipQuery": "MEGASTAR",
+        "shipName": "MEGASTAR",
+        "identity": {
+          "imo": "9773064",
+          "mmsi": "276829000",
+          "name": "MEGASTAR",
+          "callsign": "ESKL"
+        },
+        "evidence": {
+          "hasShip": true,
+          "claims": [
+            "sinking",
+            "struck"
+          ],
+          "places": [
+            "Gulf of Finland"
+          ],
+          "fixes": [
+            {
+              "source": "Quay",
+              "operator": "Quay",
+              "lat": 60.00484666666667,
+              "lon": 24.89696,
+              "speed": 22.2,
+              "course": 3.9,
+              "at": "2026-11-27T15:57:51.761Z",
+              "navStatus": "under way using engine",
+              "destination": "EEVAN-FIHEL",
+              "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xc05a2598064d8d9b8f4397351709cb212ee081875a0b10ac6e9623dedff35935",
+              "region": "Gulf of Finland"
+            },
+            {
+              "source": "VesselWire",
+              "operator": "VesselWire",
+              "lat": 60.08086,
+              "lon": 24.898228,
+              "speed": 22.2,
+              "course": 4,
+              "at": "2026-11-27T16:10:13.853Z",
+              "navStatus": "under way using engine",
+              "destination": "EEVAN-FIHEL",
+              "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x62e04312c796a4781d14fd215c323a99f415f824e33abb3ee87982380c5de517",
+              "region": "Gulf of Finland"
+            }
+          ],
+          "noData": [],
+          "skipped": [],
+          "sameName": 0,
+          "identity": {
+            "imo": "9773064",
+            "mmsi": "276829000",
+            "name": "MEGASTAR",
+            "callsign": "ESKL"
+          },
+          "sanctions": {
+            "telegraph": {
+              "ok": true,
+              "matched": false,
+              "lists": [
+                "OFAC SDN"
+              ],
+              "matches": [],
+              "score": null,
+              "source": "ChainSight — Universal Intelligence & Data Oracle"
+            },
+            "ofac": {
+              "checked": true,
+              "matches": [],
+              "listSize": 1570
+            }
+          },
+          "factCheck": {
+            "ok": true,
+            "verdict": null,
+            "reasoning": "Insufficient information to answer. No sources were found to check \"BREAKING: fast ferry MEGASTAR sinking after an explosion in the Gulf of Finland\". Try rephrasing the claim. Nothing is estimated or invented: send the missing input and the live source is queried straight away.",
+            "source": "TxLens"
+          },
+          "media": [],
+          "now": "2026-11-27T16:10:57.940Z"
+        },
+        "result": {
+          "verdict": {
+            "key": "DISAGREES",
+            "icon": "⚠️",
+            "label": "Tracking disagrees with the rumour"
+          },
+          "confidence": 90,
+          "reasons": [
+            {
+              "sign": 1,
+              "text": "Position reported under a minute ago."
+            },
+            {
+              "sign": 1,
+              "text": "VesselWire and Quay (different operators) agree on where it is (8.5 km apart, consistent with the time between reports)."
+            },
+            {
+              "sign": 1,
+              "text": "It is reporting 22.2 kn, making way normally, which a sinking ship would not. A transmitter can keep sending after damage, so this is not proof."
+            }
+          ],
+          "flags": [],
+          "best": {
+            "source": "VesselWire",
+            "operator": "VesselWire",
+            "lat": 60.08086,
+            "lon": 24.898228,
+            "speed": 22.2,
+            "course": 4,
+            "at": "2026-11-27T16:10:13.853Z",
+            "navStatus": "under way using engine",
+            "destination": "EEVAN-FIHEL",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x62e04312c796a4781d14fd215c323a99f415f824e33abb3ee87982380c5de517",
+            "region": "Gulf of Finland"
+          },
+          "ageMin": 0.7347833333333333,
+          "stale": false,
+          "operators": [
+            "VesselWire",
+            "Quay"
+          ],
+          "sourcesAgree": true,
+          "sanctions": "clear-two-sources"
+        },
+        "purchases": [
+          {
+            "label": "Position (Quay)",
+            "ok": true,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "MEGASTAR",
+              "speed_knots": 22.2,
+              "latitude": 60.00484666666667,
+              "longitude": 24.89696,
+              "course_deg": 3.9,
+              "observed_at": "2026-11-27T15:57:51.761Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "ok",
+              "latitude": "ok",
+              "longitude": "ok",
+              "course_deg": "ok",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0xc05a2598064d8d9b8f4397351709cb212ee081875a0b10ac6e9623dedff35935",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xc05a2598064d8d9b8f4397351709cb212ee081875a0b10ac6e9623dedff35935",
+            "costUsd": 0.01,
+            "latencyMs": 5851,
+            "error": null,
+            "raw": {
+              "age_minutes": 13,
+              "callsign": "ESKL",
+              "course_deg": 3.9,
+              "destination": "EEVAN-FIHEL",
+              "eta": "11-27 16:30 UTC (as reported by the ship)",
+              "heading_deg": 5,
+              "imo": "9773064",
+              "last_heard": null,
+              "latitude": 60.00484666666667,
+              "longitude": 24.89696,
+              "matched_by": "name",
+              "mmsi": "276829000",
+              "name": "MEGASTAR",
+              "nav_status": "under way using engine",
+              "observed_at": "2026-11-27T15:57:51.761Z",
+              "other_ships_with_same_name": 0,
+              "source": "Live AIS broadcast via aisstream.io terrestrial receivers",
+              "speed_knots": 22.2,
+              "status": "live",
+              "vessel": "MEGASTAR"
+            },
+            "verified": true
+          },
+          {
+            "label": "Sanctions screen",
+            "ok": true,
+            "status": 200,
+            "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+            "miner": "ChainSight — Universal Intelligence & Data Oracle",
+            "minerId": "302",
+            "answer": {
+              "name": "MEGASTAR",
+              "matched": false,
+              "matches": null,
+              "lists": [
+                "OFAC SDN"
+              ],
+              "match_score": null
+            },
+            "fieldStatus": {
+              "name": "ok",
+              "matched": "ok",
+              "matches": "missing",
+              "lists": "ok",
+              "match_score": "missing"
+            },
+            "warnings": [
+              "The response does not include: Best fuzzy-match score, 0 to 1",
+              "The response does not include: Matching sanctions-list entries"
+            ],
+            "signal": "0xa2c60a13329c48bac50673f24a29f53ab0269645e46954f3baef0861a7d21fb5",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xa2c60a13329c48bac50673f24a29f53ab0269645e46954f3baef0861a7d21fb5",
+            "costUsd": 0.01,
+            "latencyMs": 9763,
+            "error": null,
+            "raw": {
+              "answer": "No match for \"MEGASTAR\" was found on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list, the primary U.S. sanctions list. Based on this screening \"MEGASTAR\" does not appear to be a currently OFAC-designated party; this screening covers the OFAC SDN list and not every global watchlist.",
+              "entity": "MEGASTAR",
+              "match": false,
+              "signal": "No match for \"MEGASTAR\" was found on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list, the primary U.S. sanctions list. Based on this screening \"MEGASTAR\" does not appear to be a currently OFAC-designated party; this screening covers the OFAC SDN list and not every global watchlist.",
+              "source": "ofac-sdn"
+            },
+            "verified": true
+          },
+          {
+            "label": "Fact-check",
+            "ok": true,
+            "status": 200,
+            "intent": "FACT_CHECK_GENERAL",
+            "miner": "TxLens",
+            "minerId": "9002",
+            "answer": {
+              "claim": "BREAKING: fast ferry MEGASTAR sinking after an explosion in the Gulf of Finland",
+              "verdict": null,
+              "reasoning": "Insufficient information to answer. No sources were found to check \"BREAKING: fast ferry MEGASTAR sinking after an explosion in the Gulf of Finland\". Try rephrasing the claim. Nothing is estimated or invented: send the missing input and the live source is queried straight away.",
+              "sources": null
+            },
+            "fieldStatus": {
+              "claim": "ok",
+              "verdict": "rejected",
+              "reasoning": "ok",
+              "sources": "missing"
+            },
+            "warnings": [
+              "The response does not include: URLs or names of the sources the answer cites",
+              "The response does not include: Fact-check verdict"
+            ],
+            "signal": "0xb761cd622148c5c074840c90a7760ac48e1fd1032201caa38652e35ef49e999e",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xb761cd622148c5c074840c90a7760ac48e1fd1032201caa38652e35ef49e999e",
+            "costUsd": 0.01,
+            "latencyMs": 10881,
+            "error": null,
+            "raw": {
+              "answer": "Insufficient information to answer. No sources were found to check \"BREAKING: fast ferry MEGASTAR sinking after an explosion in the Gulf of Finland\". Try rephrasing the claim. Nothing is estimated or invented: send the missing input and the live source is queried straight away.",
+              "confidence": 0.1,
+              "status": "invalid_input",
+              "summary": "Insufficient information to answer. No sources were found to check \"BREAKING: fast ferry MEGASTAR sinking after an explosion in the Gulf of Finland\". Try rephrasing the claim. Nothing is estimated or invented: send the missing input and the live source is queried straight away."
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (VesselWire)",
+            "ok": true,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "VesselWire Verbatim AIS Reports",
+            "minerId": "751084",
+            "answer": {
+              "vessel": "276829000",
+              "speed_knots": 22.2,
+              "latitude": 60.08086,
+              "longitude": 24.898228,
+              "course_deg": 4,
+              "observed_at": "2026-11-27T16:10:13.853Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "ok",
+              "latitude": "ok",
+              "longitude": "ok",
+              "course_deg": "ok",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0x62e04312c796a4781d14fd215c323a99f415f824e33abb3ee87982380c5de517",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x62e04312c796a4781d14fd215c323a99f415f824e33abb3ee87982380c5de517",
+            "costUsd": 0.01,
+            "latencyMs": 7398,
+            "error": null,
+            "raw": {
+              "ais_positioning_system_mode": "UTC second available",
+              "ais_timestamp_scope": "Source AIS EPFS UTC-second/mode field, not a complete date or the provider location-record timestamp.",
+              "ais_utc_second": 12,
+              "as_of": "2026-11-27T16:10:54.532Z",
+              "attribution": "Source: Fintraffic / digitraffic.fi, licence CC 4.0 BY (https://creativecommons.org/licenses/by/4.0/). Modified: AIS unavailable values normalized, units converted, and source-reported claims assessed.",
+              "beam_at_least_m": null,
+              "beam_m": 36,
+              "call_sign": "ESKL",
+              "claim": null,
+              "confidence": 0.95,
+              "confidence_scope": "Compatibility field: completeness/freshness policy, not probability of independent truth.",
+              "course_over_ground_deg": 4,
+              "course_over_ground_degrees": 4,
+              "destination": "EEVAN-FIHEL",
+              "dimensions_scope": "Sum of reported distances from the AIS position reference point; not independently measured hull dimensions.",
+              "draught_at_least_m": null,
+              "draught_m": 7,
+              "eta_scope": "Self-reported AIS arrival estimate, not an observed arrival or guaranteed schedule; AIS supplies no year.",
+              "freshness": "fresh",
+              "freshness_limit_seconds": 900,
+              "heading_deg": 5,
+              "imo": 9773064,
+              "in_coverage": true,
+              "independently_verified": false,
+              "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+              "latitude": 60.08086,
+              "length_at_least_m": null,
+              "length_m": 213,
+              "longitude": 24.898228,
+              "metadata_age_seconds": 302.094,
+              "metadata_available": true,
+              "metadata_error": null,
+              "metadata_freshness": "fresh",
+              "metadata_freshness_limit_seconds": 21600,
+              "metadata_observed_at": "2026-11-27T16:05:52.438Z",
+              "metadata_source_url": "https://meri.digitraffic.fi/api/ais/v1/vessels/276829000",
+              "mmsi": 276829000,
+              "navigational_status": "under way using engine",
+              "navigational_status_code": 0,
+              "observation_age_seconds": 40.679,
+              "observed_at": "2026-11-27T16:10:13.853Z",
+              "position_accuracy_flag": true,
+              "position_fix_scope": "Static AIS metadata device type, not a current working fix, satellite count, measured accuracy or independent position verification.",
+              "position_fix_type": "GPS",
+              "position_fix_type_code": 1,
+              "raim_flag": false,
+              "rate_of_turn_deg_per_min": -1.116007208335199,
+              "rate_of_turn_direction": "left",
+              "rate_of_turn_encoding": "sensor_encoded",
+              "rate_of_turn_scope": "Approximate decoding of the quantized, source-reported AIS ROT code; special +/-127 numeric thresholds are not asserted.",
+              "raw_ais": {
+                "callSign": "ESKL",
+                "cog": 4,
+                "draught": 70,
+                "eta": 777246,
+                "heading": 5,
+                "imo": 9773064,
+                "navStat": 0,
+                "posAcc": true,
+                "posType": 1,
+                "raim": false,
+                "referencePointA": 23,
+                "referencePointB": 190,
+                "referencePointC": 18,
+                "referencePointD": 18,
+                "rot": -5,
+                "shipType": 60,
+                "sog": 22.2,
+                "timestamp": 12
+              },
+              "reported_eta": {
+                "complete": true,
+                "day": 27,
+                "hour": 16,
+                "minute": 30,
+                "month": 11,
+                "text": "month 11, day 27, 16:30 UTC (year not transmitted)",
+                "time_zone": "UTC",
+                "year": null
+              },
+              "ship_type": "passenger ship",
+              "source": "Fintraffic Digitraffic marine AIS",
+              "source_url": "https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=276829000",
+              "speed_kmh": 41.1144,
+              "speed_knots": 22.2,
+              "speed_mps": 11.420666666666667,
+              "speed_over_ground_knots": 22.2,
+              "summary": "MEGASTAR (MMSI 276829000): AIS position 60.08086, 24.898228; speed over ground 22.2 knots (41.1 km/h); true heading 5 degrees (separate from course over ground); course over ground 4 degrees; self-reported AIS navigational status under way using engine (code 0); self-reported draught 7 m; self-reported AIS destination EEVAN-FIHEL. Provider location record observed 2026-11-27T16:10:13.853Z (fresh; 15-minute policy). Provider metadata record observed 2026-11-27T16:05:52.438Z (fresh; six-hour policy); https://meri.digitraffic.fi/api/ais/v1/vessels/276829000. Draught and destination are voyage metadata, not independently measured draught or a verified route. Evidence: Fintraffic / digitraffic.fi (CC BY 4.0), https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=276829000. AIS reports are not independent vessel verification.",
+              "verdict": "Reported",
+              "verification_scope": "Single-provider AIS report; AIS may be inaccurate or spoofed.",
+              "vessel_name": "MEGASTAR",
+              "warnings": []
+            },
+            "verified": true
+          }
+        ],
+        "totalUsd": 0.04,
+        "elapsedMs": 14067,
+        "checkedAt": "2026-11-27T16:10:57.940Z"
+      }
+    },
+    {
+      "rule": "Baltic cruise ferry placed in the Red Sea (expected DISAGREES)",
+      "text": "Houthis say they attacked the cruise ferry SILJA SERENADE in the Red Sea",
+      "expected": "DISAGREES",
+      "actual": "DISAGREES",
+      "match": true,
+      "check": {
+        "kind": "ship",
+        "extracted": {
+          "text": "Houthis say they attacked the cruise ferry SILJA SERENADE in the Red Sea",
+          "ships": [
+            "SILJA SERENADE"
+          ],
+          "imos": [],
+          "mmsis": [],
+          "claims": [
+            "struck"
+          ],
+          "places": [
+            "Red Sea"
+          ],
+          "media": [],
+          "urls": []
+        },
+        "shipQuery": "SILJA SERENADE",
+        "shipName": "SILJA SERENADE",
+        "identity": {
+          "imo": "8715259",
+          "mmsi": "230184000",
+          "name": "SILJA SERENADE",
+          "callsign": "OJCS"
+        },
+        "evidence": {
+          "hasShip": true,
+          "claims": [
+            "struck"
+          ],
+          "places": [
+            "Red Sea"
+          ],
+          "fixes": [
+            {
+              "source": "Quay",
+              "operator": "Quay",
+              "lat": 59.89572833333333,
+              "lon": 24.597761666666667,
+              "speed": 16.8,
+              "course": 241.4,
+              "at": "2026-11-27T16:09:32.852Z",
+              "navStatus": "under way using engine",
+              "destination": "FIHEL<>FIMHQ<>SESTO",
+              "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xca4bac0e9da6ae39f800215e778067406f54fb90d2cbffa1c5062039aeda5478",
+              "region": "Gulf of Finland"
+            },
+            {
+              "source": "VesselWire",
+              "operator": "VesselWire",
+              "lat": 59.892718,
+              "lon": 24.587318,
+              "speed": 16.7,
+              "course": 240,
+              "at": "2026-11-27T16:10:50.398Z",
+              "navStatus": "under way using engine",
+              "destination": "FIHEL<>FIMHQ<>SESTO",
+              "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x5c2d60e13f97f9dd4dcc20efeb158f5d37d3fcbb3955191bb99b309a0e480662",
+              "region": "Gulf of Finland"
+            }
+          ],
+          "noData": [],
+          "skipped": [],
+          "sameName": 0,
+          "identity": {
+            "imo": "8715259",
+            "mmsi": "230184000",
+            "name": "SILJA SERENADE",
+            "callsign": "OJCS"
+          },
+          "sanctions": {
+            "telegraph": {
+              "ok": true,
+              "matched": false,
+              "lists": [
+                "OFAC SDN"
+              ],
+              "matches": [],
+              "score": null,
+              "source": "ChainSight — Universal Intelligence & Data Oracle"
+            },
+            "ofac": {
+              "checked": true,
+              "matches": [],
+              "listSize": 1570
+            }
+          },
+          "factCheck": {
+            "ok": false,
+            "verdict": null,
+            "reasoning": null,
+            "source": "TxLens"
+          },
+          "media": [],
+          "now": "2026-11-27T16:11:08.762Z"
+        },
+        "result": {
+          "verdict": {
+            "key": "DISAGREES",
+            "icon": "⚠️",
+            "label": "Tracking disagrees with the rumour"
+          },
+          "confidence": 90,
+          "reasons": [
+            {
+              "sign": 1,
+              "text": "Position reported under a minute ago."
+            },
+            {
+              "sign": 1,
+              "text": "VesselWire and Quay (different operators) agree on where it is (0.7 km apart, consistent with the time between reports)."
+            },
+            {
+              "sign": 1,
+              "text": "The rumour places it in Red Sea, but it is 4572 km away, in Gulf of Finland."
+            }
+          ],
+          "flags": [],
+          "best": {
+            "source": "VesselWire",
+            "operator": "VesselWire",
+            "lat": 59.892718,
+            "lon": 24.587318,
+            "speed": 16.7,
+            "course": 240,
+            "at": "2026-11-27T16:10:50.398Z",
+            "navStatus": "under way using engine",
+            "destination": "FIHEL<>FIMHQ<>SESTO",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x5c2d60e13f97f9dd4dcc20efeb158f5d37d3fcbb3955191bb99b309a0e480662",
+            "region": "Gulf of Finland"
+          },
+          "ageMin": 0.30606666666666665,
+          "stale": false,
+          "operators": [
+            "VesselWire",
+            "Quay"
+          ],
+          "sourcesAgree": true,
+          "sanctions": "clear-two-sources"
+        },
+        "purchases": [
+          {
+            "label": "Position (Quay)",
+            "ok": true,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "SILJA SERENADE",
+              "speed_knots": 16.8,
+              "latitude": 59.89572833333333,
+              "longitude": 24.597761666666667,
+              "course_deg": 241.4,
+              "observed_at": "2026-11-27T16:09:32.852Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "ok",
+              "latitude": "ok",
+              "longitude": "ok",
+              "course_deg": "ok",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0xca4bac0e9da6ae39f800215e778067406f54fb90d2cbffa1c5062039aeda5478",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xca4bac0e9da6ae39f800215e778067406f54fb90d2cbffa1c5062039aeda5478",
+            "costUsd": 0.01,
+            "latencyMs": 4006,
+            "error": null,
+            "raw": {
+              "age_minutes": 1,
+              "callsign": "OJCS",
+              "course_deg": 241.4,
+              "destination": "FIHEL<>FIMHQ<>SESTO",
+              "eta": "11-28 09:00 UTC (as reported by the ship)",
+              "heading_deg": 240,
+              "imo": "8715259",
+              "last_heard": null,
+              "latitude": 59.89572833333333,
+              "longitude": 24.597761666666667,
+              "matched_by": "name",
+              "mmsi": "230184000",
+              "name": "SILJA SERENADE",
+              "nav_status": "under way using engine",
+              "observed_at": "2026-11-27T16:09:32.852Z",
+              "other_ships_with_same_name": 0,
+              "source": "Live AIS broadcast via aisstream.io terrestrial receivers",
+              "speed_knots": 16.8,
+              "status": "live",
+              "vessel": "SILJA SERENADE"
+            },
+            "verified": true
+          },
+          {
+            "label": "Fact-check",
+            "ok": false,
+            "status": 200,
+            "intent": "FACT_CHECK_GENERAL",
+            "miner": "TxLens",
+            "minerId": "9002",
+            "answer": {
+              "claim": "Houthis say they attacked the cruise ferry SILJA SERENADE in the Red Sea",
+              "verdict": null,
+              "reasoning": null,
+              "sources": null
+            },
+            "fieldStatus": {
+              "claim": "ok",
+              "verdict": "rejected",
+              "reasoning": "missing",
+              "sources": "missing"
+            },
+            "warnings": [
+              "The response does not include: The reasoning behind the verdict",
+              "The response does not include: URLs or names of the sources the answer cites",
+              "The response does not include: Fact-check verdict"
+            ],
+            "signal": "0x48231b7ef15f9406a706c2c073b70ba0d0b3a06047028f22d0f0dc791ab4218e",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x48231b7ef15f9406a706c2c073b70ba0d0b3a06047028f22d0f0dc791ab4218e",
+            "costUsd": 0.01,
+            "latencyMs": 8231,
+            "error": "the miner had no data for this",
+            "raw": {
+              "answer": "Insufficient information to answer. No sources were found to check \"Houthis say they attacked the cruise ferry SILJA SERENADE in the Red Sea\". Try rephrasing the claim. Nothing is estimated or invented: send the missing input and the live source is queried straight away.",
+              "confidence": 0.1,
+              "status": "invalid_input",
+              "summary": "Insufficient information to answer. No sources were found to check \"Houthis say they attacked the cruise ferry SILJA SERENADE in the Red Sea\". Try rephrasing the claim. Nothing is estimated or invented: send the missing input and the live source is queried straight away."
+            },
+            "verified": true
+          },
+          {
+            "label": "Sanctions screen",
+            "ok": true,
+            "status": 200,
+            "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+            "miner": "ChainSight — Universal Intelligence & Data Oracle",
+            "minerId": "302",
+            "answer": {
+              "name": "SILJA SERENADE",
+              "matched": false,
+              "matches": null,
+              "lists": [
+                "OFAC SDN"
+              ],
+              "match_score": null
+            },
+            "fieldStatus": {
+              "name": "ok",
+              "matched": "ok",
+              "matches": "missing",
+              "lists": "ok",
+              "match_score": "missing"
+            },
+            "warnings": [
+              "The response does not include: Best fuzzy-match score, 0 to 1",
+              "The response does not include: Matching sanctions-list entries"
+            ],
+            "signal": "0xb20297e6f7b60c4a84016f13d212095c813ade17e6d3aaafe7a5dfa78323bde9",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xb20297e6f7b60c4a84016f13d212095c813ade17e6d3aaafe7a5dfa78323bde9",
+            "costUsd": 0.01,
+            "latencyMs": 9670,
+            "error": null,
+            "raw": {
+              "answer": "No match for \"SILJA SERENADE\" was found on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list, the primary U.S. sanctions list. Based on this screening \"SILJA SERENADE\" does not appear to be a currently OFAC-designated party; this screening covers the OFAC SDN list and not every global watchlist.",
+              "entity": "SILJA SERENADE",
+              "match": false,
+              "signal": "No match for \"SILJA SERENADE\" was found on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list, the primary U.S. sanctions list. Based on this screening \"SILJA SERENADE\" does not appear to be a currently OFAC-designated party; this screening covers the OFAC SDN list and not every global watchlist.",
+              "source": "ofac-sdn"
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (VesselWire)",
+            "ok": true,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "VesselWire Verbatim AIS Reports",
+            "minerId": "751084",
+            "answer": {
+              "vessel": "230184000",
+              "speed_knots": 16.7,
+              "latitude": 59.892718,
+              "longitude": 24.587318,
+              "course_deg": 240,
+              "observed_at": "2026-11-27T16:10:50.398Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "ok",
+              "latitude": "ok",
+              "longitude": "ok",
+              "course_deg": "ok",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0x5c2d60e13f97f9dd4dcc20efeb158f5d37d3fcbb3955191bb99b309a0e480662",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x5c2d60e13f97f9dd4dcc20efeb158f5d37d3fcbb3955191bb99b309a0e480662",
+            "costUsd": 0.01,
+            "latencyMs": 5938,
+            "error": null,
+            "raw": {
+              "ais_positioning_system_mode": "UTC second available",
+              "ais_timestamp_scope": "Source AIS EPFS UTC-second/mode field, not a complete date or the provider location-record timestamp.",
+              "ais_utc_second": 49,
+              "as_of": "2026-11-27T16:11:05.348Z",
+              "attribution": "Source: Fintraffic / digitraffic.fi, licence CC 4.0 BY (https://creativecommons.org/licenses/by/4.0/). Modified: AIS unavailable values normalized, units converted, and source-reported claims assessed.",
+              "beam_at_least_m": null,
+              "beam_m": 32,
+              "call_sign": "OJCS",
+              "claim": null,
+              "confidence": 0.95,
+              "confidence_scope": "Compatibility field: completeness/freshness policy, not probability of independent truth.",
+              "course_over_ground_deg": 240,
+              "course_over_ground_degrees": 240.2,
+              "destination": "FIHEL<>FIMHQ<>SESTO",
+              "dimensions_scope": "Sum of reported distances from the AIS position reference point; not independently measured hull dimensions.",
+              "draught_at_least_m": null,
+              "draught_m": 7,
+              "eta_scope": "Self-reported AIS arrival estimate, not an observed arrival or guaranteed schedule; AIS supplies no year.",
+              "freshness": "fresh",
+              "freshness_limit_seconds": 900,
+              "heading_deg": 239,
+              "imo": 8715259,
+              "in_coverage": true,
+              "independently_verified": false,
+              "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+              "latitude": 59.892718,
+              "length_at_least_m": null,
+              "length_m": 203,
+              "longitude": 24.587318,
+              "metadata_age_seconds": 144.959,
+              "metadata_available": true,
+              "metadata_error": null,
+              "metadata_freshness": "fresh",
+              "metadata_freshness_limit_seconds": 21600,
+              "metadata_observed_at": "2026-11-27T16:08:40.389Z",
+              "metadata_source_url": "https://meri.digitraffic.fi/api/ais/v1/vessels/230184000",
+              "mmsi": 230184000,
+              "navigational_status": "under way using engine",
+              "navigational_status_code": 0,
+              "observation_age_seconds": 14.95,
+              "observed_at": "2026-11-27T16:10:50.398Z",
+              "position_accuracy_flag": true,
+              "position_fix_scope": "Static AIS metadata device type, not a current working fix, satellite count, measured accuracy or independent position verification.",
+              "position_fix_type": "GPS",
+              "position_fix_type_code": 1,
+              "raim_flag": false,
+              "rate_of_turn_deg_per_min": 2.1873741283369905,
+              "rate_of_turn_direction": "right",
+              "rate_of_turn_encoding": "sensor_encoded",
+              "rate_of_turn_scope": "Approximate decoding of the quantized, source-reported AIS ROT code; special +/-127 numeric thresholds are not asserted.",
+              "raw_ais": {
+                "callSign": "OJCS",
+                "cog": 240.2,
+                "draught": 70,
+                "eta": 778816,
+                "heading": 239,
+                "imo": 8715259,
+                "navStat": 0,
+                "posAcc": true,
+                "posType": 1,
+                "raim": false,
+                "referencePointA": 27,
+                "referencePointB": 176,
+                "referencePointC": 16,
+                "referencePointD": 16,
+                "rot": 7,
+                "shipType": 60,
+                "sog": 16.7,
+                "timestamp": 49
+              },
+              "reported_eta": {
+                "complete": true,
+                "day": 28,
+                "hour": 9,
+                "minute": 0,
+                "month": 11,
+                "text": "month 11, day 28, 09:00 UTC (year not transmitted)",
+                "time_zone": "UTC",
+                "year": null
+              },
+              "ship_type": "passenger ship",
+              "source": "Fintraffic Digitraffic marine AIS",
+              "source_url": "https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=230184000",
+              "speed_kmh": 30.9284,
+              "speed_knots": 16.7,
+              "speed_mps": 8.591222222222223,
+              "speed_over_ground_knots": 16.7,
+              "summary": "SILJA SERENADE (MMSI 230184000): speed over ground 16.7 knots (30.9 km/h). Provider location record observed 2026-11-27T16:10:50.398Z (fresh). Evidence: Fintraffic / digitraffic.fi (CC BY 4.0), https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=230184000. AIS reports are not independent vessel verification.",
+              "verdict": "Reported",
+              "verification_scope": "Single-provider AIS report; AIS may be inaccurate or spoofed.",
+              "vessel_name": "SILJA SERENADE",
+              "warnings": []
+            },
+            "verified": true
+          }
+        ],
+        "totalUsd": 0.04,
+        "elapsedMs": 10802,
+        "checkedAt": "2026-11-27T16:11:08.762Z"
+      }
+    },
+    {
+      "rule": "Ship named only by IMO, placed in Hormuz (expected DISAGREES)",
+      "text": "IRGC seized the vessel IMO 9827877 in the Strait of Hormuz",
+      "expected": "DISAGREES",
+      "actual": "DISAGREES",
+      "match": true,
+      "check": {
+        "kind": "ship",
+        "extracted": {
+          "text": "IRGC seized the vessel IMO 9827877 in the Strait of Hormuz",
+          "ships": [],
+          "imos": [
+            "9827877"
+          ],
+          "mmsis": [],
+          "claims": [
+            "seized"
+          ],
+          "places": [
+            "Strait of Hormuz"
+          ],
+          "media": [],
+          "urls": []
+        },
+        "shipQuery": "IMO 9827877",
+        "shipName": null,
+        "identity": {
+          "imo": "9827877",
+          "mmsi": "230041000",
+          "name": "VIKING GLORY",
+          "callsign": "OJTC"
+        },
+        "evidence": {
+          "hasShip": true,
+          "claims": [
+            "seized"
+          ],
+          "places": [
+            "Strait of Hormuz"
+          ],
+          "fixes": [
+            {
+              "source": "Quay",
+              "operator": "Quay",
+              "lat": 59.475561666666664,
+              "lon": 18.441295,
+              "speed": 16.2,
+              "course": 201.5,
+              "at": "2026-11-27T16:09:40.376Z",
+              "navStatus": "under way using engine",
+              "destination": "FITKU<>FIMHQ/FILAN<>",
+              "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x6f84d1d44d9f2078822bf90e7f565d121037fab6040b3da54d7761014342a8b2",
+              "region": "Baltic Sea"
+            },
+            {
+              "source": "VesselWire",
+              "operator": "VesselWire",
+              "lat": 59.473022,
+              "lon": 18.43934,
+              "speed": 16.5,
+              "course": 202,
+              "at": "2026-11-27T16:10:16.102Z",
+              "navStatus": "under way using engine",
+              "destination": "FITKU<>FIMHQ/FILAN<>",
+              "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x25bb6dfe0c6bdf53887a368923127fc774244baab7079492ed8a12c890434325",
+              "region": "Baltic Sea"
+            }
+          ],
+          "noData": [],
+          "skipped": [],
+          "sameName": 0,
+          "identity": {
+            "imo": "9827877",
+            "mmsi": "230041000",
+            "name": "VIKING GLORY",
+            "callsign": "OJTC"
+          },
+          "sanctions": {
+            "telegraph": {
+              "ok": true,
+              "matched": false,
+              "lists": [],
+              "matches": [],
+              "score": null,
+              "source": "ChainSight — Universal Intelligence & Data Oracle"
+            },
+            "ofac": {
+              "checked": true,
+              "matches": [],
+              "listSize": 1570
+            }
+          },
+          "factCheck": {
+            "ok": true,
+            "verdict": null,
+            "reasoning": "No reliable source confirms that the IRGC seized vessel IMO 9827877 in the Strait of Hormuz. The latest documented status shows no record of such an incident up to the present date.",
+            "source": "TxLens"
+          },
+          "media": [],
+          "now": "2026-11-27T16:11:21.222Z"
+        },
+        "result": {
+          "verdict": {
+            "key": "DISAGREES",
+            "icon": "⚠️",
+            "label": "Tracking disagrees with the rumour"
+          },
+          "confidence": 90,
+          "reasons": [
+            {
+              "sign": 1,
+              "text": "Position reported 1 min ago."
+            },
+            {
+              "sign": 1,
+              "text": "VesselWire and Quay (different operators) agree on where it is (0.3 km apart, consistent with the time between reports)."
+            },
+            {
+              "sign": 1,
+              "text": "The rumour places it in Strait of Hormuz, but it is 4664 km away, in Baltic Sea."
+            }
+          ],
+          "flags": [],
+          "best": {
+            "source": "VesselWire",
+            "operator": "VesselWire",
+            "lat": 59.473022,
+            "lon": 18.43934,
+            "speed": 16.5,
+            "course": 202,
+            "at": "2026-11-27T16:10:16.102Z",
+            "navStatus": "under way using engine",
+            "destination": "FITKU<>FIMHQ/FILAN<>",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x25bb6dfe0c6bdf53887a368923127fc774244baab7079492ed8a12c890434325",
+            "region": "Baltic Sea"
+          },
+          "ageMin": 1.0853333333333333,
+          "stale": false,
+          "operators": [
+            "VesselWire",
+            "Quay"
+          ],
+          "sourcesAgree": true,
+          "sanctions": "clear-two-sources"
+        },
+        "purchases": [
+          {
+            "label": "Position (Quay)",
+            "ok": true,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "IMO 9827877",
+              "speed_knots": 16.2,
+              "latitude": 59.475561666666664,
+              "longitude": 18.441295,
+              "course_deg": 201.5,
+              "observed_at": "2026-11-27T16:09:40.376Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "ok",
+              "latitude": "ok",
+              "longitude": "ok",
+              "course_deg": "ok",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0x6f84d1d44d9f2078822bf90e7f565d121037fab6040b3da54d7761014342a8b2",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x6f84d1d44d9f2078822bf90e7f565d121037fab6040b3da54d7761014342a8b2",
+            "costUsd": 0.01,
+            "latencyMs": 4549,
+            "error": null,
+            "raw": {
+              "age_minutes": 2,
+              "callsign": "OJTC",
+              "course_deg": 201.5,
+              "destination": "FITKU<>FIMHQ/FILAN<>",
+              "eta": "11-27 17:55 UTC (as reported by the ship)",
+              "heading_deg": 202,
+              "imo": "9827877",
+              "last_heard": null,
+              "latitude": 59.475561666666664,
+              "longitude": 18.441295,
+              "matched_by": "imo",
+              "mmsi": "230041000",
+              "name": "VIKING GLORY",
+              "nav_status": "under way using engine",
+              "observed_at": "2026-11-27T16:09:40.376Z",
+              "other_ships_with_same_name": 0,
+              "source": "Live AIS broadcast via aisstream.io terrestrial receivers",
+              "speed_knots": 16.2,
+              "status": "live",
+              "vessel": "IMO 9827877"
+            },
+            "verified": true
+          },
+          {
+            "label": "Sanctions screen",
+            "ok": true,
+            "status": 200,
+            "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+            "miner": "ChainSight — Universal Intelligence & Data Oracle",
+            "minerId": "302",
+            "answer": {
+              "name": "IMO",
+              "matched": false,
+              "matches": null,
+              "lists": null,
+              "match_score": null
+            },
+            "fieldStatus": {
+              "name": "ok",
+              "matched": "ok",
+              "matches": "missing",
+              "lists": "missing",
+              "match_score": "missing"
+            },
+            "warnings": [
+              "The response does not include: Sanctions lists checked or matched (e.g. OFAC SDN)",
+              "The response does not include: Best fuzzy-match score, 0 to 1",
+              "The response does not include: Matching sanctions-list entries"
+            ],
+            "signal": "0xaa8bcb35018cfa40e5f2b6f5f4fa76b24860a20ed4ad3990fd0a0922e23b5008",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xaa8bcb35018cfa40e5f2b6f5f4fa76b24860a20ed4ad3990fd0a0922e23b5008",
+            "costUsd": 0.01,
+            "latencyMs": 4737,
+            "error": null,
+            "raw": {
+              "answer": "No match for \"IMO\" was found on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list, the primary U.S. sanctions list. Based on this screening \"IMO\" does not appear to be a currently OFAC-designated party; this screening covers the OFAC SDN list and not every global watchlist.",
+              "entity": "IMO",
+              "match": false,
+              "signal": "No match for \"IMO\" was found on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list, the primary U.S. sanctions list. Based on this screening \"IMO\" does not appear to be a currently OFAC-designated party; this screening covers the OFAC SDN list and not every global watchlist.",
+              "source": "ofac-sdn"
+            },
+            "verified": true
+          },
+          {
+            "label": "Fact-check",
+            "ok": true,
+            "status": 200,
+            "intent": "FACT_CHECK_GENERAL",
+            "miner": "TxLens",
+            "minerId": "9002",
+            "answer": {
+              "claim": "IRGC seized the vessel IMO 9827877 in the Strait of Hormuz",
+              "verdict": null,
+              "reasoning": "No reliable source confirms that the IRGC seized vessel IMO 9827877 in the Strait of Hormuz. The latest documented status shows no record of such an incident up to the present date.",
+              "sources": null
+            },
+            "fieldStatus": {
+              "claim": "ok",
+              "verdict": "missing",
+              "reasoning": "ok",
+              "sources": "missing"
+            },
+            "warnings": [
+              "The response does not include: URLs or names of the sources the answer cites",
+              "The response does not include: Fact-check verdict"
+            ],
+            "signal": "0xd25b68e3205a09bbbcc079f20e40daaaab93f87e245d762e1fa72576a5a6a312",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xd25b68e3205a09bbbcc079f20e40daaaab93f87e245d762e1fa72576a5a6a312",
+            "costUsd": 0.01,
+            "latencyMs": 9900,
+            "error": null,
+            "raw": {
+              "answer": "No reliable source confirms that the IRGC seized vessel IMO 9827877 in the Strait of Hormuz. The latest documented status shows no record of such an incident up to the present date.",
+              "canonical": "fact-check:IRGC seized the vessel IMO 9827877 in the Strait of Hormuz",
+              "claim": "IRGC seized the vessel IMO 9827877 in the Strait of Hormuz",
+              "confidence": 0.5,
+              "cost_usd": 0,
+              "provider": "consensus",
+              "source_note": "Checked against live sources at request time.",
+              "sources": [],
+              "status": "ok",
+              "summary": "No reliable source confirms that the IRGC seized vessel IMO 9827877 in the Strait of Hormuz. The latest documented status shows no record of such an incident up to the present date.",
+              "verdict": null
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (VesselWire)",
+            "ok": true,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "VesselWire Verbatim AIS Reports",
+            "minerId": "751084",
+            "answer": {
+              "vessel": "230041000",
+              "speed_knots": 16.5,
+              "latitude": 59.473022,
+              "longitude": 18.43934,
+              "course_deg": 202,
+              "observed_at": "2026-11-27T16:10:16.102Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "ok",
+              "latitude": "ok",
+              "longitude": "ok",
+              "course_deg": "ok",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0x25bb6dfe0c6bdf53887a368923127fc774244baab7079492ed8a12c890434325",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x25bb6dfe0c6bdf53887a368923127fc774244baab7079492ed8a12c890434325",
+            "costUsd": 0.01,
+            "latencyMs": 7127,
+            "error": null,
+            "raw": {
+              "ais_positioning_system_mode": "UTC second available",
+              "ais_timestamp_scope": "Source AIS EPFS UTC-second/mode field, not a complete date or the provider location-record timestamp.",
+              "ais_utc_second": 14,
+              "as_of": "2026-11-27T16:11:16.654Z",
+              "attribution": "Source: Fintraffic / digitraffic.fi, licence CC 4.0 BY (https://creativecommons.org/licenses/by/4.0/). Modified: AIS unavailable values normalized, units converted, and source-reported claims assessed.",
+              "beam_at_least_m": null,
+              "beam_m": 36,
+              "call_sign": "OJTC",
+              "claim": null,
+              "confidence": 0.95,
+              "confidence_scope": "Compatibility field: completeness/freshness policy, not probability of independent truth.",
+              "course_over_ground_deg": 202,
+              "course_over_ground_degrees": 201.5,
+              "destination": "FITKU<>FIMHQ/FILAN<>",
+              "dimensions_scope": "Sum of reported distances from the AIS position reference point; not independently measured hull dimensions.",
+              "draught_at_least_m": null,
+              "draught_m": 6.4,
+              "eta_scope": "Self-reported AIS arrival estimate, not an observed arrival or guaranteed schedule; AIS supplies no year.",
+              "freshness": "fresh",
+              "freshness_limit_seconds": 900,
+              "heading_deg": 202,
+              "imo": 9827877,
+              "in_coverage": true,
+              "independently_verified": false,
+              "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+              "latitude": 59.473022,
+              "length_at_least_m": null,
+              "length_m": 223,
+              "longitude": 18.43934,
+              "metadata_age_seconds": 56.053,
+              "metadata_available": true,
+              "metadata_error": null,
+              "metadata_freshness": "fresh",
+              "metadata_freshness_limit_seconds": 21600,
+              "metadata_observed_at": "2026-11-27T16:10:20.601Z",
+              "metadata_source_url": "https://meri.digitraffic.fi/api/ais/v1/vessels/230041000",
+              "mmsi": 230041000,
+              "navigational_status": "under way using engine",
+              "navigational_status_code": 0,
+              "observation_age_seconds": 60.552,
+              "observed_at": "2026-11-27T16:10:16.102Z",
+              "position_accuracy_flag": true,
+              "position_fix_scope": "Static AIS metadata device type, not a current working fix, satellite count, measured accuracy or independent position verification.",
+              "position_fix_type": "GPS",
+              "position_fix_type_code": 1,
+              "raim_flag": false,
+              "rate_of_turn_deg_per_min": 1.116007208335199,
+              "rate_of_turn_direction": "right",
+              "rate_of_turn_encoding": "sensor_encoded",
+              "rate_of_turn_scope": "Approximate decoding of the quantized, source-reported AIS ROT code; special +/-127 numeric thresholds are not asserted.",
+              "raw_ais": {
+                "callSign": "OJTC",
+                "cog": 201.5,
+                "draught": 64,
+                "eta": 777335,
+                "heading": 202,
+                "imo": 9827877,
+                "navStat": 0,
+                "posAcc": true,
+                "posType": 1,
+                "raim": false,
+                "referencePointA": 25,
+                "referencePointB": 198,
+                "referencePointC": 18,
+                "referencePointD": 18,
+                "rot": 5,
+                "shipType": 60,
+                "sog": 16.5,
+                "timestamp": 14
+              },
+              "reported_eta": {
+                "complete": true,
+                "day": 27,
+                "hour": 17,
+                "minute": 55,
+                "month": 11,
+                "text": "month 11, day 27, 17:55 UTC (year not transmitted)",
+                "time_zone": "UTC",
+                "year": null
+              },
+              "ship_type": "passenger ship",
+              "source": "Fintraffic Digitraffic marine AIS",
+              "source_url": "https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=230041000",
+              "speed_kmh": 30.558,
+              "speed_knots": 16.5,
+              "speed_mps": 8.488333333333333,
+              "speed_over_ground_knots": 16.5,
+              "summary": "VIKING GLORY (MMSI 230041000): speed over ground 16.5 knots (30.6 km/h). Provider location record observed 2026-11-27T16:10:16.102Z (fresh). Evidence: Fintraffic / digitraffic.fi (CC BY 4.0), https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=230041000. AIS reports are not independent vessel verification.",
+              "verdict": "Reported",
+              "verification_scope": "Single-provider AIS report; AIS may be inaccurate or spoofed.",
+              "vessel_name": "VIKING GLORY",
+              "warnings": []
+            },
+            "verified": true
+          }
+        ],
+        "totalUsd": 0.04,
+        "elapsedMs": 12459,
+        "checkedAt": "2026-11-27T16:11:21.222Z"
+      }
+    },
+    {
+      "rule": "Sanctioned tanker with no tracking coverage (expected UNVERIFIED)",
+      "text": "Shadow fleet tanker EAGLE S went dark in the Gulf of Finland",
+      "expected": "UNVERIFIED",
+      "actual": "UNVERIFIED",
+      "match": true,
+      "check": {
+        "kind": "ship",
+        "extracted": {
+          "text": "Shadow fleet tanker EAGLE S went dark in the Gulf of Finland",
+          "ships": [
+            "EAGLE S"
+          ],
+          "imos": [],
+          "mmsis": [],
+          "claims": [
+            "dark"
+          ],
+          "places": [
+            "Gulf of Finland"
+          ],
+          "media": [],
+          "urls": []
+        },
+        "shipQuery": "EAGLE S",
+        "shipName": "EAGLE S",
+        "identity": {
+          "imo": null,
+          "mmsi": null,
+          "name": "EAGLE S",
+          "callsign": null
+        },
+        "evidence": {
+          "hasShip": true,
+          "claims": [
+            "dark"
+          ],
+          "places": [
+            "Gulf of Finland"
+          ],
+          "fixes": [],
+          "noData": [
+            {
+              "source": "Quay",
+              "reason": "not heard by its receivers in the last 14 days"
+            },
+            {
+              "source": "VesselWire",
+              "reason": "needs an MMSI to find this ship"
+            },
+            {
+              "source": "Quay",
+              "reason": "not heard by its receivers in the last 14 days"
+            }
+          ],
+          "skipped": [],
+          "sameName": 0,
+          "identity": {
+            "imo": null,
+            "mmsi": null,
+            "name": "EAGLE S",
+            "callsign": null
+          },
+          "sanctions": {
+            "telegraph": {
+              "ok": true,
+              "matched": true,
+              "lists": [],
+              "matches": [
+                "LIMITED LIABILITY COMPANY RUSSIAN EAGLE"
+              ],
+              "score": null,
+              "source": "ChainSight — Universal Intelligence & Data Oracle"
+            },
+            "ofac": {
+              "checked": true,
+              "matches": [],
+              "listSize": 1570
+            }
+          },
+          "factCheck": {
+            "ok": true,
+            "verdict": null,
+            "reasoning": "No reliable sources confirm that the shadow fleet tanker EAGLE S went dark in the Gulf of Finland. The latest available reports from maritime monitoring agencies do not mention any incident involving EAGLE S as of the current date.",
+            "source": "TxLens"
+          },
+          "media": [],
+          "now": "2026-11-27T16:11:39.239Z"
+        },
+        "result": {
+          "verdict": {
+            "key": "UNVERIFIED",
+            "icon": "❓",
+            "label": "Can't verify from tracking"
+          },
+          "confidence": 30,
+          "reasons": [
+            {
+              "sign": -1,
+              "text": "No tracking source has a position for this ship (Quay: not heard by its receivers in the last 14 days; VesselWire: needs an MMSI to find this ship; Quay: not heard by its receivers in the last 14 days). Coverage is from coastal receivers, so ships far offshore can go unheard."
+            }
+          ],
+          "flags": [
+            "🚩 Sanctions: a Telegraph screening miner matched it; OFAC's SDN list does not (it may be on an EU or UK list)."
+          ],
+          "best": null,
+          "ageMin": null,
+          "stale": true,
+          "operators": [],
+          "sourcesAgree": null,
+          "sanctions": "listed"
+        },
+        "purchases": [
+          {
+            "label": "Position (Quay)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "EAGLE S",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": null
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "missing"
+            },
+            "warnings": [],
+            "signal": "0x53079603fac3aef385dbeb700bf2ff74c93624e7f55ab47301bde240d49e1b6d",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x53079603fac3aef385dbeb700bf2ff74c93624e7f55ab47301bde240d49e1b6d",
+            "costUsd": 0.01,
+            "latencyMs": 5031,
+            "error": "not heard by its receivers in the last 14 days",
+            "raw": {
+              "course_deg": null,
+              "latitude": null,
+              "longitude": null,
+              "observed_at": null,
+              "speed_knots": null,
+              "status": "not_seen",
+              "summary": "No AIS report heard for \"EAGLE S\" in the last 14 days. Coverage is terrestrial: ships far offshore can go unheard. Quay does not guess a position.",
+              "vessel": "EAGLE S"
+            },
+            "verified": true
+          },
+          {
+            "label": "Sanctions screen",
+            "ok": true,
+            "status": 200,
+            "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+            "miner": "ChainSight — Universal Intelligence & Data Oracle",
+            "minerId": "302",
+            "answer": {
+              "name": "EAGLE S",
+              "matched": true,
+              "matches": [
+                "LIMITED LIABILITY COMPANY RUSSIAN EAGLE"
+              ],
+              "lists": null,
+              "match_score": null
+            },
+            "fieldStatus": {
+              "name": "ok",
+              "matched": "ok",
+              "matches": "ok",
+              "lists": "rejected",
+              "match_score": "missing"
+            },
+            "warnings": [
+              "The response does not include: Sanctions lists checked or matched (e.g. OFAC SDN)",
+              "The response does not include: Best fuzzy-match score, 0 to 1"
+            ],
+            "signal": "0xc75c473ad7ab1f46ac625e2da58ef443110a2606b2e2697907d27a7ad0158cd7",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xc75c473ad7ab1f46ac625e2da58ef443110a2606b2e2697907d27a7ad0158cd7",
+            "costUsd": 0.01,
+            "latencyMs": 9922,
+            "error": null,
+            "raw": {
+              "answer": "The entity \"EAGLE S\" appears on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list: it closely matches \"LIMITED LIABILITY COMPANY RUSSIAN EAGLE\" under the RUSSIA-EO14024 program. As a designated party it is subject to U.S. sanctions, its assets are blocked, and U.S. persons are generally prohibited from dealing with it.",
+              "entity": "EAGLE S",
+              "match": true,
+              "matched_name": "LIMITED LIABILITY COMPANY RUSSIAN EAGLE",
+              "program": "RUSSIA-EO14024",
+              "signal": "The entity \"EAGLE S\" appears on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list: it closely matches \"LIMITED LIABILITY COMPANY RUSSIAN EAGLE\" under the RUSSIA-EO14024 program. As a designated party it is subject to U.S. sanctions, its assets are blocked, and U.S. persons are generally prohibited from dealing with it.",
+              "source": "ofac-sdn"
+            },
+            "verified": true
+          },
+          {
+            "label": "Fact-check",
+            "ok": true,
+            "status": 200,
+            "intent": "FACT_CHECK_GENERAL",
+            "miner": "TxLens",
+            "minerId": "9002",
+            "answer": {
+              "claim": "Shadow fleet tanker EAGLE S went dark in the Gulf of Finland",
+              "verdict": null,
+              "reasoning": "No reliable sources confirm that the shadow fleet tanker EAGLE S went dark in the Gulf of Finland. The latest available reports from maritime monitoring agencies do not mention any incident involving EAGLE S as of the current date.",
+              "sources": null
+            },
+            "fieldStatus": {
+              "claim": "ok",
+              "verdict": "missing",
+              "reasoning": "ok",
+              "sources": "missing"
+            },
+            "warnings": [
+              "The response does not include: URLs or names of the sources the answer cites",
+              "The response does not include: Fact-check verdict"
+            ],
+            "signal": "0xd2c3cc94c7f6e3886f10cf37aa3fa4ad2f46eb49fb0febcde22132e20788334e",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xd2c3cc94c7f6e3886f10cf37aa3fa4ad2f46eb49fb0febcde22132e20788334e",
+            "costUsd": 0.01,
+            "latencyMs": 10335,
+            "error": null,
+            "raw": {
+              "answer": "No reliable sources confirm that the shadow fleet tanker EAGLE S went dark in the Gulf of Finland. The latest available reports from maritime monitoring agencies do not mention any incident involving EAGLE S as of the current date.",
+              "canonical": "fact-check:Shadow fleet tanker EAGLE S went dark in the Gulf of Finland",
+              "claim": "Shadow fleet tanker EAGLE S went dark in the Gulf of Finland",
+              "confidence": 0.5,
+              "cost_usd": 0,
+              "provider": "consensus",
+              "source_note": "Checked against live sources at request time.",
+              "sources": [],
+              "status": "ok",
+              "summary": "No reliable sources confirm that the shadow fleet tanker EAGLE S went dark in the Gulf of Finland. The latest available reports from maritime monitoring agencies do not mention any incident involving EAGLE S as of the current date.",
+              "verdict": null
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (VesselWire)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "VesselWire Verbatim AIS Reports",
+            "minerId": "751084",
+            "answer": {
+              "vessel": "EAGLE S",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": "2026-11-27T16:11:29.380Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0x8c772cb476976929743a231886ad38c6b71ccc69d20da796dfe21d2f5c894050",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x8c772cb476976929743a231886ad38c6b71ccc69d20da796dfe21d2f5c894050",
+            "costUsd": 0.01,
+            "latencyMs": 5248,
+            "error": "needs an MMSI to find this ship",
+            "raw": {
+              "as_of": "2026-11-27T16:11:29.380Z",
+              "candidates": [],
+              "confidence": 0,
+              "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+              "summary": "Unresolved vessel name \"EAGLE S\". Supply a nine-digit MMSI; no telemetry was inferred.",
+              "verdict": "Insufficient information"
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (routed by Telegraph)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "EAGLE S",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": null
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "missing"
+            },
+            "warnings": [
+              "The response does not include: Course over ground, degrees",
+              "The response does not include: Latitude",
+              "The response does not include: Longitude",
+              "The response does not include: Time of the position report",
+              "The response does not include: Speed over ground, knots"
+            ],
+            "signal": "0x85796404b9481c04120f85de6d564f6e8ca7420c5e12612895d29995335898f4",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x85796404b9481c04120f85de6d564f6e8ca7420c5e12612895d29995335898f4",
+            "costUsd": 0.01,
+            "latencyMs": 6246,
+            "error": "not heard by its receivers in the last 14 days",
+            "raw": {
+              "course_deg": null,
+              "latitude": null,
+              "longitude": null,
+              "observed_at": null,
+              "speed_knots": null,
+              "status": "not_seen",
+              "summary": "No AIS report heard for \"EAGLE S\" in the last 14 days. Coverage is terrestrial: ships far offshore can go unheard. Quay does not guess a position.",
+              "vessel": "EAGLE S"
+            },
+            "verified": true
+          }
+        ],
+        "totalUsd": 0.05,
+        "elapsedMs": 18017,
+        "checkedAt": "2026-11-27T16:11:39.239Z"
+      }
+    },
+    {
+      "rule": "Famous ship outside the two-operator area (expected UNVERIFIED)",
+      "text": "Container ship EVER GIVEN ran aground in the Suez Canal again",
+      "expected": "UNVERIFIED",
+      "actual": "UNVERIFIED",
+      "match": true,
+      "check": {
+        "kind": "ship",
+        "extracted": {
+          "text": "Container ship EVER GIVEN ran aground in the Suez Canal again",
+          "ships": [
+            "EVER GIVEN"
+          ],
+          "imos": [],
+          "mmsis": [],
+          "claims": [
+            "aground"
+          ],
+          "places": [
+            "Suez Canal"
+          ],
+          "media": [],
+          "urls": []
+        },
+        "shipQuery": "EVER GIVEN",
+        "shipName": "EVER GIVEN",
+        "identity": {
+          "imo": null,
+          "mmsi": null,
+          "name": "EVER GIVEN",
+          "callsign": null
+        },
+        "evidence": {
+          "hasShip": true,
+          "claims": [
+            "aground"
+          ],
+          "places": [
+            "Suez Canal"
+          ],
+          "fixes": [],
+          "noData": [
+            {
+              "source": "Quay",
+              "reason": "not heard by its receivers in the last 14 days"
+            },
+            {
+              "source": "VesselWire",
+              "reason": "needs an MMSI to find this ship"
+            },
+            {
+              "source": "Quay",
+              "reason": "not heard by its receivers in the last 14 days"
+            }
+          ],
+          "skipped": [],
+          "sameName": 0,
+          "identity": {
+            "imo": null,
+            "mmsi": null,
+            "name": "EVER GIVEN",
+            "callsign": null
+          },
+          "sanctions": {
+            "telegraph": {
+              "ok": true,
+              "matched": false,
+              "lists": [
+                "OFAC SDN"
+              ],
+              "matches": [],
+              "score": null,
+              "source": "ChainSight — Universal Intelligence & Data Oracle"
+            },
+            "ofac": {
+              "checked": true,
+              "matches": [],
+              "listSize": 1570
+            }
+          },
+          "factCheck": {
+            "ok": true,
+            "verdict": null,
+            "reasoning": "No credible source reports EVER GIVEN grounding in the Suez Canal after 2021. The last known incident was the 2021 blockage; subsequent records show no repeat grounding.",
+            "source": "TxLens"
+          },
+          "media": [],
+          "now": "2026-11-27T16:11:54.701Z"
+        },
+        "result": {
+          "verdict": {
+            "key": "UNVERIFIED",
+            "icon": "❓",
+            "label": "Can't verify from tracking"
+          },
+          "confidence": 30,
+          "reasons": [
+            {
+              "sign": -1,
+              "text": "No tracking source has a position for this ship (Quay: not heard by its receivers in the last 14 days; VesselWire: needs an MMSI to find this ship; Quay: not heard by its receivers in the last 14 days). Coverage is from coastal receivers, so ships far offshore can go unheard."
+            }
+          ],
+          "flags": [],
+          "best": null,
+          "ageMin": null,
+          "stale": true,
+          "operators": [],
+          "sourcesAgree": null,
+          "sanctions": "clear-two-sources"
+        },
+        "purchases": [
+          {
+            "label": "Position (Quay)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "EVER GIVEN",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": null
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "missing"
+            },
+            "warnings": [],
+            "signal": "0x9a9be9b6157dce01d780f8bd557a763f6596f33f46390fb29b201eb438a441a3",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x9a9be9b6157dce01d780f8bd557a763f6596f33f46390fb29b201eb438a441a3",
+            "costUsd": 0.01,
+            "latencyMs": 4204,
+            "error": "not heard by its receivers in the last 14 days",
+            "raw": {
+              "course_deg": null,
+              "latitude": null,
+              "longitude": null,
+              "observed_at": null,
+              "speed_knots": null,
+              "status": "not_seen",
+              "summary": "No AIS report heard for \"EVER GIVEN\" in the last 14 days. Coverage is terrestrial: ships far offshore can go unheard. Quay does not guess a position.",
+              "vessel": "EVER GIVEN"
+            },
+            "verified": true
+          },
+          {
+            "label": "Sanctions screen",
+            "ok": true,
+            "status": 200,
+            "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+            "miner": "ChainSight — Universal Intelligence & Data Oracle",
+            "minerId": "302",
+            "answer": {
+              "name": "EVER GIVEN",
+              "matched": false,
+              "matches": null,
+              "lists": [
+                "OFAC SDN"
+              ],
+              "match_score": null
+            },
+            "fieldStatus": {
+              "name": "ok",
+              "matched": "ok",
+              "matches": "missing",
+              "lists": "ok",
+              "match_score": "missing"
+            },
+            "warnings": [
+              "The response does not include: Best fuzzy-match score, 0 to 1",
+              "The response does not include: Matching sanctions-list entries"
+            ],
+            "signal": "0x2149134619620cd2b815eafc6d67cba1cfaaf670ac4072276dd11cc059c7f13f",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x2149134619620cd2b815eafc6d67cba1cfaaf670ac4072276dd11cc059c7f13f",
+            "costUsd": 0.01,
+            "latencyMs": 6583,
+            "error": null,
+            "raw": {
+              "answer": "No match for \"EVER GIVEN\" was found on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list, the primary U.S. sanctions list. Based on this screening \"EVER GIVEN\" does not appear to be a currently OFAC-designated party; this screening covers the OFAC SDN list and not every global watchlist.",
+              "entity": "EVER GIVEN",
+              "match": false,
+              "signal": "No match for \"EVER GIVEN\" was found on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list, the primary U.S. sanctions list. Based on this screening \"EVER GIVEN\" does not appear to be a currently OFAC-designated party; this screening covers the OFAC SDN list and not every global watchlist.",
+              "source": "ofac-sdn"
+            },
+            "verified": true
+          },
+          {
+            "label": "Fact-check",
+            "ok": true,
+            "status": 200,
+            "intent": "FACT_CHECK_GENERAL",
+            "miner": "TxLens",
+            "minerId": "9002",
+            "answer": {
+              "claim": "Container ship EVER GIVEN ran aground in the Suez Canal again",
+              "verdict": null,
+              "reasoning": "No credible source reports EVER GIVEN grounding in the Suez Canal after 2021. The last known incident was the 2021 blockage; subsequent records show no repeat grounding.",
+              "sources": null
+            },
+            "fieldStatus": {
+              "claim": "ok",
+              "verdict": "missing",
+              "reasoning": "ok",
+              "sources": "missing"
+            },
+            "warnings": [
+              "The response does not include: URLs or names of the sources the answer cites",
+              "The response does not include: Fact-check verdict"
+            ],
+            "signal": "0xb90318971504ca5f843f4cf3e2b659358a1d0f74f4c71a5dc760c55da5b2a1c2",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xb90318971504ca5f843f4cf3e2b659358a1d0f74f4c71a5dc760c55da5b2a1c2",
+            "costUsd": 0.01,
+            "latencyMs": 7109,
+            "error": null,
+            "raw": {
+              "answer": "No credible source reports EVER GIVEN grounding in the Suez Canal after 2021. The last known incident was the 2021 blockage; subsequent records show no repeat grounding.",
+              "canonical": "fact-check:Container ship EVER GIVEN ran aground in the Suez Canal again",
+              "claim": "Container ship EVER GIVEN ran aground in the Suez Canal again",
+              "confidence": 0.5,
+              "cost_usd": 0,
+              "provider": "consensus",
+              "source_note": "Checked against live sources at request time.",
+              "sources": [],
+              "status": "ok",
+              "summary": "No credible source reports EVER GIVEN grounding in the Suez Canal after 2021. The last known incident was the 2021 blockage; subsequent records show no repeat grounding.",
+              "verdict": null
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (VesselWire)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "VesselWire Verbatim AIS Reports",
+            "minerId": "751084",
+            "answer": {
+              "vessel": "EVER GIVEN",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": "2026-11-27T16:11:45.931Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0x5f5dd6b1cd6ea6cb7aa1d0e8e071b5b73468cc1cf6864d32cc7e7ddb0a1c6451",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x5f5dd6b1cd6ea6cb7aa1d0e8e071b5b73468cc1cf6864d32cc7e7ddb0a1c6451",
+            "costUsd": 0.01,
+            "latencyMs": 3629,
+            "error": "needs an MMSI to find this ship",
+            "raw": {
+              "as_of": "2026-11-27T16:11:45.931Z",
+              "candidates": [],
+              "confidence": 0,
+              "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+              "summary": "Unresolved vessel name \"EVER GIVEN\". Supply a nine-digit MMSI; no telemetry was inferred.",
+              "verdict": "Insufficient information"
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (routed by Telegraph)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "EVER GIVEN",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": null
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "missing"
+            },
+            "warnings": [
+              "The response does not include: Course over ground, degrees",
+              "The response does not include: Latitude",
+              "The response does not include: Longitude",
+              "The response does not include: Time of the position report",
+              "The response does not include: Speed over ground, knots"
+            ],
+            "signal": "0x630b782850075a64a44a2a04e7c386248e5e673a9b6b16511125de1c864815f3",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x630b782850075a64a44a2a04e7c386248e5e673a9b6b16511125de1c864815f3",
+            "costUsd": 0.01,
+            "latencyMs": 5950,
+            "error": "not heard by its receivers in the last 14 days",
+            "raw": {
+              "course_deg": null,
+              "latitude": null,
+              "longitude": null,
+              "observed_at": null,
+              "speed_knots": null,
+              "status": "not_seen",
+              "summary": "No AIS report heard for \"EVER GIVEN\" in the last 14 days. Coverage is terrestrial: ships far offshore can go unheard. Quay does not guess a position.",
+              "vessel": "EVER GIVEN"
+            },
+            "verified": true
+          }
+        ],
+        "totalUsd": 0.05,
+        "elapsedMs": 15462,
+        "checkedAt": "2026-11-27T16:11:54.701Z"
+      }
+    },
+    {
+      "rule": "A ship that does not exist (failure case) (expected UNVERIFIED)",
+      "text": "tanker ZZQX NORTHWIND hit by a missile near Fujairah",
+      "expected": "UNVERIFIED",
+      "actual": "UNVERIFIED",
+      "match": true,
+      "check": {
+        "kind": "ship",
+        "extracted": {
+          "text": "tanker ZZQX NORTHWIND hit by a missile near Fujairah",
+          "ships": [
+            "ZZQX NORTHWIND"
+          ],
+          "imos": [],
+          "mmsis": [],
+          "claims": [
+            "struck"
+          ],
+          "places": [
+            "Fujairah"
+          ],
+          "media": [],
+          "urls": []
+        },
+        "shipQuery": "ZZQX NORTHWIND",
+        "shipName": "ZZQX NORTHWIND",
+        "identity": {
+          "imo": null,
+          "mmsi": null,
+          "name": "ZZQX NORTHWIND",
+          "callsign": null
+        },
+        "evidence": {
+          "hasShip": true,
+          "claims": [
+            "struck"
+          ],
+          "places": [
+            "Fujairah"
+          ],
+          "fixes": [],
+          "noData": [
+            {
+              "source": "Quay",
+              "reason": "not heard by its receivers in the last 14 days"
+            },
+            {
+              "source": "VesselWire",
+              "reason": "needs an MMSI to find this ship"
+            },
+            {
+              "source": "Quay",
+              "reason": "not heard by its receivers in the last 14 days"
+            }
+          ],
+          "skipped": [],
+          "sameName": 0,
+          "identity": {
+            "imo": null,
+            "mmsi": null,
+            "name": "ZZQX NORTHWIND",
+            "callsign": null
+          },
+          "sanctions": {
+            "telegraph": {
+              "ok": true,
+              "matched": false,
+              "lists": [
+                "OFAC SDN"
+              ],
+              "matches": [],
+              "score": null,
+              "source": "ChainSight — Universal Intelligence & Data Oracle"
+            },
+            "ofac": {
+              "checked": true,
+              "matches": [],
+              "listSize": 1570
+            }
+          },
+          "factCheck": {
+            "ok": true,
+            "verdict": "Unverified",
+            "reasoning": "Unverified. As of November 27, 2026, there are no credible maritime security reports or official government statements confirming that a tanker named ZZQX NORTHWIND was struck by a missile near Fujairah.",
+            "source": "TxLens"
+          },
+          "media": [],
+          "now": "2026-11-27T16:12:11.923Z"
+        },
+        "result": {
+          "verdict": {
+            "key": "UNVERIFIED",
+            "icon": "❓",
+            "label": "Can't verify from tracking"
+          },
+          "confidence": 30,
+          "reasons": [
+            {
+              "sign": -1,
+              "text": "No tracking source has a position for this ship (Quay: not heard by its receivers in the last 14 days; VesselWire: needs an MMSI to find this ship; Quay: not heard by its receivers in the last 14 days). Coverage is from coastal receivers, so ships far offshore can go unheard."
+            },
+            {
+              "sign": 0,
+              "text": "A fact-check miner found no reliable source either way (\"Unverified\")."
+            }
+          ],
+          "flags": [],
+          "best": null,
+          "ageMin": null,
+          "stale": true,
+          "operators": [],
+          "sourcesAgree": null,
+          "sanctions": "clear-two-sources"
+        },
+        "purchases": [
+          {
+            "label": "Position (Quay)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "ZZQX NORTHWIND",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": null
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "missing"
+            },
+            "warnings": [],
+            "signal": "0x7aa3049f77f4872dd37457dafa729a13689354b9df9c6f0e48236b0c2b4a9a2c",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x7aa3049f77f4872dd37457dafa729a13689354b9df9c6f0e48236b0c2b4a9a2c",
+            "costUsd": 0.01,
+            "latencyMs": 4522,
+            "error": "not heard by its receivers in the last 14 days",
+            "raw": {
+              "course_deg": null,
+              "latitude": null,
+              "longitude": null,
+              "observed_at": null,
+              "speed_knots": null,
+              "status": "not_seen",
+              "summary": "No AIS report heard for \"ZZQX NORTHWIND\" in the last 14 days. Coverage is terrestrial: ships far offshore can go unheard. Quay does not guess a position.",
+              "vessel": "ZZQX NORTHWIND"
+            },
+            "verified": true
+          },
+          {
+            "label": "Sanctions screen",
+            "ok": true,
+            "status": 200,
+            "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+            "miner": "ChainSight — Universal Intelligence & Data Oracle",
+            "minerId": "302",
+            "answer": {
+              "name": "ZZQX NORTHWIND",
+              "matched": false,
+              "matches": null,
+              "lists": [
+                "OFAC SDN"
+              ],
+              "match_score": null
+            },
+            "fieldStatus": {
+              "name": "ok",
+              "matched": "ok",
+              "matches": "missing",
+              "lists": "ok",
+              "match_score": "missing"
+            },
+            "warnings": [
+              "The response does not include: Best fuzzy-match score, 0 to 1",
+              "The response does not include: Matching sanctions-list entries"
+            ],
+            "signal": "0x51ec5c91284d98b7f6fc924fd17c689fc5e075905033394b390a2c3ebf58af57",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x51ec5c91284d98b7f6fc924fd17c689fc5e075905033394b390a2c3ebf58af57",
+            "costUsd": 0.01,
+            "latencyMs": 7232,
+            "error": null,
+            "raw": {
+              "answer": "No match for \"ZZQX NORTHWIND\" was found on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list, the primary U.S. sanctions list. Based on this screening \"ZZQX NORTHWIND\" does not appear to be a currently OFAC-designated party; this screening covers the OFAC SDN list and not every global watchlist.",
+              "entity": "ZZQX NORTHWIND",
+              "match": false,
+              "signal": "No match for \"ZZQX NORTHWIND\" was found on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list, the primary U.S. sanctions list. Based on this screening \"ZZQX NORTHWIND\" does not appear to be a currently OFAC-designated party; this screening covers the OFAC SDN list and not every global watchlist.",
+              "source": "ofac-sdn"
+            },
+            "verified": true
+          },
+          {
+            "label": "Fact-check",
+            "ok": true,
+            "status": 200,
+            "intent": "FACT_CHECK_GENERAL",
+            "miner": "TxLens",
+            "minerId": "9002",
+            "answer": {
+              "claim": "tanker ZZQX NORTHWIND hit by a missile near Fujairah",
+              "verdict": "Unverified",
+              "reasoning": "Unverified. As of November 27, 2026, there are no credible maritime security reports or official government statements confirming that a tanker named ZZQX NORTHWIND was struck by a missile near Fujairah.",
+              "sources": null
+            },
+            "fieldStatus": {
+              "claim": "ok",
+              "verdict": "ok",
+              "reasoning": "ok",
+              "sources": "missing"
+            },
+            "warnings": [
+              "The response does not include: URLs or names of the sources the answer cites"
+            ],
+            "signal": "0x72fb987153add343f3aa68c8a82392f88a433b47cb4d7eea141d9dccbb2e7e07",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x72fb987153add343f3aa68c8a82392f88a433b47cb4d7eea141d9dccbb2e7e07",
+            "costUsd": 0.01,
+            "latencyMs": 7576,
+            "error": null,
+            "raw": {
+              "answer": "Unverified. As of November 27, 2026, there are no credible maritime security reports or official government statements confirming that a tanker named ZZQX NORTHWIND was struck by a missile near Fujairah.",
+              "canonical": "fact-check:tanker ZZQX NORTHWIND hit by a missile near Fujairah",
+              "claim": "tanker ZZQX NORTHWIND hit by a missile near Fujairah",
+              "confidence": 0.5,
+              "cost_usd": 0,
+              "provider": "consensus",
+              "source_note": "Checked against live sources at request time.",
+              "sources": [],
+              "status": "ok",
+              "summary": "Unverified. As of November 27, 2026, there are no credible maritime security reports or official government statements confirming that a tanker named ZZQX NORTHWIND was struck by a missile near Fujairah.",
+              "verdict": "Unverified"
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (VesselWire)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "VesselWire Verbatim AIS Reports",
+            "minerId": "751084",
+            "answer": {
+              "vessel": "ZZQX NORTHWIND",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": "2026-11-27T16:12:02.581Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0x73eea25957e325b6df6a82b026f62a228f9c458978ce3331437d6282f916e5f5",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x73eea25957e325b6df6a82b026f62a228f9c458978ce3331437d6282f916e5f5",
+            "costUsd": 0.01,
+            "latencyMs": 4793,
+            "error": "needs an MMSI to find this ship",
+            "raw": {
+              "as_of": "2026-11-27T16:12:02.581Z",
+              "candidates": [],
+              "confidence": 0,
+              "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+              "summary": "Unresolved vessel name \"ZZQX NORTHWIND\". Supply a nine-digit MMSI; no telemetry was inferred.",
+              "verdict": "Insufficient information"
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (routed by Telegraph)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "ZZQX NORTHWIND",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": null
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "missing"
+            },
+            "warnings": [
+              "The response does not include: Course over ground, degrees",
+              "The response does not include: Latitude",
+              "The response does not include: Longitude",
+              "The response does not include: Time of the position report",
+              "The response does not include: Speed over ground, knots"
+            ],
+            "signal": "0x8a4b611433e5c8ad3dcd5d20cb54893ac45da23b2d6e4dafb26a7bfec2b332a3",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x8a4b611433e5c8ad3dcd5d20cb54893ac45da23b2d6e4dafb26a7bfec2b332a3",
+            "costUsd": 0.01,
+            "latencyMs": 6475,
+            "error": "not heard by its receivers in the last 14 days",
+            "raw": {
+              "course_deg": null,
+              "latitude": null,
+              "longitude": null,
+              "observed_at": null,
+              "speed_knots": null,
+              "status": "not_seen",
+              "summary": "No AIS report heard for \"ZZQX NORTHWIND\" in the last 14 days. Coverage is terrestrial: ships far offshore can go unheard. Quay does not guess a position.",
+              "vessel": "ZZQX NORTHWIND"
+            },
+            "verified": true
+          }
+        ],
+        "totalUsd": 0.05,
+        "elapsedMs": 17222,
+        "checkedAt": "2026-11-27T16:12:11.923Z"
+      }
+    },
+    {
+      "rule": "No ship named (expected UNVERIFIED)",
+      "text": "Iran says all tankers are blocked from leaving the Persian Gulf",
+      "expected": "UNVERIFIED",
+      "actual": "UNVERIFIED",
+      "match": true,
+      "check": {
+        "kind": "claim",
+        "extracted": {
+          "text": "Iran says all tankers are blocked from leaving the Persian Gulf",
+          "ships": [],
+          "imos": [],
+          "mmsis": [],
+          "claims": [
+            "blocked"
+          ],
+          "places": [
+            "Persian Gulf"
+          ],
+          "media": [],
+          "urls": []
+        },
+        "shipQuery": null,
+        "shipName": null,
+        "identity": {
+          "imo": null,
+          "mmsi": null,
+          "name": null
+        },
+        "evidence": {
+          "hasShip": false,
+          "claims": [
+            "blocked"
+          ],
+          "places": [
+            "Persian Gulf"
+          ],
+          "fixes": [],
+          "noData": [],
+          "skipped": [],
+          "sameName": 0,
+          "identity": {
+            "imo": null,
+            "mmsi": null,
+            "name": null
+          },
+          "sanctions": {
+            "telegraph": null,
+            "ofac": null
+          },
+          "factCheck": {
+            "ok": false,
+            "verdict": null,
+            "reasoning": null,
+            "source": "TxLens"
+          },
+          "media": [],
+          "now": "2026-11-27T16:12:26.156Z"
+        },
+        "result": {
+          "verdict": {
+            "key": "UNVERIFIED",
+            "icon": "❓",
+            "label": "Can't verify from tracking"
+          },
+          "confidence": 30,
+          "reasons": [
+            {
+              "sign": 0,
+              "text": "No ship was named, so there is nothing to track. Only the claim itself was checked."
+            }
+          ],
+          "flags": [],
+          "best": null,
+          "ageMin": null,
+          "stale": true,
+          "operators": [],
+          "sourcesAgree": null,
+          "sanctions": "not-applicable"
+        },
+        "purchases": [
+          {
+            "label": "Fact-check",
+            "ok": false,
+            "status": 200,
+            "intent": "FACT_CHECK_GENERAL",
+            "miner": "TxLens",
+            "minerId": "9002",
+            "answer": {
+              "claim": "Iran says all tankers are blocked from leaving the Persian Gulf",
+              "verdict": null,
+              "reasoning": null,
+              "sources": null
+            },
+            "fieldStatus": {
+              "claim": "ok",
+              "verdict": "missing",
+              "reasoning": "missing",
+              "sources": "missing"
+            },
+            "warnings": [
+              "The response does not include: The reasoning behind the verdict",
+              "The response does not include: URLs or names of the sources the answer cites",
+              "The response does not include: Fact-check verdict"
+            ],
+            "signal": "0xad7a3925621b101ba388a7c7207358e13518054aae004c3d3c4b7021817719db",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xad7a3925621b101ba388a7c7207358e13518054aae004c3d3c4b7021817719db",
+            "costUsd": 0.01,
+            "latencyMs": 13717,
+            "error": "the miner had no data for this",
+            "raw": {
+              "answer": "No current sources confirm that Iran has blocked all tankers from leaving the Persian Gulf as of November 27, 2026. The latest documented status indicates normal commercial shipping operations in the region.",
+              "canonical": "fact-check:Iran says all tankers are blocked from leaving the Persian Gulf",
+              "claim": "Iran says all tankers are blocked from leaving the Persian Gulf",
+              "confidence": 0.5,
+              "cost_usd": 0,
+              "provider": "consensus",
+              "source_note": "Checked against live sources at request time.",
+              "sources": [],
+              "status": "ok",
+              "summary": "No current sources confirm that Iran has blocked all tankers from leaving the Persian Gulf as of November 27, 2026. The latest documented status indicates normal commercial shipping operations in the region.",
+              "verdict": null
+            },
+            "verified": true
+          }
+        ],
+        "totalUsd": 0.01,
+        "elapsedMs": 14232,
+        "checkedAt": "2026-11-27T16:12:26.156Z"
+      }
+    },
+    {
+      "rule": "'Went dark' vs a ferry that is transmitting (expected DISAGREES)",
+      "text": "ferry FINNLADY went dark and disappeared in the Baltic",
+      "expected": "DISAGREES",
+      "actual": "DISAGREES",
+      "match": true,
+      "check": {
+        "kind": "ship",
+        "extracted": {
+          "text": "ferry FINNLADY went dark and disappeared in the Baltic",
+          "ships": [
+            "FINNLADY"
+          ],
+          "imos": [],
+          "mmsis": [],
+          "claims": [
+            "dark"
+          ],
+          "places": [
+            "Baltic Sea"
+          ],
+          "media": [],
+          "urls": []
+        },
+        "shipQuery": "FINNLADY",
+        "shipName": "FINNLADY",
+        "identity": {
+          "imo": "9336268",
+          "mmsi": "230987000",
+          "name": "FINNLADY",
+          "callsign": "OJMQ"
+        },
+        "evidence": {
+          "hasShip": true,
+          "claims": [
+            "dark"
+          ],
+          "places": [
+            "Baltic Sea"
+          ],
+          "fixes": [
+            {
+              "source": "Quay",
+              "operator": "Quay",
+              "lat": 59.720825,
+              "lon": 23.969065,
+              "speed": 22,
+              "course": 249.5,
+              "at": "2026-11-27T16:05:22.158Z",
+              "navStatus": "under way using engine",
+              "destination": "DE TRAVEMUNDE",
+              "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x69be4aee47fe5e468501d16a155d23de9dac1b25f2746741dce2304cd978b5eb",
+              "region": "Gulf of Finland"
+            },
+            {
+              "source": "VesselWire",
+              "operator": "VesselWire",
+              "lat": 59.705677,
+              "lon": 23.888372,
+              "speed": 22.1,
+              "course": 250,
+              "at": "2026-11-27T16:12:28.243Z",
+              "navStatus": "under way using engine",
+              "destination": "DE TRAVEMUNDE",
+              "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x1b1c422b5540b7c346855d29c6b3ef4256ceb5c16a995c131c8baf9f4b91b3d3",
+              "region": "Gulf of Finland"
+            }
+          ],
+          "noData": [],
+          "skipped": [],
+          "sameName": 0,
+          "identity": {
+            "imo": "9336268",
+            "mmsi": "230987000",
+            "name": "FINNLADY",
+            "callsign": "OJMQ"
+          },
+          "sanctions": {
+            "telegraph": {
+              "ok": true,
+              "matched": false,
+              "lists": [
+                "OFAC SDN"
+              ],
+              "matches": [],
+              "score": null,
+              "source": "ChainSight — Universal Intelligence & Data Oracle"
+            },
+            "ofac": {
+              "checked": true,
+              "matches": [],
+              "listSize": 1570
+            }
+          },
+          "factCheck": {
+            "ok": false,
+            "verdict": null,
+            "reasoning": null,
+            "source": "TxLens"
+          },
+          "media": [],
+          "now": "2026-11-27T16:12:37.713Z"
+        },
+        "result": {
+          "verdict": {
+            "key": "DISAGREES",
+            "icon": "⚠️",
+            "label": "Tracking disagrees with the rumour"
+          },
+          "confidence": 90,
+          "reasons": [
+            {
+              "sign": 1,
+              "text": "Position reported under a minute ago."
+            },
+            {
+              "sign": 1,
+              "text": "VesselWire and Quay (different operators) agree on where it is (4.8 km apart, consistent with the time between reports)."
+            },
+            {
+              "sign": 1,
+              "text": "The rumour says it went dark, but it was transmitting within the last hour."
+            }
+          ],
+          "flags": [],
+          "best": {
+            "source": "VesselWire",
+            "operator": "VesselWire",
+            "lat": 59.705677,
+            "lon": 23.888372,
+            "speed": 22.1,
+            "course": 250,
+            "at": "2026-11-27T16:12:28.243Z",
+            "navStatus": "under way using engine",
+            "destination": "DE TRAVEMUNDE",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x1b1c422b5540b7c346855d29c6b3ef4256ceb5c16a995c131c8baf9f4b91b3d3",
+            "region": "Gulf of Finland"
+          },
+          "ageMin": 0.15783333333333333,
+          "stale": false,
+          "operators": [
+            "VesselWire",
+            "Quay"
+          ],
+          "sourcesAgree": true,
+          "sanctions": "clear-two-sources"
+        },
+        "purchases": [
+          {
+            "label": "Position (Quay)",
+            "ok": true,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "FINNLADY",
+              "speed_knots": 22,
+              "latitude": 59.720825,
+              "longitude": 23.969065,
+              "course_deg": 249.5,
+              "observed_at": "2026-11-27T16:05:22.158Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "ok",
+              "latitude": "ok",
+              "longitude": "ok",
+              "course_deg": "ok",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0x69be4aee47fe5e468501d16a155d23de9dac1b25f2746741dce2304cd978b5eb",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x69be4aee47fe5e468501d16a155d23de9dac1b25f2746741dce2304cd978b5eb",
+            "costUsd": 0.01,
+            "latencyMs": 4489,
+            "error": null,
+            "raw": {
+              "age_minutes": 7,
+              "callsign": "OJMQ",
+              "course_deg": 249.5,
+              "destination": "DE TRAVEMUNDE",
+              "eta": "11-28 20:00 UTC (as reported by the ship)",
+              "heading_deg": 250,
+              "imo": "9336268",
+              "last_heard": null,
+              "latitude": 59.720825,
+              "longitude": 23.969065,
+              "matched_by": "name",
+              "mmsi": "230987000",
+              "name": "FINNLADY",
+              "nav_status": "under way using engine",
+              "observed_at": "2026-11-27T16:05:22.158Z",
+              "other_ships_with_same_name": 0,
+              "source": "Live AIS broadcast via aisstream.io terrestrial receivers",
+              "speed_knots": 22,
+              "status": "live",
+              "vessel": "FINNLADY"
+            },
+            "verified": true
+          },
+          {
+            "label": "Fact-check",
+            "ok": false,
+            "status": 200,
+            "intent": "FACT_CHECK_GENERAL",
+            "miner": "TxLens",
+            "minerId": "9002",
+            "answer": {
+              "claim": "ferry FINNLADY went dark and disappeared in the Baltic",
+              "verdict": null,
+              "reasoning": null,
+              "sources": null
+            },
+            "fieldStatus": {
+              "claim": "ok",
+              "verdict": "missing",
+              "reasoning": "missing",
+              "sources": "missing"
+            },
+            "warnings": [
+              "The response does not include: The reasoning behind the verdict",
+              "The response does not include: URLs or names of the sources the answer cites",
+              "The response does not include: Fact-check verdict"
+            ],
+            "signal": "0x334a9e8c269c7fd6ec38ae599ae1094d552da332ccc3764c333149aff2098734",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x334a9e8c269c7fd6ec38ae599ae1094d552da332ccc3764c333149aff2098734",
+            "costUsd": 0.01,
+            "latencyMs": 7271,
+            "error": "the miner had no data for this",
+            "raw": {
+              "answer": "No public records or news sources confirm that the ferry FINNLADY went dark and disappeared in the Baltic Sea. The latest documented status of the vessel is that it is in active service.",
+              "canonical": "fact-check:ferry FINNLADY went dark and disappeared in the Baltic",
+              "claim": "ferry FINNLADY went dark and disappeared in the Baltic",
+              "confidence": 0.5,
+              "cost_usd": 0,
+              "provider": "consensus",
+              "source_note": "Checked against live sources at request time.",
+              "sources": [],
+              "status": "ok",
+              "summary": "No public records or news sources confirm that the ferry FINNLADY went dark and disappeared in the Baltic Sea. The latest documented status of the vessel is that it is in active service.",
+              "verdict": null
+            },
+            "verified": true
+          },
+          {
+            "label": "Sanctions screen",
+            "ok": true,
+            "status": 200,
+            "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+            "miner": "ChainSight — Universal Intelligence & Data Oracle",
+            "minerId": "302",
+            "answer": {
+              "name": "FINNLADY",
+              "matched": false,
+              "matches": null,
+              "lists": [
+                "OFAC SDN"
+              ],
+              "match_score": null
+            },
+            "fieldStatus": {
+              "name": "ok",
+              "matched": "ok",
+              "matches": "missing",
+              "lists": "ok",
+              "match_score": "missing"
+            },
+            "warnings": [
+              "The response does not include: Best fuzzy-match score, 0 to 1",
+              "The response does not include: Matching sanctions-list entries"
+            ],
+            "signal": "0x9974379e96acd25353fac39b27f719bf4f08855ce565c6b71320f70b2e697e7c",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x9974379e96acd25353fac39b27f719bf4f08855ce565c6b71320f70b2e697e7c",
+            "costUsd": 0.01,
+            "latencyMs": 7661,
+            "error": null,
+            "raw": {
+              "answer": "No match for \"FINNLADY\" was found on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list, the primary U.S. sanctions list. Based on this screening \"FINNLADY\" does not appear to be a currently OFAC-designated party; this screening covers the OFAC SDN list and not every global watchlist.",
+              "entity": "FINNLADY",
+              "match": false,
+              "signal": "No match for \"FINNLADY\" was found on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list, the primary U.S. sanctions list. Based on this screening \"FINNLADY\" does not appear to be a currently OFAC-designated party; this screening covers the OFAC SDN list and not every global watchlist.",
+              "source": "ofac-sdn"
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (VesselWire)",
+            "ok": true,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "VesselWire Verbatim AIS Reports",
+            "minerId": "751084",
+            "answer": {
+              "vessel": "230987000",
+              "speed_knots": 22.1,
+              "latitude": 59.705677,
+              "longitude": 23.888372,
+              "course_deg": 250,
+              "observed_at": "2026-11-27T16:12:28.243Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "ok",
+              "latitude": "ok",
+              "longitude": "ok",
+              "course_deg": "ok",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0x1b1c422b5540b7c346855d29c6b3ef4256ceb5c16a995c131c8baf9f4b91b3d3",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x1b1c422b5540b7c346855d29c6b3ef4256ceb5c16a995c131c8baf9f4b91b3d3",
+            "costUsd": 0.01,
+            "latencyMs": 6195,
+            "error": null,
+            "raw": {
+              "ais_positioning_system_mode": "UTC second available",
+              "ais_timestamp_scope": "Source AIS EPFS UTC-second/mode field, not a complete date or the provider location-record timestamp.",
+              "ais_utc_second": 27,
+              "as_of": "2026-11-27T16:12:34.397Z",
+              "attribution": "Source: Fintraffic / digitraffic.fi, licence CC 4.0 BY (https://creativecommons.org/licenses/by/4.0/). Modified: AIS unavailable values normalized, units converted, and source-reported claims assessed.",
+              "beam_at_least_m": null,
+              "beam_m": 31,
+              "call_sign": "OJMQ",
+              "claim": null,
+              "confidence": 0.95,
+              "confidence_scope": "Compatibility field: completeness/freshness policy, not probability of independent truth.",
+              "course_over_ground_deg": 250,
+              "course_over_ground_degrees": 249.7,
+              "destination": "DE TRAVEMUNDE",
+              "dimensions_scope": "Sum of reported distances from the AIS position reference point; not independently measured hull dimensions.",
+              "draught_at_least_m": null,
+              "draught_m": 7.1,
+              "eta_scope": "Self-reported AIS arrival estimate, not an observed arrival or guaranteed schedule; AIS supplies no year.",
+              "freshness": "fresh",
+              "freshness_limit_seconds": 900,
+              "heading_deg": 250,
+              "imo": 9336268,
+              "in_coverage": true,
+              "independently_verified": false,
+              "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+              "latitude": 59.705677,
+              "length_at_least_m": null,
+              "length_m": 219,
+              "longitude": 23.888372,
+              "metadata_age_seconds": 286.934,
+              "metadata_available": true,
+              "metadata_error": null,
+              "metadata_freshness": "fresh",
+              "metadata_freshness_limit_seconds": 21600,
+              "metadata_observed_at": "2026-11-27T16:07:47.463Z",
+              "metadata_source_url": "https://meri.digitraffic.fi/api/ais/v1/vessels/230987000",
+              "mmsi": 230987000,
+              "navigational_status": "under way using engine",
+              "navigational_status_code": 0,
+              "observation_age_seconds": 6.154,
+              "observed_at": "2026-11-27T16:12:28.243Z",
+              "position_accuracy_flag": true,
+              "position_fix_scope": "Static AIS metadata device type, not a current working fix, satellite count, measured accuracy or independent position verification.",
+              "position_fix_type": "GPS",
+              "position_fix_type_code": 1,
+              "raim_flag": false,
+              "rate_of_turn_deg_per_min": 0,
+              "rate_of_turn_direction": "not turning",
+              "rate_of_turn_encoding": "sensor_encoded",
+              "rate_of_turn_scope": "Approximate decoding of the quantized, source-reported AIS ROT code; special +/-127 numeric thresholds are not asserted.",
+              "raw_ais": {
+                "callSign": "OJMQ",
+                "cog": 249.7,
+                "draught": 71,
+                "eta": 779520,
+                "heading": 250,
+                "imo": 9336268,
+                "navStat": 0,
+                "posAcc": true,
+                "posType": 1,
+                "raim": false,
+                "referencePointA": 26,
+                "referencePointB": 193,
+                "referencePointC": 16,
+                "referencePointD": 15,
+                "rot": 0,
+                "shipType": 60,
+                "sog": 22.1,
+                "timestamp": 27
+              },
+              "reported_eta": {
+                "complete": true,
+                "day": 28,
+                "hour": 20,
+                "minute": 0,
+                "month": 11,
+                "text": "month 11, day 28, 20:00 UTC (year not transmitted)",
+                "time_zone": "UTC",
+                "year": null
+              },
+              "ship_type": "passenger ship",
+              "source": "Fintraffic Digitraffic marine AIS",
+              "source_url": "https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=230987000",
+              "speed_kmh": 40.9292,
+              "speed_knots": 22.1,
+              "speed_mps": 11.369222222222223,
+              "speed_over_ground_knots": 22.1,
+              "summary": "FINNLADY (MMSI 230987000): speed over ground 22.1 knots (40.9 km/h). Provider location record observed 2026-11-27T16:12:28.243Z (fresh). Evidence: Fintraffic / digitraffic.fi (CC BY 4.0), https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=230987000. AIS reports are not independent vessel verification.",
+              "verdict": "Reported",
+              "verification_scope": "Single-provider AIS report; AIS may be inaccurate or spoofed.",
+              "vessel_name": "FINNLADY",
+              "warnings": []
+            },
+            "verified": true
+          }
+        ],
+        "totalUsd": 0.04,
+        "elapsedMs": 11558,
+        "checkedAt": "2026-11-27T16:12:37.713Z"
+      }
+    }
+  ]
+}

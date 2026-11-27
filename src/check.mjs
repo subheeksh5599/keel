@@ -9,7 +9,7 @@ import { CheckBudget, BudgetError } from "./budget.mjs";
 // and resolves ships best by MMSI, so it is asked second, with the MMSI the first tracker reported when there is one.
 export const TRACKERS = [
   { id: "8818818", source: "Quay", operator: "Quay" },
-  { id: "751084", source: "VesselWire", operator: "VesselWire", coverage: [53.5, 9.0, 66.5, 31.0] }, // Baltic only
+  { id: "751084", source: "VesselWire", operator: "VesselWire", coverage: [53.5, 9.0, 66.5, 31.0], needsMmsi: true }, // Baltic only; finds ships by MMSI, not by name
 ];
 
 export const INTENTS = {
@@ -46,6 +46,7 @@ export async function runCheck(text, { telegraph, budget, ofac, maxCheckUsd = 0.
     if (args.intent === INTENTS.vessel && (r.ok || r.status === 200) && (num(r.answer?.latitude) === null || num(r.answer?.longitude) === null)) {
       r = { ...r, ok: false, error: notSeenReason(r.raw) };
     }
+    if (args.intent === INTENTS.fact && r.ok && !r.answer?.verdict) r = { ...r, ok: false, error: "no verdict in the answer" };
     purchases.push({ label, ...r });
     return r;
   };
@@ -68,13 +69,20 @@ export async function runCheck(text, { telegraph, budget, ofac, maxCheckUsd = 0.
         skipped.push(`${t.source} (covers the Baltic only)`);
         continue;
       }
+      // A tracker that only finds ships by MMSI is not paid to look up a name it cannot resolve.
+      if (t.needsMmsi && !identity.mmsi) {
+        skipped.push(`${t.source} (finds ships by MMSI, and none is known yet)`);
+        continue;
+      }
       const q = i === 0 ? shipQuery : identity.mmsi || shipQuery;
       const r = await buy(`Position (${t.source})`, { intent: INTENTS.vessel, params: { vessel: q }, miner: t.id });
       identity = mergeIdentity(identity, r.raw);
       tracked.push({ t, r });
     }
     // If no pinned tracker heard the ship, let the node route one more ask to whichever miner ranks best.
-    if (tracked.every(({ r }) => !r.ok)) {
+    // Skipped when a worldwide tracker answered "not heard in N days": a routed ask then lands on the same coverage.
+    const definitiveMiss = tracked.some(({ r }) => /not heard by its receivers/.test(r.error || ""));
+    if (tracked.every(({ r }) => !r.ok) && !definitiveMiss) {
       const r = await buy("Position (routed by Telegraph)", { intent: INTENTS.vessel, params: { vessel: shipQuery } });
       identity = mergeIdentity(identity, r.raw);
       tracked.push({ t: { id: r.minerId, source: r.miner || "routed miner", operator: r.miner || "routed" }, r });

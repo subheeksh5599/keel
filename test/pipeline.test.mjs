@@ -230,3 +230,18 @@ test("bot: each Telegram check is saved as a receipt file, and a low escrow bala
   await bot.checkEscrow();
   assert.equal(sent.filter((s) => s.body.chat_id === 42 && /escrow balance is \$1.50/.test(s.body.text)).length, 1);
 });
+
+test("the MMSI-only tracker is not paid to look up a bare name nobody else found", async () => {
+  const tg = fakeTelegraph(() => null);
+  const c = await runCheck("tanker GHOSTLY hit near Fujairah", { telegraph: tg, budget: new Budget({ dailyCapUsd: 1 }), now: () => NOW });
+  assert.ok(!tg.calls.some((x) => x.miner === "751084"));
+  assert.ok(c.evidence.skipped.some((s) => /MMSI/.test(s)));
+});
+
+test("no routed re-ask after a worldwide tracker says it has not heard the ship in days", async () => {
+  const base = fakeTelegraph((intent, miner) => intent === "VESSEL_TELEMETRY_VERIFY_GENERAL" && miner === "8818818" ? { answer: { latitude: null, longitude: null } } : null);
+  const tg = { ...base, ask: base.ask, signal: async () => ({ raw: { summary: "Not heard by our receivers in the last 14 days." }, verified: true }) };
+  const c = await runCheck("tanker GHOSTLY hit near Fujairah", { telegraph: tg, budget: new Budget({ dailyCapUsd: 1 }), now: () => NOW });
+  assert.ok(!base.calls.some((x) => x.intent === "VESSEL_TELEMETRY_VERIFY_GENERAL" && !x.miner));
+  assert.ok(c.evidence.noData.some((n) => /14 days/.test(n.reason)));
+});

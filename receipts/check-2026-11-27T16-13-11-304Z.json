@@ -1,0 +1,286 @@
+{
+  "input": "Shadow fleet tanker EAGLE S went dark in the Gulf of Finland",
+  "payer": "0x2925d43C1e21888706D8b3b2223050aF14dDAEd4",
+  "kind": "ship",
+  "extracted": {
+    "text": "Shadow fleet tanker EAGLE S went dark in the Gulf of Finland",
+    "ships": [
+      "EAGLE S"
+    ],
+    "imos": [],
+    "mmsis": [],
+    "claims": [
+      "dark"
+    ],
+    "places": [
+      "Gulf of Finland"
+    ],
+    "media": [],
+    "urls": []
+  },
+  "shipQuery": "EAGLE S",
+  "shipName": "EAGLE S",
+  "identity": {
+    "imo": null,
+    "mmsi": null,
+    "name": "EAGLE S",
+    "callsign": null
+  },
+  "evidence": {
+    "hasShip": true,
+    "claims": [
+      "dark"
+    ],
+    "places": [
+      "Gulf of Finland"
+    ],
+    "fixes": [],
+    "noData": [
+      {
+        "source": "Quay",
+        "reason": "not heard by its receivers in the last 14 days"
+      },
+      {
+        "source": "Quay",
+        "reason": "not heard by its receivers in the last 14 days"
+      }
+    ],
+    "skipped": [
+      "VesselWire (finds ships by MMSI, and none is known yet)"
+    ],
+    "sameName": 0,
+    "identity": {
+      "imo": null,
+      "mmsi": null,
+      "name": "EAGLE S",
+      "callsign": null
+    },
+    "sanctions": {
+      "telegraph": {
+        "ok": true,
+        "matched": true,
+        "lists": [],
+        "matches": [
+          "LIMITED LIABILITY COMPANY RUSSIAN EAGLE"
+        ],
+        "score": null,
+        "source": "ChainSight — Universal Intelligence & Data Oracle"
+      },
+      "ofac": {
+        "checked": true,
+        "matches": [],
+        "listSize": 1570
+      }
+    },
+    "factCheck": {
+      "ok": true,
+      "verdict": null,
+      "reasoning": "No reliable sources confirm that the shadow fleet tanker EAGLE S went dark in the Gulf of Finland. The latest available reports from maritime monitoring agencies do not mention any incident involving EAGLE S as of the current date.",
+      "source": "TxLens"
+    },
+    "media": [],
+    "now": "2026-11-27T16:13:11.301Z"
+  },
+  "result": {
+    "verdict": {
+      "key": "UNVERIFIED",
+      "icon": "❓",
+      "label": "Can't verify from tracking"
+    },
+    "confidence": 30,
+    "reasons": [
+      {
+        "sign": -1,
+        "text": "No tracking source has a position for this ship (Quay: not heard by its receivers in the last 14 days; Quay: not heard by its receivers in the last 14 days). Coverage is from coastal receivers, so ships far offshore can go unheard."
+      }
+    ],
+    "flags": [
+      "🚩 Sanctions: a Telegraph screening miner matched it; OFAC's SDN list does not (it may be on an EU or UK list)."
+    ],
+    "best": null,
+    "ageMin": null,
+    "stale": true,
+    "operators": [],
+    "sourcesAgree": null,
+    "sanctions": "listed"
+  },
+  "purchases": [
+    {
+      "label": "Position (Quay)",
+      "ok": false,
+      "status": 200,
+      "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+      "miner": "Quay",
+      "minerId": "8818818",
+      "answer": {
+        "vessel": "EAGLE S",
+        "speed_knots": null,
+        "latitude": null,
+        "longitude": null,
+        "course_deg": null,
+        "observed_at": null
+      },
+      "fieldStatus": {
+        "vessel": "ok",
+        "speed_knots": "missing",
+        "latitude": "missing",
+        "longitude": "missing",
+        "course_deg": "missing",
+        "observed_at": "missing"
+      },
+      "warnings": [],
+      "signal": "0x0de3d6107a5fcba8df6b554aecbb4d1f160323bea795d1fa4cd1bef6a9a98af2",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x0de3d6107a5fcba8df6b554aecbb4d1f160323bea795d1fa4cd1bef6a9a98af2",
+      "costUsd": 0.01,
+      "latencyMs": 3530,
+      "error": "not heard by its receivers in the last 14 days",
+      "raw": {
+        "course_deg": null,
+        "latitude": null,
+        "longitude": null,
+        "observed_at": null,
+        "speed_knots": null,
+        "status": "not_seen",
+        "summary": "No AIS report heard for \"EAGLE S\" in the last 14 days. Coverage is terrestrial: ships far offshore can go unheard. Quay does not guess a position.",
+        "vessel": "EAGLE S"
+      },
+      "verified": true
+    },
+    {
+      "label": "Fact-check",
+      "ok": true,
+      "status": 200,
+      "intent": "FACT_CHECK_GENERAL",
+      "miner": "TxLens",
+      "minerId": "9002",
+      "answer": {
+        "claim": "Shadow fleet tanker EAGLE S went dark in the Gulf of Finland",
+        "verdict": null,
+        "reasoning": "No reliable sources confirm that the shadow fleet tanker EAGLE S went dark in the Gulf of Finland. The latest available reports from maritime monitoring agencies do not mention any incident involving EAGLE S as of the current date.",
+        "sources": null
+      },
+      "fieldStatus": {
+        "claim": "ok",
+        "verdict": "missing",
+        "reasoning": "ok",
+        "sources": "missing"
+      },
+      "warnings": [
+        "The response does not include: URLs or names of the sources the answer cites",
+        "The response does not include: Fact-check verdict"
+      ],
+      "signal": "0xe0743d3ebe37791f66d1ccd8c057f9957e03b938301939ab528356b1e5118e81",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xe0743d3ebe37791f66d1ccd8c057f9957e03b938301939ab528356b1e5118e81",
+      "costUsd": 0.01,
+      "latencyMs": 4362,
+      "error": null,
+      "raw": {
+        "answer": "No reliable sources confirm that the shadow fleet tanker EAGLE S went dark in the Gulf of Finland. The latest available reports from maritime monitoring agencies do not mention any incident involving EAGLE S as of the current date.",
+        "canonical": "fact-check:Shadow fleet tanker EAGLE S went dark in the Gulf of Finland",
+        "claim": "Shadow fleet tanker EAGLE S went dark in the Gulf of Finland",
+        "confidence": 0.5,
+        "cost_usd": 0,
+        "provider": "consensus",
+        "source_note": "Checked against live sources at request time.",
+        "sources": [],
+        "status": "ok",
+        "summary": "No reliable sources confirm that the shadow fleet tanker EAGLE S went dark in the Gulf of Finland. The latest available reports from maritime monitoring agencies do not mention any incident involving EAGLE S as of the current date.",
+        "verdict": null
+      },
+      "verified": true
+    },
+    {
+      "label": "Sanctions screen",
+      "ok": true,
+      "status": 200,
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "miner": "ChainSight — Universal Intelligence & Data Oracle",
+      "minerId": "302",
+      "answer": {
+        "name": "EAGLE S",
+        "matched": true,
+        "matches": [
+          "LIMITED LIABILITY COMPANY RUSSIAN EAGLE"
+        ],
+        "lists": null,
+        "match_score": null
+      },
+      "fieldStatus": {
+        "name": "ok",
+        "matched": "ok",
+        "matches": "ok",
+        "lists": "rejected",
+        "match_score": "missing"
+      },
+      "warnings": [
+        "The response does not include: Sanctions lists checked or matched (e.g. OFAC SDN)",
+        "The response does not include: Best fuzzy-match score, 0 to 1"
+      ],
+      "signal": "0xc567afd9721040e36a1ee0d80e5badbccd90805af66a4ac78520d9f7f285fa50",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xc567afd9721040e36a1ee0d80e5badbccd90805af66a4ac78520d9f7f285fa50",
+      "costUsd": 0.01,
+      "latencyMs": 6724,
+      "error": null,
+      "raw": {
+        "answer": "The entity \"EAGLE S\" appears on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list: it closely matches \"LIMITED LIABILITY COMPANY RUSSIAN EAGLE\" under the RUSSIA-EO14024 program. As a designated party it is subject to U.S. sanctions, its assets are blocked, and U.S. persons are generally prohibited from dealing with it.",
+        "entity": "EAGLE S",
+        "match": true,
+        "matched_name": "LIMITED LIABILITY COMPANY RUSSIAN EAGLE",
+        "program": "RUSSIA-EO14024",
+        "signal": "The entity \"EAGLE S\" appears on the U.S. Treasury OFAC Specially Designated Nationals (SDN) list: it closely matches \"LIMITED LIABILITY COMPANY RUSSIAN EAGLE\" under the RUSSIA-EO14024 program. As a designated party it is subject to U.S. sanctions, its assets are blocked, and U.S. persons are generally prohibited from dealing with it.",
+        "source": "ofac-sdn"
+      },
+      "verified": true
+    },
+    {
+      "label": "Position (routed by Telegraph)",
+      "ok": false,
+      "status": 200,
+      "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+      "miner": "Quay",
+      "minerId": "8818818",
+      "answer": {
+        "vessel": "EAGLE S",
+        "speed_knots": null,
+        "latitude": null,
+        "longitude": null,
+        "course_deg": null,
+        "observed_at": null
+      },
+      "fieldStatus": {
+        "vessel": "ok",
+        "speed_knots": "missing",
+        "latitude": "missing",
+        "longitude": "missing",
+        "course_deg": "missing",
+        "observed_at": "missing"
+      },
+      "warnings": [
+        "The response does not include: Course over ground, degrees",
+        "The response does not include: Latitude",
+        "The response does not include: Longitude",
+        "The response does not include: Time of the position report",
+        "The response does not include: Speed over ground, knots"
+      ],
+      "signal": "0x9fdace997b883a34b94a473a2d802403d948b055967d9b4a1d9d3e21bc7d22e1",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x9fdace997b883a34b94a473a2d802403d948b055967d9b4a1d9d3e21bc7d22e1",
+      "costUsd": 0.01,
+      "latencyMs": 5948,
+      "error": "not heard by its receivers in the last 14 days",
+      "raw": {
+        "course_deg": null,
+        "latitude": null,
+        "longitude": null,
+        "observed_at": null,
+        "speed_knots": null,
+        "status": "not_seen",
+        "summary": "No AIS report heard for \"EAGLE S\" in the last 14 days. Coverage is terrestrial: ships far offshore can go unheard. Quay does not guess a position.",
+        "vessel": "EAGLE S"
+      },
+      "verified": true
+    }
+  ],
+  "totalUsd": 0.04,
+  "elapsedMs": 10808,
+  "checkedAt": "2026-11-27T16:13:11.301Z"
+}

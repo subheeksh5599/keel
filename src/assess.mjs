@@ -91,7 +91,7 @@ export function assess(ev) {
       confidence -= 25;
     }
   } else if (best) {
-    const why = ev.skipped?.length ? ` The second tracker covers the Baltic only and was not asked.` : "";
+    const why = ev.skipped?.length ? ` The second tracker (Baltic only, found by MMSI) was not asked.` : "";
     reasons.push({ sign: -1, text: `Only one tracking source has a position, so it can't be cross-checked.${why}` });
     confidence -= 10;
   }
