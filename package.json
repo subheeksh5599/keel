@@ -1,0 +1,22 @@
+{
+  "name": "keel",
+  "version": "1.0.0",
+  "description": "Keel: forward a war or shipping rumour, get it checked against live ship tracking bought from Telegraph",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test test/",
+    "start": "node --env-file=.env src/bot.mjs",
+    "check": "node --env-file=.env scripts/check.mjs",
+    "fund": "node --env-file=.env scripts/fund.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "viem": "^2.58.8"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
