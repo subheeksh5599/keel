@@ -17,6 +17,8 @@ export const PLACE_CENTRES = {
   "Strait of Malacca": [3.0, 100.5], "English Channel": [50.2, -1.5], "Mediterranean": [36.0, 18.0], "Fujairah": [25.15, 56.4],
   "Ras Tanura": [26.65, 50.17], "Kharg Island": [29.24, 50.31], "Bandar Abbas": [27.15, 56.2], "Hodeidah": [14.8, 42.9],
   "Odesa": [46.45, 30.75], "Novorossiysk": [44.7, 37.8], "Primorsk": [60.35, 28.6], "Ust-Luga": [59.68, 28.4],
+  "Yemen coast": [14.5, 45.0], "Somali coast": [6.0, 49.5], "Gulf of Guinea": [3.0, 3.0], "Strait of Gibraltar": [35.95, -5.6],
+  "Bosphorus": [41.1, 29.05], "Kerch Strait": [45.3, 36.5],
 };
 
 export const VERDICT = {
@@ -214,6 +216,13 @@ function pickTwoOperators(fixes) {
   return [a, b];
 }
 
+// How far each named area reaches from its centre, so a big sea is not "somewhere else" just off its middle.
+const PLACE_RADIUS_KM = {
+  "Mediterranean": 2000, "Red Sea": 1150, "South China Sea": 1300, "Baltic Sea": 750, "Black Sea": 600, "Persian Gulf": 550,
+  "Gulf of Aden": 500, "English Channel": 300, "Strait of Malacca": 450, "Gulf of Finland": 220, "Gulf of Oman": 300, "Taiwan Strait": 200,
+  "Yemen coast": 450, "Somali coast": 900, "Gulf of Guinea": 700,
+};
+
 function farFromClaimedPlace(fix, places) {
   const known = places.filter((p) => PLACE_CENTRES[p]);
   if (!known.length) return null;
@@ -221,9 +230,10 @@ function farFromClaimedPlace(fix, places) {
   for (const p of known) {
     const [lat, lon] = PLACE_CENTRES[p];
     const km = distanceKm(fix, { lat, lon });
-    if (!nearest || km < nearest.km) nearest = { place: p, km };
+    const margin = km - (PLACE_RADIUS_KM[p] || 0);
+    if (!nearest || margin < nearest.margin) nearest = { place: p, km, margin };
   }
-  return nearest.km > PLACE_KM ? nearest : null;
+  return nearest.km > PLACE_KM + (PLACE_RADIUS_KM[nearest.place] || 0) ? nearest : null;
 }
 
 export function fmtAge(min) {

@@ -31,6 +31,8 @@ const PLACES = [
   ["South China Sea", /\bsouth china sea\b/i], ["Taiwan Strait", /\btaiwan strait\b/i], ["Strait of Malacca", /\bmalacca\b/i],
   ["English Channel", /\benglish channel\b/i], ["Mediterranean", /\bmediterranean\b/i], ["Fujairah", /\bfujairah\b/i],
   ["Ras Tanura", /\bras tanura\b/i], ["Kharg Island", /\bkharg\b/i], ["Bandar Abbas", /\bbandar abbas\b/i], ["Hodeidah", /\bhodeidah\b/i],
+  ["Yemen coast", /\b(off|near|coast of) yemen\b|\byemeni (coast|waters)\b/i], ["Somali coast", /\b(off|near|coast of) somalia\b|\bsomali (coast|waters)\b/i],
+  ["Gulf of Guinea", /\bgulf of guinea\b/i], ["Strait of Gibraltar", /\bgibraltar\b/i], ["Bosphorus", /\bbosp(h)?orus\b/i], ["Kerch Strait", /\bkerch\b/i],
   ["Odesa", /\bodess?a\b/i], ["Novorossiysk", /\bnovorossiysk\b/i], ["Primorsk", /\bprimorsk\b/i], ["Ust-Luga", /\bust[\s-]?luga\b/i],
 ];
 

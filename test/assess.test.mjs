@@ -102,3 +102,10 @@ test("no position: the reason names each tracker's answer", () => {
   const r = assess({ claims: ["struck"], fixes: [], noData: [{ source: "Quay", reason: "not heard by its receivers in the last 14 days" }], sanctions: clean, now: NOW });
   assert.ok(r.reasons.some((x) => /Quay: not heard by its receivers in the last 14 days/.test(x.text)));
 });
+
+test("a big sea is judged by its extent: a ship in the western Mediterranean is not 'somewhere else'", () => {
+  const west = assess({ claims: ["struck"], places: ["Mediterranean"], fixes: [fix("Quay", 37.0, 2.0, 12, 5)], sanctions: clean, now: NOW });
+  assert.notEqual(west.verdict.key, "DISAGREES");
+  const yemen = assess({ claims: ["struck"], places: ["Yemen coast"], fixes: [fix("Quay", 51.94, 4.06, 0, 5)], sanctions: clean, now: NOW });
+  assert.equal(yemen.verdict.key, "DISAGREES");
+});

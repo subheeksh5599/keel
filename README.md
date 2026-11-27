@@ -5,9 +5,9 @@
 ### Forward a war or shipping rumour to a Telegram bot. It checks it against live ship tracking it buys on Telegraph, and shows you a receipt for every check.
 
 [![test](https://github.com/subheeksh5599/keel/actions/workflows/test.yml/badge.svg)](https://github.com/subheeksh5599/keel/actions/workflows/test.yml)
-![Tests](https://img.shields.io/badge/tests-56%20passing-2ecc71)
+![Tests](https://img.shields.io/badge/tests-60%20passing-2ecc71)
 [![Bot](https://img.shields.io/badge/Telegram-%40keel567__bot-26a5e4?logo=telegram)](https://t.me/keel567_bot)
-[![Receipts](https://img.shields.io/badge/receipts-26%2F26%20verified-0b7285)](#verify-every-claim-in-one-command)
+[![Receipts](https://img.shields.io/badge/receipts-29%2F29%20verified-0b7285)](#verify-every-claim-in-one-command)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
 ![Stack](https://img.shields.io/badge/Node%2020%2B%20·%20viem%20·%20Telegram%20Bot%20API%20·%20Telegraph%20testnet-14151a)
 
@@ -29,12 +29,12 @@ Keel never calls a rumour false on tracking alone. A ship that is moored can sti
 |---|---|---|
 | Telegram bot [@keel567_bot](https://t.me/keel567_bot) | Live, 24/7 on a VPS under pm2 | Forward it a rumour; `/stats` shows what it has checked |
 | Paid Telegraph asks | Live on the testnet, escrow-paid | Payer `0x2925d43C1e21888706D8b3b2223050aF14dDAEd4`; 15 test USDC [deposited](https://sepolia.etherscan.io/tx/0xa4b2e4387444d58ed2ce9dff038fe4629d12cc37908b8e888072b69f0595290e) on Ethereum Sepolia |
-| Evidence run | 6 rumours, 22 paid answers (plus the one-command check below: 4 more) | [`receipts/evidence-2026-11-27T10-03-55-961Z.json`](receipts/evidence-2026-11-27T10-03-55-961Z.json) |
-| Receipt check | 26 / 26 signals verified on the node | `node scripts/verify-receipts.mjs`, output [below](#verify-every-claim-in-one-command) |
+| Evidence run | 6 rumours, 22 paid answers (plus two one-off command-line checks: 7 more) | [`receipts/evidence-2026-11-27T10-03-55-961Z.json`](receipts/evidence-2026-11-27T10-03-55-961Z.json) |
+| Receipt check | 29 / 29 signals verified on the node | `node scripts/verify-receipts.mjs`, output [below](#verify-every-claim-in-one-command) |
 | Public verdict group | Bot posts each verdict (no user identity) | [keelverdict](https://t.me/+Kzl7YJUEUedhZmY1) |
 | Receipts dashboard | Every saved check, each answer linked to its signal | [subheeksh5599.github.io/keel](https://subheeksh5599.github.io/keel/), built by `scripts/dashboard.mjs` |
 | Tutorial | Buy one live ship position in about 40 lines | [`docs/TUTORIAL.md`](docs/TUTORIAL.md), [`examples/buy-position.mjs`](examples/buy-position.mjs) |
-| Tests | 56 passing, no network needed | `npm test`, and CI on every push |
+| Tests | 60 passing, no network needed | `npm test`, and CI on every push |
 
 ## For judges: try it in two minutes
 
@@ -83,6 +83,7 @@ Keel buys exactly the checks one rumour needs, for a few cents, from ranked mine
 - [How I deploy it](#how-i-deploy-it)
 - [Results and supporting records](#results-and-supporting-records)
 - [Tests](#tests)
+- [Credits](#credits)
 - [License](#license)
 
 ## ▶ See it in one command
@@ -120,7 +121,7 @@ No key and no wallet. The script opens every signal saved under `receipts/` on t
 
 ```
 $ node scripts/verify-receipts.mjs
-signals 26 · verified 26 · not found 0 · mismatched 0 · paid by 0x2925d43c1e21888706d8b3b2223050af14ddaed4 · $0.26 test USDC across 2 file(s)
+signals 29 · verified 29 · not found 0 · mismatched 0 · paid by 0x2925d43c1e21888706d8b3b2223050af14ddaed4 · $0.29 test USDC across 3 file(s)
 ```
 
 ## What Keel is NOT
@@ -243,6 +244,7 @@ sequenceDiagram
 | A stopped ship never "disproves" a hit | `src/assess.mjs` | `a stopped ship never 'disproves' a hit: verdict stays can't-verify` |
 | Two sources count as agreeing only if the gap fits the reported speed | `src/assess.mjs` | `two operators far apart → spoofing flag and lower confidence` |
 | A position far inland is a bad or spoofed report | `src/assess.mjs`, `src/geo.mjs` | `a position deep inland is flagged as a bad or spoofed report` |
+| A big sea is judged by its extent, not its middle | `src/assess.mjs` | `a big sea is judged by its extent: a ship in the western Mediterranean is not 'somewhere else'` |
 | Quays, canals and anchorages are never "on land" | `src/geo.mjs` | `ships at quays, canals and anchorages are never on land` |
 | A failed sanctions check is never a clean bill | `src/assess.mjs` | `sanctions: a hit from either source is flagged; a failed check is never a clean bill` |
 | A shared ship name lowers confidence and asks for the IMO | `src/assess.mjs` | `a name shared by other ships is flagged and lowers confidence` |
@@ -297,7 +299,7 @@ A disagreement from one source is capped at 70, a "can't verify" at 60, and noth
 
 ## Measured so far
 
-From the 26 paid answers in `receipts/` (27 Nov 2026). Re-run `node scripts/verify-receipts.mjs` to check the counts against the node.
+From the first 26 paid answers in `receipts/` (27 Nov 2026; the evidence run and the one-command check). Re-run `node scripts/verify-receipts.mjs` to check the counts against the node.
 
 | Measure | Result | How it is measured |
 |---|---|---|
@@ -325,7 +327,7 @@ From the 26 paid answers in `receipts/` (27 Nov 2026). Re-run `node scripts/veri
 
 | Item | Status | Proof |
 |---|---|---|
-| Escrow-paid asks on the Telegraph testnet | Live | 26 signals in `receipts/`, re-verified by `scripts/verify-receipts.mjs` |
+| Escrow-paid asks on the Telegraph testnet | Live | 29 signals in `receipts/`, re-verified by `scripts/verify-receipts.mjs` |
 | Two tracking operators, cross-checked | Live where both cover (the Baltic); one source elsewhere, and the reply says so | Evidence rows 1 and 3; `test/assess.test.mjs` |
 | Sanctions from two independent sources | Live | Evidence rows 4 and 5; `test/pipeline.test.mjs` |
 | Signal enrichment (IMO, MMSI, nav status, same-name count) | Live | `src/check.mjs`; `signal enrichment: …` test |
@@ -346,6 +348,8 @@ From the 26 paid answers in `receipts/` (27 Nov 2026). Re-run `node scripts/veri
 | A sanctions miner is down, and the reply reads "clean" | A failed screen is flagged "not a clean bill", and OFAC's list is checked independently. Test: `sanctions: … a failed check is never a clean bill` |
 | A miner returns an empty answer | Not counted as evidence. Tests: `an answer with every field null is 'no data', not evidence`, `a tracker that answers without a position …` |
 | A command meant for another bot in a group | Ignored. Test: `commands parse, and a command for another bot is ignored` |
+| A node (or anything in the middle) asks for more money, a different contract, or an odd message | Refused before signing: over $0.10 per answer, a payee other than the escrow contract, a network other than Ethereum Sepolia, or a message field Keel does not fill. Test: `a challenge over $0.10, to another contract, or with an unfilled field is refused before signing` |
+| A paid request whose response is lost, so the cap under-counts | The reservation is kept, because the node may have billed. Test: `a response lost after the paid request was sent keeps its reservation (the node may have billed)` |
 | Leaking the bot token through logs | Logs carry the command name only. API errors carry Telegram's description, never the URL (the URL holds the token). `src/bot.mjs` `telegramApi` |
 
 ## Limitations
@@ -360,7 +364,8 @@ From the 26 paid answers in `receipts/` (27 Nov 2026). Re-run `node scripts/veri
 ## Security
 
 - The bot token, the payer key and the optional Anjoman key live in `.env` locally and in `/etc/keel/keel.env` (mode 600) on the server. Neither file is in the repo, and the history was scanned for both before it went public.
-- The payer key is a fresh testnet key used only for Telegraph escrow on Ethereum Sepolia.
+- The payer key is a fresh testnet key used only for Telegraph escrow on Ethereum Sepolia. It also funds the escrow; a production setup would split the funding key from the paying key.
+- Before signing, Keel checks the challenge: at most $0.10 per answer, payable only to the escrow contract `0x72a7…a08b`, only on Ethereum Sepolia, and with no message field left unfilled.
 - The escrow signature authorises one ask and expires within 60 seconds. It cannot move funds.
 - Check logs keep the verdict, the ship, the cost and the receipts, with the chat replaced by a 12-character hash. The public group never shows who asked.
 
@@ -393,7 +398,7 @@ scripts/
 deploy/start.sh    server start script (reads /etc/keel/keel.env)
 assets/land-50m.json   Natural Earth land polygons
 receipts/          evidence files with every purchase and signal hash
-test/              56 tests, no network
+test/              60 tests, no network
 examples/buy-position.mjs  standalone paid ask + receipt read (the tutorial's code)
 docs/TUTORIAL.md   buy a live ship position on Telegraph in about 40 lines
 docs/index.html    the receipts dashboard (GitHub Pages)
@@ -408,7 +413,7 @@ You need Node 20+, a Telegram bot token from @BotFather, and a testnet key with 
 git clone https://github.com/subheeksh5599/keel && cd keel
 npm ci
 cp .env.example .env            # fill in TELEGRAM_BOT_TOKEN and TELEGRAPH_PRIVATE_KEY
-npm test                        # 56 tests, no network
+npm test                        # 60 tests, no network
 npm run fund -- 20 15           # mint 20 test USDC, deposit 15 into escrow (needs Sepolia ETH for gas)
 npm run check -- "tanker HULDA MAERSK hit by a missile in the Red Sea"
 npm start                       # the bot; message it on Telegram
@@ -452,16 +457,23 @@ Rows 4 and 5 bought three tracking answers each that came back empty. They are b
 
 ## Tests
 
-56 tests, all offline, run by `npm test` and by CI on every push:
+60 tests, all offline, run by `npm test` and by CI on every push:
 
 | Suite | Tests | Covers |
 |---|---|---|
-| `test/extract.test.mjs` | 17 | 15 real-style rumours plus the IMO check digit and the MMSI prefix |
-| `test/assess.test.mjs` | 15 | Every verdict rule, sanctions handling, confidence bounds |
+| `test/extract.test.mjs` | 18 | 15 real-style rumours plus the IMO check digit and the MMSI prefix |
+| `test/assess.test.mjs` | 16 | Every verdict rule, sanctions handling, confidence bounds |
 | `test/pipeline.test.mjs` | 13 | The full check with a stand-in node, OFAC parsing, watches, the bot's handlers |
-| `test/payments.test.mjs` | 7 | The 402 → escrow-signature flow, caps, release on failure, empty answers |
+| `test/payments.test.mjs` | 9 | The 402 → escrow-signature flow, caps, release on failure, refusing bad challenges, empty answers |
 | `test/geo.test.mjs` | 4 | On-land test, sea areas, implied speed |
-| **Total** | **56** | |
+| **Total** | **60** | |
+
+## Credits
+
+- The escrow payment header follows the format in Telegraph's own MCP server (`telegraph-mcp`, MIT), `src/pay.ts`.
+- Land polygons: Natural Earth 1:50m (public domain).
+- Sanctions: OFAC's SDN list, published by the US Treasury.
+- Ship positions, sanctions screens and fact-checks: the miners named in each receipt, bought on the Telegraph testnet.
 
 ## License
 

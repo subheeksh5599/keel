@@ -34,12 +34,13 @@ test("per-check cap", () => {
   assert.throws(() => c.reserve(0.01), /per-check cap/);
 });
 
-function fakeNode({ answer, status = 200, header = true }) {
+function fakeNode({ answer, status = 200, header = true, amount = "10000", payTo = "0x72a70e949362670Bf8bceAd24eFC5b8f950aa08b", message = "pay {from} {nonce} {validAfter} {validBefore}", dropPaid = false }) {
   const calls = [];
-  const challenge = Buffer.from(JSON.stringify({ accepts: [{ scheme: "escrow", amount: "10000", payTo: "0x0000000000000000000000000000000000000001", network: "eip155:11155111", extra: { message: "pay {from} {nonce} {validAfter} {validBefore}" } }] })).toString("base64");
+  const challenge = Buffer.from(JSON.stringify({ accepts: [{ scheme: "escrow", amount, payTo, network: "eip155:11155111", extra: { message } }] })).toString("base64");
   const fetchImpl = async (url, opts) => {
     calls.push({ url, headers: opts.headers });
     if (!opts.headers["X-PAYMENT"]) return new Response("{}", { status: 402, headers: header ? { "payment-required": challenge } : {} });
+    if (dropPaid) throw new TypeError("fetch failed");
     return new Response(JSON.stringify(answer), { status });
   };
   return { fetchImpl, calls };
@@ -84,4 +85,23 @@ test("an answer with every field null is 'no data', not evidence", () => {
   const r = parseAnswer("VESSEL_TELEMETRY_VERIFY_GENERAL", "8818818", { miner_name: "Quay", result: { vessel: "EAGLE S", latitude: null, longitude: null }, field_status: { vessel: "ok", latitude: "missing" }, input: { vessel: "EAGLE S" }, signal_hash: "0x1", cost_usd: 0.01 }, null, 10);
   assert.equal(r.ok, false);
   assert.equal(r.costUsd, 0.01);
+});
+
+test("a challenge over $0.10, to another contract, or with an unfilled field is refused before signing", async () => {
+  for (const opts of [{ amount: "500000" }, { payTo: "0x0000000000000000000000000000000000000001" }, { message: "pay {from} {amount} {nonce}" }]) {
+    const node = fakeNode({ answer: { result: { latitude: 1, longitude: 2 } }, ...opts });
+    const budget = new Budget({ dailyCapUsd: 1 });
+    const r = await new Telegraph({ privateKey: KEY, budget, fetchImpl: node.fetchImpl }).ask({ intent: "X", params: {} });
+    assert.equal(r.ok, false);
+    assert.ok(!node.calls.some((c) => c.headers["X-PAYMENT"]), "nothing was signed and sent");
+    assert.equal(budget.todayUsd(), 0);
+  }
+});
+
+test("a response lost after the paid request was sent keeps its reservation (the node may have billed)", async () => {
+  const node = fakeNode({ answer: {}, dropPaid: true });
+  const budget = new Budget({ dailyCapUsd: 1 });
+  const r = await new Telegraph({ privateKey: KEY, budget, fetchImpl: node.fetchImpl }).ask({ intent: "X", params: {} });
+  assert.equal(r.ok, false);
+  assert.equal(budget.todayUsd(), 0.01);
 });

@@ -1,0 +1,299 @@
+{
+  "input": "MV HULDA MAERSK struck by drone off Yemen",
+  "payer": "0x2925d43C1e21888706D8b3b2223050aF14dDAEd4",
+  "kind": "ship",
+  "extracted": {
+    "text": "MV HULDA MAERSK struck by drone off Yemen",
+    "ships": [
+      "HULDA MAERSK"
+    ],
+    "imos": [],
+    "mmsis": [],
+    "claims": [
+      "struck"
+    ],
+    "places": [],
+    "media": [],
+    "urls": []
+  },
+  "shipQuery": "HULDA MAERSK",
+  "shipName": "HULDA MAERSK",
+  "identity": {
+    "imo": "9399363",
+    "mmsi": "219278000",
+    "name": "HULDA MAERSK",
+    "callsign": "OYSK2"
+  },
+  "evidence": {
+    "hasShip": true,
+    "claims": [
+      "struck"
+    ],
+    "places": [],
+    "fixes": [
+      {
+        "source": "Quay",
+        "operator": "Quay",
+        "lat": 51.93555833333333,
+        "lon": 4.059986666666666,
+        "speed": 0,
+        "course": 208.3,
+        "at": "2026-11-27T10:29:52.267Z",
+        "navStatus": "moored",
+        "destination": "NLRTM",
+        "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xee5fb8afc601a73bd1f8ef63b0cebc0b1d8d97c18cd64cd03dede57f501964f1",
+        "region": "North Sea"
+      }
+    ],
+    "noData": [],
+    "skipped": [
+      "VesselWire (covers the Baltic only)"
+    ],
+    "sameName": 0,
+    "identity": {
+      "imo": "9399363",
+      "mmsi": "219278000",
+      "name": "HULDA MAERSK",
+      "callsign": "OYSK2"
+    },
+    "sanctions": {
+      "telegraph": {
+        "ok": true,
+        "matched": false,
+        "lists": [
+          "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+          "UN Security Council Consolidated List (published 2026-11-12)",
+          "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+          "UK Sanctions List (published 2026-11-10)"
+        ],
+        "matches": [],
+        "score": 0,
+        "source": "Counterproof Sanctions Screener"
+      },
+      "ofac": {
+        "checked": true,
+        "matches": [],
+        "listSize": 1570
+      }
+    },
+    "factCheck": {
+      "ok": true,
+      "verdict": "Unverified",
+      "reasoning": "No credible source found in the searches directly confirms or refutes this claim. It is left Unverified rather than guessed at; lack of evidence does not mean the claim is false.",
+      "source": "TelegraphIntent"
+    },
+    "media": [],
+    "now": "2026-11-27T10:47:05.261Z"
+  },
+  "result": {
+    "verdict": {
+      "key": "UNVERIFIED",
+      "icon": "❓",
+      "label": "Can't verify from tracking"
+    },
+    "confidence": 50,
+    "reasons": [
+      {
+        "sign": 1,
+        "text": "Position reported 17 min ago."
+      },
+      {
+        "sign": -1,
+        "text": "Only one tracking source has a position, so it can't be cross-checked. The second tracker covers the Baltic only and was not asked."
+      },
+      {
+        "sign": 0,
+        "text": "Tracking can show where a ship is and how fast it moves, not whether it was struck or attacked."
+      },
+      {
+        "sign": 0,
+        "text": "It is stopped (the ship reports \"moored\"). That neither confirms nor rules out damage."
+      },
+      {
+        "sign": 0,
+        "text": "A fact-check miner found no reliable source either way (\"Unverified\")."
+      }
+    ],
+    "flags": [],
+    "best": {
+      "source": "Quay",
+      "operator": "Quay",
+      "lat": 51.93555833333333,
+      "lon": 4.059986666666666,
+      "speed": 0,
+      "course": 208.3,
+      "at": "2026-11-27T10:29:52.267Z",
+      "navStatus": "moored",
+      "destination": "NLRTM",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xee5fb8afc601a73bd1f8ef63b0cebc0b1d8d97c18cd64cd03dede57f501964f1",
+      "region": "North Sea"
+    },
+    "ageMin": 17.216566666666665,
+    "stale": false,
+    "operators": [
+      "Quay"
+    ],
+    "sourcesAgree": null,
+    "sanctions": "clear-two-sources"
+  },
+  "purchases": [
+    {
+      "label": "Position (Quay)",
+      "ok": true,
+      "status": 200,
+      "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+      "miner": "Quay",
+      "minerId": "8818818",
+      "answer": {
+        "vessel": "HULDA MAERSK",
+        "speed_knots": 0,
+        "latitude": 51.93555833333333,
+        "longitude": 4.059986666666666,
+        "course_deg": 208.3,
+        "observed_at": "2026-11-27T10:29:52.267Z"
+      },
+      "fieldStatus": {
+        "vessel": "ok",
+        "speed_knots": "ok",
+        "latitude": "ok",
+        "longitude": "ok",
+        "course_deg": "ok",
+        "observed_at": "ok"
+      },
+      "warnings": [],
+      "signal": "0xee5fb8afc601a73bd1f8ef63b0cebc0b1d8d97c18cd64cd03dede57f501964f1",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xee5fb8afc601a73bd1f8ef63b0cebc0b1d8d97c18cd64cd03dede57f501964f1",
+      "costUsd": 0.01,
+      "latencyMs": 4715,
+      "error": null,
+      "raw": {
+        "age_minutes": 17,
+        "callsign": "OYSK2",
+        "course_deg": 208.3,
+        "destination": "NLRTM",
+        "eta": "11-26 14:30 UTC (as reported by the ship)",
+        "heading_deg": 70,
+        "imo": "9399363",
+        "last_heard": null,
+        "latitude": 51.93555833333333,
+        "longitude": 4.059986666666666,
+        "matched_by": "name",
+        "mmsi": "219278000",
+        "name": "HULDA MAERSK",
+        "nav_status": "moored",
+        "observed_at": "2026-11-27T10:29:52.267Z",
+        "other_ships_with_same_name": 0,
+        "source": "Live AIS broadcast via aisstream.io terrestrial receivers",
+        "speed_knots": 0,
+        "status": "live",
+        "vessel": "HULDA MAERSK"
+      },
+      "verified": true
+    },
+    {
+      "label": "Fact-check",
+      "ok": true,
+      "status": 200,
+      "intent": "FACT_CHECK_GENERAL",
+      "miner": "TelegraphIntent",
+      "minerId": "83159274",
+      "answer": {
+        "claim": "MV HULDA MAERSK struck by drone off Yemen",
+        "verdict": "Unverified",
+        "reasoning": "No credible source found in the searches directly confirms or refutes this claim. It is left Unverified rather than guessed at; lack of evidence does not mean the claim is false.",
+        "sources": null
+      },
+      "fieldStatus": {
+        "claim": "ok",
+        "verdict": "ok",
+        "reasoning": "ok",
+        "sources": "missing"
+      },
+      "warnings": [
+        "The response does not include: URLs or names of the sources the answer cites"
+      ],
+      "signal": "0x0fa2a0380c0c3e9fbb921d5bf7058eedd91dc82e8849a400511678deffc97a80",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x0fa2a0380c0c3e9fbb921d5bf7058eedd91dc82e8849a400511678deffc97a80",
+      "costUsd": 0.01,
+      "latencyMs": 7197,
+      "error": null,
+      "raw": {
+        "claim": "MV HULDA MAERSK struck by drone off Yemen",
+        "reasoning": "No credible source found in the searches directly confirms or refutes this claim. It is left Unverified rather than guessed at; lack of evidence does not mean the claim is false.",
+        "sources": [],
+        "verdict": "Unverified"
+      },
+      "verified": true
+    },
+    {
+      "label": "Sanctions screen",
+      "ok": true,
+      "status": 200,
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "miner": "Counterproof Sanctions Screener",
+      "minerId": "731002",
+      "answer": {
+        "name": "HULDA MAERSK",
+        "matched": false,
+        "matches": null,
+        "lists": [
+          "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+          "UN Security Council Consolidated List (published 2026-11-12)",
+          "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+          "UK Sanctions List (published 2026-11-10)"
+        ],
+        "match_score": 0
+      },
+      "fieldStatus": {
+        "name": "ok",
+        "matched": "ok",
+        "matches": "missing",
+        "lists": "ok",
+        "match_score": "ok"
+      },
+      "warnings": [
+        "The response does not include: Matching sanctions-list entries"
+      ],
+      "signal": "0xfbe70bce65ad790e54874385757679a4b3c6566bfdf1f59064c4c446fe747a96",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xfbe70bce65ad790e54874385757679a4b3c6566bfdf1f59064c4c446fe747a96",
+      "costUsd": 0.01,
+      "latencyMs": 10750,
+      "error": null,
+      "raw": {
+        "answer": "Clear. HULDA MAERSK does not appear on the OFAC, UN, EU or UK sanctions lists. This covers the lists as published, not ownership or adverse media.",
+        "confidence": 1,
+        "is_match": false,
+        "label": "CLEAR",
+        "list_versions": {
+          "EU": "2026-10-23",
+          "UK": "2026-11-10",
+          "UN": "2026-11-12",
+          "US": "2026-11-09"
+        },
+        "lists": [
+          "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+          "UN Security Council Consolidated List (published 2026-11-12)",
+          "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+          "UK Sanctions List (published 2026-11-10)"
+        ],
+        "match_score": 0,
+        "matched": false,
+        "matches": [],
+        "name": "HULDA MAERSK",
+        "notice": null,
+        "regimes": {
+          "EU": "clear",
+          "UK": "clear",
+          "UN": "clear",
+          "US": "clear"
+        },
+        "screened_at": "2026-11-27T10:46:58.307Z",
+        "summary": "Clear. HULDA MAERSK does not appear on the OFAC, UN, EU or UK sanctions lists. This covers the lists as published, not ownership or adverse media."
+      },
+      "verified": true
+    }
+  ],
+  "totalUsd": 0.03,
+  "elapsedMs": 12004,
+  "checkedAt": "2026-11-27T10:47:05.261Z"
+}

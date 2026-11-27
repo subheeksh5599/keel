@@ -44,3 +44,8 @@ test("MMSI must start with a ship MID digit", () => {
   assert.equal(validMmsi("219278000"), true);
   assert.equal(validMmsi("111111111"), false);
 });
+
+test("coast names: 'off Yemen' and 'Somali waters' are places", () => {
+  assert.deepEqual(extract("MV HULDA MAERSK struck by drone off Yemen").places, ["Yemen coast"]);
+  assert.ok(extract("tanker ATLAS boarded in Somali waters").places.includes("Somali coast"));
+});

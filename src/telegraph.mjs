@@ -5,6 +5,9 @@ import { randomBytes } from "node:crypto";
 import { privateKeyToAccount } from "viem/accounts";
 
 export const NODE = process.env.TELEGRAPH_URL || "https://devnode.telegraphprotocol.com";
+export const MAX_ASK_USD = 0.1; // no single answer is worth more than this to Keel
+const ESCROW_DIAMOND = (process.env.TELEGRAPH_ESCROW || "0x72a70e949362670Bf8bceAd24eFC5b8f950aa08b").toLowerCase();
+const EXPECTED_NETWORKS = new Set(["eip155:11155111", "11155111", "sepolia", "ethereum-sepolia"]);
 
 export class Telegraph {
   constructor({ privateKey, node = NODE, budget, fetchImpl = fetch } = {}) {
@@ -36,13 +39,22 @@ export class Telegraph {
         const escrow = (required?.accepts || []).find((a) => a.scheme === "escrow");
         if (!escrow) return fail(intent, miner, 402, "the node offered no escrow payment", started);
         const priceUsd = Number(escrow.amount ?? 0) / 1e6;
+        // Refuse a challenge that is not what Keel expects to pay, before anything is signed.
+        if (!(priceUsd > 0) || priceUsd > MAX_ASK_USD) return fail(intent, miner, 402, `refused: the node asked $${priceUsd}, over the $${MAX_ASK_USD} per-answer limit`, started);
+        if (escrow.network && !EXPECTED_NETWORKS.has(String(escrow.network))) return fail(intent, miner, 402, `refused: unexpected payment network ${escrow.network}`, started);
+        if (escrow.payTo && String(escrow.payTo).toLowerCase() !== ESCROW_DIAMOND) return fail(intent, miner, 402, `refused: unexpected escrow contract ${escrow.payTo}`, started);
         budget?.reserve(priceUsd);
         let delivered = false;
+        let ambiguous = false;
         try {
-          res = await send({ "X-PAYMENT": await this.escrowHeader(escrow) });
+          const header = await this.escrowHeader(escrow);
+          ambiguous = true; // from here the node may bill even if the response is lost
+          res = await send({ "X-PAYMENT": header });
+          ambiguous = false;
           delivered = res.ok;
         } finally {
-          if (!delivered) budget?.release(priceUsd);
+          // A lost response after the paid request was sent keeps its reservation: the cap must never under-count.
+          if (!delivered && !ambiguous) budget?.release(priceUsd);
         }
       }
     } catch (e) {
@@ -72,6 +84,7 @@ export class Telegraph {
       .replaceAll("{nonce}", authorization.nonce)
       .replaceAll("{validAfter}", authorization.validAfter)
       .replaceAll("{validBefore}", authorization.validBefore);
+    if (/\{[a-zA-Z_]+\}/.test(message)) throw new Error("the escrow message has a field Keel does not fill; refusing to sign");
     const signature = await this.account.signMessage({ message });
     const envelope = { x402Version: 2, scheme: "escrow", network: req.network, payload: { signature, authorization } };
     return Buffer.from(JSON.stringify(envelope)).toString("base64");
@@ -79,6 +92,7 @@ export class Telegraph {
 
   async escrowBalance() {
     const r = await this.fetch(`${this.node}/v1/ledger/account/${this.account.address}`, { signal: AbortSignal.timeout(20_000) });
+    if (!r.ok) throw new Error(`ledger read failed: HTTP ${r.status}`);
     const j = await r.json();
     return { availableUsd: Number(j.available ?? 0) / 1e6, chargedUsd: Number(j.charged ?? 0) / 1e6 };
   }
