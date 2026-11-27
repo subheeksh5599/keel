@@ -4,7 +4,7 @@
   "description": "Keel: forward a war or shipping rumour, get it checked against live ship tracking bought from Telegraph",
   "main": "index.js",
   "scripts": {
-    "test": "node --test test/",
+    "test": "node --test test/*.test.mjs",
     "start": "node --env-file=.env src/bot.mjs",
     "check": "node --env-file=.env scripts/check.mjs",
     "fund": "node --env-file=.env scripts/fund.mjs"
