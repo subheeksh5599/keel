@@ -181,3 +181,20 @@ test("signal enrichment: the tracker's raw IMO feeds the OFAC match and the seco
   assert.equal(c.result.best.navStatus, "at anchor");
   assert.equal(c.result.sourcesAgree, true);
 });
+
+test("bot: in a group, a forwarded rumour and any rumour in the verdict group are checked without a command; chatter is not", async () => {
+  const sent = [];
+  const api = async (method, body) => { sent.push({ method, body }); return { message_id: sent.length }; };
+  const bot = new KeelBot({ token: "t", api, telegraph: fakeTelegraph(() => null), budget: new Budget({ dailyCapUsd: 1 }), dataDir: mkdtempSync(join(tmpdir(), "keel-")), now: () => NOW });
+  bot.username = "keel567_bot";
+  const group = { id: -7, type: "supergroup", title: "shipping desk" };
+  await bot.handle({ update_id: 1, message: { message_id: 1, chat: group, text: "anyone around?" , forward_date: 1 } });
+  assert.equal(sent.length, 0);
+  await bot.handle({ update_id: 2, message: { message_id: 2, chat: group, text: "tanker ELISE hit near Hormuz", forward_date: 1 } });
+  assert.ok(sent.some((s) => s.method === "editMessageText" && /ELISE/.test(s.body.text)));
+  const verdict = { id: -9, type: "supergroup", title: "keelverdict" };
+  sent.length = 0;
+  await bot.handle({ update_id: 3, message: { message_id: 3, chat: verdict, text: "tanker NORDIC hit near Hormuz" } });
+  assert.ok(sent.some((s) => s.method === "editMessageText" && /NORDIC/.test(s.body.text) && s.body.chat_id === -9));
+  assert.equal(sent.filter((s) => s.method === "sendMessage" && s.body.chat_id === -9 && /Checked via/.test(s.body.text)).length, 0, "no duplicate post into the group it was asked in");
+});

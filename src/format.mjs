@@ -96,7 +96,7 @@ export const HELP = [
   "<b>Keel checks war and shipping rumours against live ship tracking.</b>",
   "",
   "• <b>Forward or paste</b> a rumour that names a ship. I buy its live position from tracking miners on Telegraph (two independent operators in the Baltic, one elsewhere), screen it against sanctions lists, fact-check the claim, and reply with a verdict and a receipt for every check.",
-  "• In a group: reply to a message with /check, or write <code>/check tanker NAME was hit…</code>",
+  "• In a group: reply to a message with /check, or write <code>/check tanker NAME was hit…</code>. Forwarded posts that name a ship and a claim are checked automatically.",
   "• /watch NAME or IMO — I message you if the ship goes quiet for 3+ hours or turns up somewhere unexpected.",
   "• /unwatch NAME · /watches · /receipts (last checks) · /stats · /about",
   "",

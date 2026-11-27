@@ -93,6 +93,17 @@ export class KeelBot {
     // Plain text or a forward: checked in private chats; in groups only when the bot is mentioned.
     if (isPrivate) return this.onCheck(chat, text, m.message_id);
     if (this.username && text.includes(`@${this.username}`)) return this.onCheck(chat, text.replace(`@${this.username}`, ""), m.message_id);
+    // A forwarded post, or any message in the verdict group, that names a ship AND makes a claim is checked without a command.
+    // Ordinary group chatter is never paid for.
+    const forwarded = Boolean(m.forward_origin || m.forward_date);
+    const inVerdictGroup = chat.id === this.config.value.verdictChatId;
+    if (forwarded || inVerdictGroup) {
+      const ex = extract(text);
+      if ((ex.ships.length || ex.imos.length || ex.mmsis.length) && ex.claims.length) {
+        console.log(`← ${chat.type} ${forwarded ? "forward" : "text"} (auto)`);
+        return this.onCheck(chat, text, m.message_id);
+      }
+    }
   }
 
   async onCheck(chat, text, replyTo) {
@@ -124,7 +135,7 @@ export class KeelBot {
     const buttons = c.shipQuery ? { inline_keyboard: [[{ text: "👁 Watch this ship", callback_data: `w:${c.shipQuery}`.slice(0, 60) }]] } : undefined;
     await this.edit(chat.id, ack?.message_id, html, buttons);
     if (c.result?.best && c.result.ageMin != null && c.result.ageMin <= 180) await this.api("sendLocation", { chat_id: chat.id, latitude: c.result.best.lat, longitude: c.result.best.lon, reply_to_message_id: ack?.message_id, disable_notification: true }).catch(() => {});
-    await this.publish(c);
+    await this.publish(c, chat.id);
     console.log(`→ ${chat.type} check ${c.result?.verdict?.key || c.kind} $${c.totalUsd} in ${Date.now() - started} ms`);
   }
 
@@ -158,9 +169,9 @@ export class KeelBot {
     }
   }
 
-  async publish(c) {
+  async publish(c, fromChatId) {
     const id = this.config.value.verdictChatId;
-    if (!id || c.kind === "nothing") return;
+    if (!id || c.kind === "nothing" || fromChatId === id) return; // already answered in the group itself
     const html = `${formatCheck(c)}\n\n<i>Checked via @${this.username}. Forward it any shipping rumour.</i>`;
     await this.send(id, html).catch(() => {});
   }

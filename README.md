@@ -5,7 +5,7 @@
 ### Forward a war or shipping rumour to a Telegram bot. It checks it against live ship tracking it buys on Telegraph, and shows you a receipt for every check.
 
 [![test](https://github.com/subheeksh5599/keel/actions/workflows/test.yml/badge.svg)](https://github.com/subheeksh5599/keel/actions/workflows/test.yml)
-![Tests](https://img.shields.io/badge/tests-63%20passing-2ecc71)
+![Tests](https://img.shields.io/badge/tests-64%20passing-2ecc71)
 [![Bot](https://img.shields.io/badge/Telegram-%40keel567__bot-26a5e4?logo=telegram)](https://t.me/keel567_bot)
 [![Receipts](https://img.shields.io/badge/receipts-29%2F29%20verified-0b7285)](#verify-every-claim-in-one-command)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
@@ -34,7 +34,7 @@ Keel never calls a rumour false on tracking alone. A ship that is moored can sti
 | Public verdict group | Bot posts each verdict (no user identity) | [keelverdict](https://t.me/+Kzl7YJUEUedhZmY1) |
 | Receipts dashboard | Every saved check, each answer linked to its signal | [subheeksh5599.github.io/keel](https://subheeksh5599.github.io/keel/), built by `scripts/dashboard.mjs` |
 | Tutorial | Buy one live ship position in about 40 lines | [`docs/TUTORIAL.md`](docs/TUTORIAL.md), [`examples/buy-position.mjs`](examples/buy-position.mjs) |
-| Tests | 63 passing, no network needed | `npm test`, and CI on every push |
+| Tests | 64 passing, no network needed | `npm test`, and CI on every push |
 
 ## For judges: try it in two minutes
 
@@ -46,7 +46,7 @@ Keel never calls a rumour false on tracking alone. A ship that is moored can sti
 4. Try one it cannot settle: `Sanctioned tanker ADRIAN DARYA 1 seized by IRGC in the Strait of Hormuz` gives `❓ Can't verify from tracking` (no receiver has heard it) plus `🚩 Sanctions:` from both sources.
 5. Break it: send `good morning` (it buys nothing and explains what it needs), or send the same rumour twice within 10 minutes (the second answer is reused and says *nothing paid again*).
 6. Press **👁 Watch this ship** under any verdict: it will message you if the ship goes quiet for 3+ hours.
-7. In a group: add the bot, then reply to any message with `/check`.
+7. In a group: add the bot, then reply to any message with `/check`, or forward a rumour into the group (forwards that name a ship and a claim are checked automatically).
 
 **From a clone (10 minutes):** see [Run it yourself](#run-it-yourself). The full checklist, with what you should see at each step, is in [JUDGES.md](JUDGES.md).
 
@@ -254,7 +254,7 @@ sequenceDiagram
 | An undelivered answer is released from the count | `src/telegraph.mjs` | `a failed delivery is released from the budget (the node does not bill it)` |
 | One check cannot spend more than its cap | `src/budget.mjs`, `src/check.mjs` | `per-check cap stops buying mid-check without crashing` |
 | The same rumour within 10 minutes is not paid twice | `src/bot.mjs` | `bot: a forwarded rumour in a private chat gets an acknowledgement, a verdict, a map pin and a group post` |
-| Group chatter is ignored; only `/check` or a mention triggers a check | `src/bot.mjs` | `bot: in a group, plain chatter is ignored and /check as a reply checks the replied message` |
+| Group chatter is ignored; `/check`, a mention, or a forwarded rumour naming a ship and a claim triggers a check | `src/bot.mjs` | `bot: in a group, plain chatter is ignored and /check as a reply checks the replied message`, `bot: in a group, a forwarded rumour and any rumour in the verdict group are checked without a command; chatter is not` |
 
 ## What the verdict measures
 
@@ -403,7 +403,7 @@ scripts/
 deploy/start.sh    server start script (reads /etc/keel/keel.env)
 assets/land-50m.json   Natural Earth land polygons
 receipts/          evidence files with every purchase and signal hash
-test/              63 tests, no network
+test/              64 tests, no network
 examples/buy-position.mjs  standalone paid ask + receipt read (the tutorial's code)
 docs/TUTORIAL.md   buy a live ship position on Telegraph in about 40 lines
 docs/index.html    the receipts dashboard (GitHub Pages)
@@ -418,7 +418,7 @@ You need Node 20+, a Telegram bot token from @BotFather, and a testnet key with 
 git clone https://github.com/subheeksh5599/keel && cd keel
 npm ci
 cp .env.example .env            # fill in TELEGRAM_BOT_TOKEN and TELEGRAPH_PRIVATE_KEY
-npm test                        # 63 tests, no network
+npm test                        # 64 tests, no network
 npm run fund -- 20 15           # mint 20 test USDC, deposit 15 into escrow (needs Sepolia ETH for gas)
 npm run check -- "tanker HULDA MAERSK hit by a missile in the Red Sea"
 npm start                       # the bot; message it on Telegram
@@ -462,16 +462,16 @@ Rows 4 and 5 bought three tracking answers each that came back empty. They are b
 
 ## Tests
 
-63 tests, all offline, run by `npm test` and by CI on every push:
+64 tests, all offline, run by `npm test` and by CI on every push:
 
 | Suite | Tests | Covers |
 |---|---|---|
 | `test/extract.test.mjs` | 18 | 15 real-style rumours plus the IMO check digit and the MMSI prefix |
 | `test/assess.test.mjs` | 18 | Every verdict rule, sanctions handling, confidence bounds |
-| `test/pipeline.test.mjs` | 13 | The full check with a stand-in node, OFAC parsing, watches, the bot's handlers |
+| `test/pipeline.test.mjs` | 14 | The full check with a stand-in node, OFAC parsing, watches, the bot's handlers |
 | `test/payments.test.mjs` | 10 | The 402 → escrow-signature flow, caps, release on failure, refusing bad challenges, empty answers |
 | `test/geo.test.mjs` | 4 | On-land test, sea areas, implied speed |
-| **Total** | **63** | |
+| **Total** | **64** | |
 
 ## Credits
 

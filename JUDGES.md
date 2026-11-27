@@ -16,7 +16,7 @@ Each line is something you can check yourself, and what you should see. Nothing 
 | 8 | Paste the step 2 rumour again within 10 minutes | The same answer, marked as reused, nothing paid again |
 | 9 | Press **👁 Watch this ship**, then `/watches` | The ship is listed; `/unwatch` removes it |
 | 10 | `/receipts` and `/stats` | This chat's last checks with receipts; totals across all chats |
-| 11 | Open the [keelverdict group](https://t.me/+Kzl7YJUEUedhZmY1) | The public verdict feed (no one's identity is shown) |
+| 11 | Open the [keelverdict group](https://t.me/+Kzl7YJUEUedhZmY1), or paste a rumour there | The public verdict feed (no one's identity is shown); a rumour posted in the group is checked right there |
 
 Times vary with the testnet: a check usually takes 10 to 30 seconds.
 
@@ -24,7 +24,7 @@ Times vary with the testnet: a check usually takes 10 to 30 seconds.
 
 | Command | Expected |
 |---|---|
-| `npm ci && npm test` | `pass 63`, `fail 0`, no network |
+| `npm ci && npm test` | `pass 64`, `fail 0`, no network |
 | `node scripts/verify-receipts.mjs` | `signals 29 · verified 29 · not found 0 · mismatched 0` (more as receipts are added) |
 | `node scripts/dashboard.mjs` | Rebuilds `docs/index.html`, the receipts dashboard |
 
@@ -42,7 +42,7 @@ Times vary with the testnet: a check usually takes 10 to 30 seconds.
 - Report "no sanctions" when the screen failed. It says "not a clean bill".
 - Count a tracker's empty answer as evidence.
 - Spend more than $0.30 on one check or $2 in a UTC day.
-- React to chatter in a group. Only `/check` or a mention starts a check.
+- React to chatter in a group. Only `/check`, a mention, or a forwarded rumour that names a ship and a claim starts a check.
 
 ## Known gaps (stated, not hidden)
 
