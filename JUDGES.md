@@ -25,7 +25,7 @@ Times vary with the testnet: a check usually takes 10 to 30 seconds.
 | Command | Expected |
 |---|---|
 | `npm ci && npm test` | `pass 56`, `fail 0`, no network |
-| `node scripts/verify-receipts.mjs` | `signals 22 · verified 22 · not found 0 · mismatched 0` (plus any receipts added since) |
+| `node scripts/verify-receipts.mjs` | `signals 26 · verified 26 · not found 0 · mismatched 0` (more as receipts are added) |
 | `node scripts/dashboard.mjs` | Rebuilds `docs/index.html`, the receipts dashboard |
 
 ## With a funded testnet key (spends a few cents of test USDC)

@@ -7,7 +7,7 @@
 [![test](https://github.com/subheeksh5599/keel/actions/workflows/test.yml/badge.svg)](https://github.com/subheeksh5599/keel/actions/workflows/test.yml)
 ![Tests](https://img.shields.io/badge/tests-56%20passing-2ecc71)
 [![Bot](https://img.shields.io/badge/Telegram-%40keel567__bot-26a5e4?logo=telegram)](https://t.me/keel567_bot)
-[![Receipts](https://img.shields.io/badge/receipts-22%2F22%20verified-0b7285)](#verify-every-claim-in-one-command)
+[![Receipts](https://img.shields.io/badge/receipts-26%2F26%20verified-0b7285)](#verify-every-claim-in-one-command)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
 ![Stack](https://img.shields.io/badge/Node%2020%2B%20·%20viem%20·%20Telegram%20Bot%20API%20·%20Telegraph%20testnet-14151a)
 
@@ -29,8 +29,8 @@ Keel never calls a rumour false on tracking alone. A ship that is moored can sti
 |---|---|---|
 | Telegram bot [@keel567_bot](https://t.me/keel567_bot) | Live, 24/7 on a VPS under pm2 | Forward it a rumour; `/stats` shows what it has checked |
 | Paid Telegraph asks | Live on the testnet, escrow-paid | Payer `0x2925d43C1e21888706D8b3b2223050aF14dDAEd4`; 15 test USDC [deposited](https://sepolia.etherscan.io/tx/0xa4b2e4387444d58ed2ce9dff038fe4629d12cc37908b8e888072b69f0595290e) on Ethereum Sepolia |
-| Evidence run | 6 rumours, 22 paid answers | [`receipts/evidence-2026-11-27T10-03-55-961Z.json`](receipts/evidence-2026-11-27T10-03-55-961Z.json) |
-| Receipt check | 22 / 22 signals verified on the node | `node scripts/verify-receipts.mjs`, output [below](#verify-every-claim-in-one-command) |
+| Evidence run | 6 rumours, 22 paid answers (plus the one-command check below: 4 more) | [`receipts/evidence-2026-11-27T10-03-55-961Z.json`](receipts/evidence-2026-11-27T10-03-55-961Z.json) |
+| Receipt check | 26 / 26 signals verified on the node | `node scripts/verify-receipts.mjs`, output [below](#verify-every-claim-in-one-command) |
 | Public verdict group | Bot posts each verdict (no user identity) | [keelverdict](https://t.me/+Kzl7YJUEUedhZmY1) |
 | Receipts dashboard | Every saved check, each answer linked to its signal | [subheeksh5599.github.io/keel](https://subheeksh5599.github.io/keel/), built by `scripts/dashboard.mjs` |
 | Tutorial | Buy one live ship position in about 40 lines | [`docs/TUTORIAL.md`](docs/TUTORIAL.md), [`examples/buy-position.mjs`](examples/buy-position.mjs) |
@@ -119,7 +119,7 @@ No key and no wallet. The script opens every signal saved under `receipts/` on t
 
 ```
 $ node scripts/verify-receipts.mjs
-signals 22 · verified 22 · not found 0 · mismatched 0 · paid by 0x2925d43c1e21888706d8b3b2223050af14ddaed4 · $0.22 test USDC across 1 file(s)
+signals 26 · verified 26 · not found 0 · mismatched 0 · paid by 0x2925d43c1e21888706d8b3b2223050af14ddaed4 · $0.26 test USDC across 2 file(s)
 ```
 
 ## What Keel is NOT
@@ -305,7 +305,7 @@ A disagreement from one source is capped at 70, a "can't verify" at 60, and noth
 
 | Item | Status | Proof |
 |---|---|---|
-| Escrow-paid asks on the Telegraph testnet | Live | 22 signals in `receipts/`, re-verified by `scripts/verify-receipts.mjs` |
+| Escrow-paid asks on the Telegraph testnet | Live | 26 signals in `receipts/`, re-verified by `scripts/verify-receipts.mjs` |
 | Two tracking operators, cross-checked | Live where both cover (the Baltic); one source elsewhere, and the reply says so | Evidence rows 1 and 3; `test/assess.test.mjs` |
 | Sanctions from two independent sources | Live | Evidence rows 4 and 5; `test/pipeline.test.mjs` |
 | Signal enrichment (IMO, MMSI, nav status, same-name count) | Live | `src/check.mjs`; `signal enrichment: …` test |
