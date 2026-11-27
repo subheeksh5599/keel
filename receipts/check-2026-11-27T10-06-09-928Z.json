@@ -1,0 +1,437 @@
+{
+  "input": "BREAKING: ferry VIKING GLORY hit by a drone and sinking in the Baltic",
+  "payer": "0x2925d43C1e21888706D8b3b2223050aF14dDAEd4",
+  "kind": "ship",
+  "extracted": {
+    "text": "BREAKING: ferry VIKING GLORY hit by a drone and sinking in the Baltic",
+    "ships": [
+      "VIKING GLORY"
+    ],
+    "imos": [],
+    "mmsis": [],
+    "claims": [
+      "sinking",
+      "struck"
+    ],
+    "places": [
+      "Baltic Sea"
+    ],
+    "media": [],
+    "urls": []
+  },
+  "shipQuery": "VIKING GLORY",
+  "shipName": "VIKING GLORY",
+  "identity": {
+    "imo": "9827877",
+    "mmsi": "230041000",
+    "name": "VIKING GLORY",
+    "callsign": "OJTC"
+  },
+  "evidence": {
+    "hasShip": true,
+    "claims": [
+      "sinking",
+      "struck"
+    ],
+    "places": [
+      "Baltic Sea"
+    ],
+    "fixes": [
+      {
+        "source": "Quay",
+        "operator": "Quay",
+        "lat": 60.08184166666667,
+        "lon": 20.939796666666666,
+        "speed": 20.8,
+        "course": 270.6,
+        "at": "2026-11-27T09:26:28.000Z",
+        "navStatus": "under way using engine",
+        "destination": "FITKU<>FIMHQ/FILAN<>",
+        "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x364081e18c19720a827fb7d1f3a017111c9d10e8d00c7adc9b9bf01b91379244",
+        "region": "Baltic Sea"
+      },
+      {
+        "source": "VesselWire",
+        "operator": "VesselWire",
+        "lat": 60.123072,
+        "lon": 20.569032,
+        "speed": 17.6,
+        "course": 244,
+        "at": "2026-11-27T10:05:39.820Z",
+        "navStatus": "under way using engine",
+        "destination": "FITKU<>FIMHQ/FILAN<>",
+        "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x2e0f617bd87d7cd32c2da8c1da9f076ce4a9f13803c423d28ce6e4591745773d",
+        "region": "Baltic Sea"
+      }
+    ],
+    "noData": [],
+    "skipped": [],
+    "sameName": 0,
+    "identity": {
+      "imo": "9827877",
+      "mmsi": "230041000",
+      "name": "VIKING GLORY",
+      "callsign": "OJTC"
+    },
+    "sanctions": {
+      "telegraph": {
+        "ok": true,
+        "matched": false,
+        "lists": [
+          "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+          "UN Security Council Consolidated List (published 2026-11-12)",
+          "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+          "UK Sanctions List (published 2026-11-10)"
+        ],
+        "matches": [],
+        "score": 0,
+        "source": "Counterproof Sanctions Screener"
+      },
+      "ofac": {
+        "checked": true,
+        "matches": [],
+        "listSize": 1570
+      }
+    },
+    "factCheck": {
+      "ok": true,
+      "verdict": "Unverified",
+      "reasoning": "The claim says a ferry named VIKING GLORY was hit by a drone and sank in the Baltic. None of the provided Wikipedia passages mention this incident or the vessel, and they contain unrelated information about shipwreck lists, TV shows, and historical topics. Because there is no relevant, credible evidence in the sources, the claim remains unverified.",
+      "source": "TelegraphIntent"
+    },
+    "media": [],
+    "now": "2026-11-27T10:06:09.902Z"
+  },
+  "result": {
+    "verdict": {
+      "key": "DISAGREES",
+      "icon": "⚠️",
+      "label": "Tracking disagrees with the rumour"
+    },
+    "confidence": 90,
+    "reasons": [
+      {
+        "sign": 1,
+        "text": "Position reported under a minute ago."
+      },
+      {
+        "sign": 1,
+        "text": "VesselWire and Quay (different operators) agree on where it is (21.1 km apart, consistent with the time between reports)."
+      },
+      {
+        "sign": 1,
+        "text": "It is reporting 17.6 kn, making way normally, which a sinking ship would not. A transmitter can keep sending after damage, so this is not proof."
+      },
+      {
+        "sign": 0,
+        "text": "A fact-check miner found no reliable source either way (\"Unverified\")."
+      }
+    ],
+    "flags": [],
+    "best": {
+      "source": "VesselWire",
+      "operator": "VesselWire",
+      "lat": 60.123072,
+      "lon": 20.569032,
+      "speed": 17.6,
+      "course": 244,
+      "at": "2026-11-27T10:05:39.820Z",
+      "navStatus": "under way using engine",
+      "destination": "FITKU<>FIMHQ/FILAN<>",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x2e0f617bd87d7cd32c2da8c1da9f076ce4a9f13803c423d28ce6e4591745773d",
+      "region": "Baltic Sea"
+    },
+    "ageMin": 0.5013666666666666,
+    "stale": false,
+    "operators": [
+      "VesselWire",
+      "Quay"
+    ],
+    "sourcesAgree": true,
+    "sanctions": "clear-two-sources"
+  },
+  "purchases": [
+    {
+      "label": "Fact-check",
+      "ok": true,
+      "status": 200,
+      "intent": "FACT_CHECK_GENERAL",
+      "miner": "TelegraphIntent",
+      "minerId": "83159274",
+      "answer": {
+        "claim": "BREAKING: ferry VIKING GLORY hit by a drone and sinking in the Baltic",
+        "verdict": "Unverified",
+        "reasoning": "The claim says a ferry named VIKING GLORY was hit by a drone and sank in the Baltic. None of the provided Wikipedia passages mention this incident or the vessel, and they contain unrelated information about shipwreck lists, TV shows, and historical topics. Because there is no relevant, credible evidence in the sources, the claim remains unverified.",
+        "sources": null
+      },
+      "fieldStatus": {
+        "claim": "ok",
+        "verdict": "ok",
+        "reasoning": "ok",
+        "sources": "missing"
+      },
+      "warnings": [
+        "The response does not include: URLs or names of the sources the answer cites"
+      ],
+      "signal": "0x308c0bcb3e2ea70efb3f45bdea34402dc45930f1dfee2fa08d4a0a976f799232",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x308c0bcb3e2ea70efb3f45bdea34402dc45930f1dfee2fa08d4a0a976f799232",
+      "costUsd": 0.01,
+      "latencyMs": 3847,
+      "error": null,
+      "raw": {
+        "claim": "BREAKING: ferry VIKING GLORY hit by a drone and sinking in the Baltic",
+        "reasoning": "The claim says a ferry named VIKING GLORY was hit by a drone and sank in the Baltic. None of the provided Wikipedia passages mention this incident or the vessel, and they contain unrelated information about shipwreck lists, TV shows, and historical topics. Because there is no relevant, credible evidence in the sources, the claim remains unverified.",
+        "sources": [],
+        "verdict": "Unverified"
+      },
+      "verified": true
+    },
+    {
+      "label": "Position (Quay)",
+      "ok": true,
+      "status": 200,
+      "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+      "miner": "Quay",
+      "minerId": "8818818",
+      "answer": {
+        "vessel": "VIKING GLORY",
+        "speed_knots": 20.8,
+        "latitude": 60.08184166666667,
+        "longitude": 20.939796666666666,
+        "course_deg": 270.6,
+        "observed_at": "2026-11-27T09:26:28.000Z"
+      },
+      "fieldStatus": {
+        "vessel": "ok",
+        "speed_knots": "ok",
+        "latitude": "ok",
+        "longitude": "ok",
+        "course_deg": "ok",
+        "observed_at": "ok"
+      },
+      "warnings": [],
+      "signal": "0x364081e18c19720a827fb7d1f3a017111c9d10e8d00c7adc9b9bf01b91379244",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x364081e18c19720a827fb7d1f3a017111c9d10e8d00c7adc9b9bf01b91379244",
+      "costUsd": 0.01,
+      "latencyMs": 4763,
+      "error": null,
+      "raw": {
+        "age_minutes": 39,
+        "callsign": "OJTC",
+        "course_deg": 270.6,
+        "destination": "FITKU<>FIMHQ/FILAN<>",
+        "eta": "11-27 17:55 UTC (as reported by the ship)",
+        "heading_deg": 271,
+        "imo": "9827877",
+        "last_heard": null,
+        "latitude": 60.08184166666667,
+        "longitude": 20.939796666666666,
+        "matched_by": "name",
+        "mmsi": "230041000",
+        "name": "VIKING GLORY",
+        "nav_status": "under way using engine",
+        "observed_at": "2026-11-27T09:26:28.000Z",
+        "other_ships_with_same_name": 0,
+        "source": "Live AIS broadcast via aisstream.io terrestrial receivers",
+        "speed_knots": 20.8,
+        "status": "live",
+        "vessel": "VIKING GLORY"
+      },
+      "verified": true
+    },
+    {
+      "label": "Sanctions screen",
+      "ok": true,
+      "status": 200,
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "miner": "Counterproof Sanctions Screener",
+      "minerId": "731002",
+      "answer": {
+        "name": "VIKING GLORY",
+        "matched": false,
+        "matches": null,
+        "lists": [
+          "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+          "UN Security Council Consolidated List (published 2026-11-12)",
+          "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+          "UK Sanctions List (published 2026-11-10)"
+        ],
+        "match_score": 0
+      },
+      "fieldStatus": {
+        "name": "ok",
+        "matched": "ok",
+        "matches": "missing",
+        "lists": "ok",
+        "match_score": "ok"
+      },
+      "warnings": [
+        "The response does not include: Matching sanctions-list entries"
+      ],
+      "signal": "0xdb76a31ae1d6bfa96b4fa425a328532617b1c11e664422c30eb52d21a26da34a",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xdb76a31ae1d6bfa96b4fa425a328532617b1c11e664422c30eb52d21a26da34a",
+      "costUsd": 0.01,
+      "latencyMs": 10301,
+      "error": null,
+      "raw": {
+        "answer": "Clear. VIKING GLORY does not appear on the OFAC, UN, EU or UK sanctions lists. This covers the lists as published, not ownership or adverse media.",
+        "confidence": 1,
+        "is_match": false,
+        "label": "CLEAR",
+        "list_versions": {
+          "EU": "2026-10-23",
+          "UK": "2026-11-10",
+          "UN": "2026-11-12",
+          "US": "2026-11-09"
+        },
+        "lists": [
+          "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+          "UN Security Council Consolidated List (published 2026-11-12)",
+          "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+          "UK Sanctions List (published 2026-11-10)"
+        ],
+        "match_score": 0,
+        "matched": false,
+        "matches": [],
+        "name": "VIKING GLORY",
+        "notice": null,
+        "regimes": {
+          "EU": "clear",
+          "UK": "clear",
+          "UN": "clear",
+          "US": "clear"
+        },
+        "screened_at": "2026-11-27T10:05:54.965Z",
+        "summary": "Clear. VIKING GLORY does not appear on the OFAC, UN, EU or UK sanctions lists. This covers the lists as published, not ownership or adverse media."
+      },
+      "verified": true
+    },
+    {
+      "label": "Position (VesselWire)",
+      "ok": true,
+      "status": 200,
+      "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+      "miner": "VesselWire Verbatim AIS Reports",
+      "minerId": "751084",
+      "answer": {
+        "vessel": "230041000",
+        "speed_knots": 17.6,
+        "latitude": 60.123072,
+        "longitude": 20.569032,
+        "course_deg": 244,
+        "observed_at": "2026-11-27T10:05:39.820Z"
+      },
+      "fieldStatus": {
+        "vessel": "ok",
+        "speed_knots": "ok",
+        "latitude": "ok",
+        "longitude": "ok",
+        "course_deg": "ok",
+        "observed_at": "ok"
+      },
+      "warnings": [],
+      "signal": "0x2e0f617bd87d7cd32c2da8c1da9f076ce4a9f13803c423d28ce6e4591745773d",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x2e0f617bd87d7cd32c2da8c1da9f076ce4a9f13803c423d28ce6e4591745773d",
+      "costUsd": 0.01,
+      "latencyMs": 6116,
+      "error": null,
+      "raw": {
+        "ais_positioning_system_mode": "UTC second available",
+        "ais_timestamp_scope": "Source AIS EPFS UTC-second/mode field, not a complete date or the provider location-record timestamp.",
+        "ais_utc_second": 38,
+        "as_of": "2026-11-27T10:06:00.953Z",
+        "attribution": "Source: Fintraffic / digitraffic.fi, licence CC 4.0 BY (https://creativecommons.org/licenses/by/4.0/). Modified: AIS unavailable values normalized, units converted, and source-reported claims assessed.",
+        "beam_at_least_m": null,
+        "beam_m": 36,
+        "call_sign": "OJTC",
+        "claim": null,
+        "confidence": 0.95,
+        "confidence_scope": "Compatibility field: completeness/freshness policy, not probability of independent truth.",
+        "course_over_ground_deg": 244,
+        "course_over_ground_degrees": 243.6,
+        "destination": "FITKU<>FIMHQ/FILAN<>",
+        "dimensions_scope": "Sum of reported distances from the AIS position reference point; not independently measured hull dimensions.",
+        "draught_at_least_m": null,
+        "draught_m": 6.4,
+        "eta_scope": "Self-reported AIS arrival estimate, not an observed arrival or guaranteed schedule; AIS supplies no year.",
+        "freshness": "fresh",
+        "freshness_limit_seconds": 900,
+        "heading_deg": 244,
+        "imo": 9827877,
+        "in_coverage": true,
+        "independently_verified": false,
+        "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+        "latitude": 60.123072,
+        "length_at_least_m": null,
+        "length_m": 223,
+        "longitude": 20.569032,
+        "metadata_age_seconds": 126.2,
+        "metadata_available": true,
+        "metadata_error": null,
+        "metadata_freshness": "fresh",
+        "metadata_freshness_limit_seconds": 21600,
+        "metadata_observed_at": "2026-11-27T10:03:54.753Z",
+        "metadata_source_url": "https://meri.digitraffic.fi/api/ais/v1/vessels/230041000",
+        "mmsi": 230041000,
+        "navigational_status": "under way using engine",
+        "navigational_status_code": 0,
+        "observation_age_seconds": 21.133,
+        "observed_at": "2026-11-27T10:05:39.820Z",
+        "position_accuracy_flag": true,
+        "position_fix_scope": "Static AIS metadata device type, not a current working fix, satellite count, measured accuracy or independent position verification.",
+        "position_fix_type": "GPS",
+        "position_fix_type_code": 1,
+        "raim_flag": false,
+        "rate_of_turn_deg_per_min": -2.1873741283369905,
+        "rate_of_turn_direction": "left",
+        "rate_of_turn_encoding": "sensor_encoded",
+        "rate_of_turn_scope": "Approximate decoding of the quantized, source-reported AIS ROT code; special +/-127 numeric thresholds are not asserted.",
+        "raw_ais": {
+          "callSign": "OJTC",
+          "cog": 243.6,
+          "draught": 64,
+          "eta": 777335,
+          "heading": 244,
+          "imo": 9827877,
+          "navStat": 0,
+          "posAcc": true,
+          "posType": 1,
+          "raim": false,
+          "referencePointA": 25,
+          "referencePointB": 198,
+          "referencePointC": 18,
+          "referencePointD": 18,
+          "rot": -7,
+          "shipType": 60,
+          "sog": 17.6,
+          "timestamp": 38
+        },
+        "reported_eta": {
+          "complete": true,
+          "day": 27,
+          "hour": 17,
+          "minute": 55,
+          "month": 11,
+          "text": "month 11, day 27, 17:55 UTC (year not transmitted)",
+          "time_zone": "UTC",
+          "year": null
+        },
+        "ship_type": "passenger ship",
+        "source": "Fintraffic Digitraffic marine AIS",
+        "source_url": "https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=230041000",
+        "speed_kmh": 32.595200000000006,
+        "speed_knots": 17.6,
+        "speed_mps": 9.054222222222224,
+        "speed_over_ground_knots": 17.6,
+        "summary": "VIKING GLORY (MMSI 230041000): speed over ground 17.6 knots (32.6 km/h). Provider location record observed 2026-11-27T10:05:39.820Z (fresh). Evidence: Fintraffic / digitraffic.fi (CC BY 4.0), https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=230041000. AIS reports are not independent vessel verification.",
+        "verdict": "Reported",
+        "verification_scope": "Single-provider AIS report; AIS may be inaccurate or spoofed.",
+        "vessel_name": "VIKING GLORY",
+        "warnings": []
+      },
+      "verified": true
+    }
+  ],
+  "totalUsd": 0.04,
+  "checkedAt": "2026-11-27T10:06:09.902Z"
+}

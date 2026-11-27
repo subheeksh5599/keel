@@ -42,7 +42,7 @@ export async function runCheck(text, { telegraph, budget, ofac, maxCheckUsd = 0.
     const sig = r.signal && telegraph.signal ? await telegraph.signal(r.signal) : null;
     if (sig) r = { ...r, raw: sig.raw, verified: sig.verified };
     // A tracking answer without a position is not evidence, even when the miner filled other fields.
-    if (r.ok && args.intent === INTENTS.vessel && (num(r.answer?.latitude) === null || num(r.answer?.longitude) === null)) {
+    if (args.intent === INTENTS.vessel && (r.ok || r.status === 200) && (num(r.answer?.latitude) === null || num(r.answer?.longitude) === null)) {
       r = { ...r, ok: false, error: notSeenReason(r.raw) };
     }
     purchases.push({ label, ...r });
