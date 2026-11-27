@@ -81,6 +81,7 @@ export class Watcher {
 
   async locate(query, bought = []) {
     for (const t of this.trackers) {
+      if (t.needsMmsi && !/^\d{9}$/.test(query)) continue; // that tracker only finds ships by MMSI
       let r;
       try {
         r = await this.telegraph.ask({ intent: INTENTS.vessel, params: { vessel: query }, miner: t.id, budget: this.budget });
