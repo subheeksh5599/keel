@@ -13,14 +13,16 @@ export function formatCheck(c, { budgetLeftUsd } = {}) {
   lines.push(`${r.verdict.icon} <b>${esc(r.verdict.label)}</b>`);
   if (c.shipQuery) {
     const claimed = c.extracted.claims.length ? ` · rumour: ${esc(c.extracted.claims.map(claimLabel).join(", "))}` : "";
-    lines.push(`🚢 <b>${esc(c.shipName || c.shipQuery)}</b>${c.shipName && c.extracted.imos[0] ? ` (IMO ${c.extracted.imos[0]})` : ""}${claimed}`);
+    const id = c.identity || {};
+    const ids = [id.imo ? `IMO ${id.imo}` : null, id.mmsi ? `MMSI ${id.mmsi}` : null].filter(Boolean).join(" · ");
+    lines.push(`🚢 <b>${esc(c.shipName || id.name || c.shipQuery)}</b>${ids ? ` (${esc(ids)})` : ""}${claimed}`);
   } else {
     lines.push(`📰 No ship named. I checked the claim itself.`);
   }
   if (r.best) {
     const b = r.best;
     const motion = b.speed == null ? "speed unknown" : b.speed < 1 ? "stopped" : `${b.speed} kn${b.course != null ? `, course ${Math.round(b.course)}°` : ""}`;
-    lines.push(`📍 ${esc(fmtCoord(b))}${b.region ? ` · ${esc(b.region)}` : ""} · ${esc(motion)} · ${esc(fmtAge(r.ageMin))} ago`);
+    lines.push(`📍 ${esc(fmtCoord(b))}${b.region ? ` · ${esc(b.region)}` : ""} · ${esc(motion)}${b.navStatus ? ` · "${esc(b.navStatus)}"` : ""} · ${esc(fmtAge(r.ageMin))} ago${b.destination ? ` · bound for ${esc(b.destination)}` : ""}`);
   }
   for (const f of r.flags) lines.push(`${f.startsWith("🚩") ? "" : "⚠️ "}${esc(f)}`);
 
@@ -97,7 +99,7 @@ export const HELP = [
 
 export const ABOUT = [
   "<b>About Keel</b>",
-  "Built for Telegraph Hackathon Season II (Mission 05, Conflict Intelligence).",
+  "Conflict intelligence for anyone who reads shipping news: newsrooms, analysts, traders and insurers.",
   "Each check buys answers from ranked miners on the Telegraph network (testnet). Every answer carries a signal hash you can open: that is the receipt.",
   "Tracking: Quay and VesselWire miners (live AIS). Sanctions: Telegraph screening miners plus OFAC's own SDN list. Claims: fact-check miners.",
   "Source and method: https://github.com/subheeksh5599/keel",

@@ -1,0 +1,2071 @@
+{
+  "payer": "0x2925d43C1e21888706D8b3b2223050aF14dDAEd4",
+  "node": "https://devnode.telegraphprotocol.com",
+  "ranAt": "2026-11-27T10:03:55.961Z",
+  "runs": [
+    {
+      "rule": "Two operators agree; a ship making way is not 'sinking'",
+      "text": "BREAKING: ferry VIKING GLORY hit by a drone and sinking in the Baltic",
+      "check": {
+        "kind": "ship",
+        "extracted": {
+          "text": "BREAKING: ferry VIKING GLORY hit by a drone and sinking in the Baltic",
+          "ships": [
+            "VIKING GLORY"
+          ],
+          "imos": [],
+          "mmsis": [],
+          "claims": [
+            "sinking",
+            "struck"
+          ],
+          "places": [
+            "Baltic Sea"
+          ],
+          "media": [],
+          "urls": []
+        },
+        "shipQuery": "VIKING GLORY",
+        "shipName": "VIKING GLORY",
+        "identity": {
+          "imo": "9827877",
+          "mmsi": "230041000",
+          "name": "VIKING GLORY",
+          "callsign": "OJTC"
+        },
+        "evidence": {
+          "hasShip": true,
+          "claims": [
+            "sinking",
+            "struck"
+          ],
+          "places": [
+            "Baltic Sea"
+          ],
+          "fixes": [
+            {
+              "source": "Quay",
+              "operator": "Quay",
+              "lat": 60.08184166666667,
+              "lon": 20.939796666666666,
+              "speed": 20.8,
+              "course": 270.6,
+              "at": "2026-11-27T09:26:28.000Z",
+              "navStatus": "under way using engine",
+              "destination": "FITKU<>FIMHQ/FILAN<>",
+              "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x784b25752b7ef4ab426529690aa8aff89a7c23791f4cccc1c310b2bb79cb5a0e",
+              "region": "Baltic Sea"
+            },
+            {
+              "source": "VesselWire",
+              "operator": "VesselWire",
+              "lat": 60.12228,
+              "lon": 20.608298,
+              "speed": 18.8,
+              "course": 306,
+              "at": "2026-11-27T10:01:34.403Z",
+              "navStatus": "under way using engine",
+              "destination": "FITKU<>FIMHQ/FILAN<>",
+              "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x50539b5e28acfab12540301d2870592bd2f3a69d7d366c4e4ce36600d631999a",
+              "region": "Baltic Sea"
+            }
+          ],
+          "noData": [],
+          "skipped": [],
+          "sameName": 0,
+          "identity": {
+            "imo": "9827877",
+            "mmsi": "230041000",
+            "name": "VIKING GLORY",
+            "callsign": "OJTC"
+          },
+          "sanctions": {
+            "telegraph": {
+              "ok": true,
+              "matched": false,
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "matches": [],
+              "score": 0,
+              "source": "Counterproof Sanctions Screener"
+            },
+            "ofac": {
+              "checked": true,
+              "matches": [],
+              "listSize": 1570
+            }
+          },
+          "factCheck": {
+            "ok": true,
+            "verdict": "Unverified",
+            "reasoning": "The claim says a ferry named VIKING GLORY was hit by a drone and sank in the Baltic. None of the provided Wikipedia passages mention this incident or the vessel, and they contain unrelated information about shipwreck lists, TV shows, and historical topics. Because there is no relevant, credible evidence in the sources, the claim remains unverified.",
+            "source": "TelegraphIntent"
+          },
+          "media": [],
+          "now": "2026-11-27T10:02:43.771Z"
+        },
+        "result": {
+          "verdict": {
+            "key": "DISAGREES",
+            "icon": "⚠️",
+            "label": "Tracking disagrees with the rumour"
+          },
+          "confidence": 90,
+          "reasons": [
+            {
+              "sign": 1,
+              "text": "Position reported 1 min ago."
+            },
+            {
+              "sign": 1,
+              "text": "VesselWire and Quay (different operators) agree on where it is (18.9 km apart, consistent with the time between reports)."
+            },
+            {
+              "sign": 1,
+              "text": "It is reporting 18.8 kn, making way normally, which a sinking ship would not. A transmitter can keep sending after damage, so this is not proof."
+            },
+            {
+              "sign": 0,
+              "text": "A fact-check miner found no reliable source either way (\"Unverified\")."
+            }
+          ],
+          "flags": [],
+          "best": {
+            "source": "VesselWire",
+            "operator": "VesselWire",
+            "lat": 60.12228,
+            "lon": 20.608298,
+            "speed": 18.8,
+            "course": 306,
+            "at": "2026-11-27T10:01:34.403Z",
+            "navStatus": "under way using engine",
+            "destination": "FITKU<>FIMHQ/FILAN<>",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x50539b5e28acfab12540301d2870592bd2f3a69d7d366c4e4ce36600d631999a",
+            "region": "Baltic Sea"
+          },
+          "ageMin": 1.1561333333333332,
+          "stale": false,
+          "operators": [
+            "VesselWire",
+            "Quay"
+          ],
+          "sourcesAgree": true,
+          "sanctions": "clear-two-sources"
+        },
+        "purchases": [
+          {
+            "label": "Position (Quay)",
+            "ok": true,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "VIKING GLORY",
+              "speed_knots": 20.8,
+              "latitude": 60.08184166666667,
+              "longitude": 20.939796666666666,
+              "course_deg": 270.6,
+              "observed_at": "2026-11-27T09:26:28.000Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "ok",
+              "latitude": "ok",
+              "longitude": "ok",
+              "course_deg": "ok",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0x784b25752b7ef4ab426529690aa8aff89a7c23791f4cccc1c310b2bb79cb5a0e",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x784b25752b7ef4ab426529690aa8aff89a7c23791f4cccc1c310b2bb79cb5a0e",
+            "costUsd": 0.01,
+            "latencyMs": 4579,
+            "error": null,
+            "raw": {
+              "age_minutes": 36,
+              "callsign": "OJTC",
+              "course_deg": 270.6,
+              "destination": "FITKU<>FIMHQ/FILAN<>",
+              "eta": "11-27 17:55 UTC (as reported by the ship)",
+              "heading_deg": 271,
+              "imo": "9827877",
+              "last_heard": null,
+              "latitude": 60.08184166666667,
+              "longitude": 20.939796666666666,
+              "matched_by": "name",
+              "mmsi": "230041000",
+              "name": "VIKING GLORY",
+              "nav_status": "under way using engine",
+              "observed_at": "2026-11-27T09:26:28.000Z",
+              "other_ships_with_same_name": 0,
+              "source": "Live AIS broadcast via aisstream.io terrestrial receivers",
+              "speed_knots": 20.8,
+              "status": "live",
+              "vessel": "VIKING GLORY"
+            },
+            "verified": true
+          },
+          {
+            "label": "Sanctions screen",
+            "ok": true,
+            "status": 200,
+            "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+            "miner": "Counterproof Sanctions Screener",
+            "minerId": "731002",
+            "answer": {
+              "name": "VIKING GLORY",
+              "matched": false,
+              "matches": null,
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "match_score": 0
+            },
+            "fieldStatus": {
+              "name": "ok",
+              "matched": "ok",
+              "matches": "missing",
+              "lists": "ok",
+              "match_score": "ok"
+            },
+            "warnings": [
+              "The response does not include: Matching sanctions-list entries"
+            ],
+            "signal": "0xa644ee77ae288aacb0af921607eef3044075df8bf0d39898b67c979af6901f7c",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xa644ee77ae288aacb0af921607eef3044075df8bf0d39898b67c979af6901f7c",
+            "costUsd": 0.01,
+            "latencyMs": 9081,
+            "error": null,
+            "raw": {
+              "answer": "Clear. VIKING GLORY does not appear on the OFAC, UN, EU or UK sanctions lists. This covers the lists as published, not ownership or adverse media.",
+              "confidence": 1,
+              "is_match": false,
+              "label": "CLEAR",
+              "list_versions": {
+                "EU": "2026-10-23",
+                "UK": "2026-11-10",
+                "UN": "2026-11-12",
+                "US": "2026-11-09"
+              },
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "match_score": 0,
+              "matched": false,
+              "matches": [],
+              "name": "VIKING GLORY",
+              "notice": null,
+              "regimes": {
+                "EU": "clear",
+                "UK": "clear",
+                "UN": "clear",
+                "US": "clear"
+              },
+              "screened_at": "2026-11-27T10:02:32.105Z",
+              "summary": "Clear. VIKING GLORY does not appear on the OFAC, UN, EU or UK sanctions lists. This covers the lists as published, not ownership or adverse media."
+            },
+            "verified": true
+          },
+          {
+            "label": "Fact-check",
+            "ok": true,
+            "status": 200,
+            "intent": "FACT_CHECK_GENERAL",
+            "miner": "TelegraphIntent",
+            "minerId": "83159274",
+            "answer": {
+              "claim": "BREAKING: ferry VIKING GLORY hit by a drone and sinking in the Baltic",
+              "verdict": "Unverified",
+              "reasoning": "The claim says a ferry named VIKING GLORY was hit by a drone and sank in the Baltic. None of the provided Wikipedia passages mention this incident or the vessel, and they contain unrelated information about shipwreck lists, TV shows, and historical topics. Because there is no relevant, credible evidence in the sources, the claim remains unverified.",
+              "sources": null
+            },
+            "fieldStatus": {
+              "claim": "ok",
+              "verdict": "ok",
+              "reasoning": "ok",
+              "sources": "missing"
+            },
+            "warnings": [
+              "The response does not include: URLs or names of the sources the answer cites"
+            ],
+            "signal": "0xd484560795f101166e8c126e057969e7c4a7d74516ec5a190e1c6d3d1fc7378a",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xd484560795f101166e8c126e057969e7c4a7d74516ec5a190e1c6d3d1fc7378a",
+            "costUsd": 0.01,
+            "latencyMs": 11938,
+            "error": null,
+            "raw": {
+              "claim": "BREAKING: ferry VIKING GLORY hit by a drone and sinking in the Baltic",
+              "reasoning": "The claim says a ferry named VIKING GLORY was hit by a drone and sank in the Baltic. None of the provided Wikipedia passages mention this incident or the vessel, and they contain unrelated information about shipwreck lists, TV shows, and historical topics. Because there is no relevant, credible evidence in the sources, the claim remains unverified.",
+              "sources": [],
+              "verdict": "Unverified"
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (VesselWire)",
+            "ok": true,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "VesselWire Verbatim AIS Reports",
+            "minerId": "751084",
+            "answer": {
+              "vessel": "230041000",
+              "speed_knots": 18.8,
+              "latitude": 60.12228,
+              "longitude": 20.608298,
+              "course_deg": 306,
+              "observed_at": "2026-11-27T10:01:34.403Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "ok",
+              "latitude": "ok",
+              "longitude": "ok",
+              "course_deg": "ok",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0x50539b5e28acfab12540301d2870592bd2f3a69d7d366c4e4ce36600d631999a",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x50539b5e28acfab12540301d2870592bd2f3a69d7d366c4e4ce36600d631999a",
+            "costUsd": 0.01,
+            "latencyMs": 9540,
+            "error": null,
+            "raw": {
+              "ais_positioning_system_mode": "UTC second available",
+              "ais_timestamp_scope": "Source AIS EPFS UTC-second/mode field, not a complete date or the provider location-record timestamp.",
+              "ais_utc_second": 32,
+              "as_of": "2026-11-27T10:02:37.992Z",
+              "attribution": "Source: Fintraffic / digitraffic.fi, licence CC 4.0 BY (https://creativecommons.org/licenses/by/4.0/). Modified: AIS unavailable values normalized, units converted, and source-reported claims assessed.",
+              "beam_at_least_m": null,
+              "beam_m": 36,
+              "call_sign": "OJTC",
+              "claim": null,
+              "confidence": 0.95,
+              "confidence_scope": "Compatibility field: completeness/freshness policy, not probability of independent truth.",
+              "course_over_ground_deg": 306,
+              "course_over_ground_degrees": 306.1,
+              "destination": "FITKU<>FIMHQ/FILAN<>",
+              "dimensions_scope": "Sum of reported distances from the AIS position reference point; not independently measured hull dimensions.",
+              "draught_at_least_m": null,
+              "draught_m": 6.4,
+              "eta_scope": "Self-reported AIS arrival estimate, not an observed arrival or guaranteed schedule; AIS supplies no year.",
+              "freshness": "fresh",
+              "freshness_limit_seconds": 900,
+              "heading_deg": 307,
+              "imo": 9827877,
+              "in_coverage": true,
+              "independently_verified": false,
+              "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+              "latitude": 60.12228,
+              "length_at_least_m": null,
+              "length_m": 223,
+              "longitude": 20.608298,
+              "metadata_age_seconds": 285.713,
+              "metadata_available": true,
+              "metadata_error": null,
+              "metadata_freshness": "fresh",
+              "metadata_freshness_limit_seconds": 21600,
+              "metadata_observed_at": "2026-11-27T09:57:52.279Z",
+              "metadata_source_url": "https://meri.digitraffic.fi/api/ais/v1/vessels/230041000",
+              "mmsi": 230041000,
+              "navigational_status": "under way using engine",
+              "navigational_status_code": 0,
+              "observation_age_seconds": 63.589,
+              "observed_at": "2026-11-27T10:01:34.403Z",
+              "position_accuracy_flag": true,
+              "position_fix_scope": "Static AIS metadata device type, not a current working fix, satellite count, measured accuracy or independent position verification.",
+              "position_fix_type": "GPS",
+              "position_fix_type_code": 1,
+              "raim_flag": false,
+              "rate_of_turn_deg_per_min": -14.46345342002418,
+              "rate_of_turn_direction": "left",
+              "rate_of_turn_encoding": "sensor_encoded",
+              "rate_of_turn_scope": "Approximate decoding of the quantized, source-reported AIS ROT code; special +/-127 numeric thresholds are not asserted.",
+              "raw_ais": {
+                "callSign": "OJTC",
+                "cog": 306.1,
+                "draught": 64,
+                "eta": 777335,
+                "heading": 307,
+                "imo": 9827877,
+                "navStat": 0,
+                "posAcc": true,
+                "posType": 1,
+                "raim": false,
+                "referencePointA": 25,
+                "referencePointB": 198,
+                "referencePointC": 18,
+                "referencePointD": 18,
+                "rot": -18,
+                "shipType": 60,
+                "sog": 18.8,
+                "timestamp": 32
+              },
+              "reported_eta": {
+                "complete": true,
+                "day": 27,
+                "hour": 17,
+                "minute": 55,
+                "month": 11,
+                "text": "month 11, day 27, 17:55 UTC (year not transmitted)",
+                "time_zone": "UTC",
+                "year": null
+              },
+              "ship_type": "passenger ship",
+              "source": "Fintraffic Digitraffic marine AIS",
+              "source_url": "https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=230041000",
+              "speed_kmh": 34.817600000000006,
+              "speed_knots": 18.8,
+              "speed_mps": 9.671555555555557,
+              "speed_over_ground_knots": 18.8,
+              "summary": "VIKING GLORY (MMSI 230041000): speed over ground 18.8 knots (34.8 km/h). Provider location record observed 2026-11-27T10:01:34.403Z (fresh). Evidence: Fintraffic / digitraffic.fi (CC BY 4.0), https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=230041000. AIS reports are not independent vessel verification.",
+              "verdict": "Reported",
+              "verification_scope": "Single-provider AIS report; AIS may be inaccurate or spoofed.",
+              "vessel_name": "VIKING GLORY",
+              "warnings": []
+            },
+            "verified": true
+          }
+        ],
+        "totalUsd": 0.04,
+        "checkedAt": "2026-11-27T10:02:43.771Z"
+      }
+    },
+    {
+      "rule": "The ship is somewhere else entirely",
+      "text": "Houthis claim missile hit on container ship HULDA MAERSK in the Red Sea",
+      "check": {
+        "kind": "ship",
+        "extracted": {
+          "text": "Houthis claim missile hit on container ship HULDA MAERSK in the Red Sea",
+          "ships": [
+            "HULDA MAERSK"
+          ],
+          "imos": [],
+          "mmsis": [],
+          "claims": [
+            "struck"
+          ],
+          "places": [
+            "Red Sea"
+          ],
+          "media": [],
+          "urls": []
+        },
+        "shipQuery": "HULDA MAERSK",
+        "shipName": "HULDA MAERSK",
+        "identity": {
+          "imo": "9399363",
+          "mmsi": "219278000",
+          "name": "HULDA MAERSK",
+          "callsign": "OYSK2"
+        },
+        "evidence": {
+          "hasShip": true,
+          "claims": [
+            "struck"
+          ],
+          "places": [
+            "Red Sea"
+          ],
+          "fixes": [
+            {
+              "source": "Quay",
+              "operator": "Quay",
+              "lat": 51.93554833333334,
+              "lon": 4.059993333333334,
+              "speed": 0,
+              "course": 208.3,
+              "at": "2026-11-27T09:59:52.226Z",
+              "navStatus": "moored",
+              "destination": "NLRTM",
+              "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x9c4d707b7e400bbffdec080970e8c592401939150515e2c4b8882cea8b2a842d",
+              "region": "North Sea"
+            }
+          ],
+          "noData": [],
+          "skipped": [
+            "VesselWire (covers the Baltic only)"
+          ],
+          "sameName": 0,
+          "identity": {
+            "imo": "9399363",
+            "mmsi": "219278000",
+            "name": "HULDA MAERSK",
+            "callsign": "OYSK2"
+          },
+          "sanctions": {
+            "telegraph": {
+              "ok": true,
+              "matched": false,
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "matches": [],
+              "score": 0,
+              "source": "Counterproof Sanctions Screener"
+            },
+            "ofac": {
+              "checked": true,
+              "matches": [],
+              "listSize": 1570
+            }
+          },
+          "factCheck": {
+            "ok": true,
+            "verdict": "Unverified",
+            "reasoning": "The claim states that Houthis said a missile hit the container ship HULDA MAERSK in the Red Sea. The provided passages from en.wikipedia.org only list historical shipwrecks from 1918 and notable Danish people, and contain no information about a recent missile incident, Houthis, or the Red Sea. Because there is no relevant evidence supporting or refuting the claim, it remains unverified.",
+            "source": "TelegraphIntent"
+          },
+          "media": [],
+          "now": "2026-11-27T10:02:52.064Z"
+        },
+        "result": {
+          "verdict": {
+            "key": "DISAGREES",
+            "icon": "⚠️",
+            "label": "Tracking disagrees with the rumour"
+          },
+          "confidence": 60,
+          "reasons": [
+            {
+              "sign": 1,
+              "text": "Position reported 3 min ago."
+            },
+            {
+              "sign": -1,
+              "text": "Only one tracking source has a position, so it can't be cross-checked. The second tracker covers the Baltic only and was not asked."
+            },
+            {
+              "sign": 1,
+              "text": "The rumour places it in Red Sea, but it is 4632 km away, in North Sea."
+            },
+            {
+              "sign": 0,
+              "text": "A fact-check miner found no reliable source either way (\"Unverified\")."
+            }
+          ],
+          "flags": [],
+          "best": {
+            "source": "Quay",
+            "operator": "Quay",
+            "lat": 51.93554833333334,
+            "lon": 4.059993333333334,
+            "speed": 0,
+            "course": 208.3,
+            "at": "2026-11-27T09:59:52.226Z",
+            "navStatus": "moored",
+            "destination": "NLRTM",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x9c4d707b7e400bbffdec080970e8c592401939150515e2c4b8882cea8b2a842d",
+            "region": "North Sea"
+          },
+          "ageMin": 2.9973,
+          "stale": false,
+          "operators": [
+            "Quay"
+          ],
+          "sourcesAgree": null,
+          "sanctions": "clear-two-sources"
+        },
+        "purchases": [
+          {
+            "label": "Fact-check",
+            "ok": true,
+            "status": 200,
+            "intent": "FACT_CHECK_GENERAL",
+            "miner": "TelegraphIntent",
+            "minerId": "83159274",
+            "answer": {
+              "claim": "Houthis claim missile hit on container ship HULDA MAERSK in the Red Sea",
+              "verdict": "Unverified",
+              "reasoning": "The claim states that Houthis said a missile hit the container ship HULDA MAERSK in the Red Sea. The provided passages from en.wikipedia.org only list historical shipwrecks from 1918 and notable Danish people, and contain no information about a recent missile incident, Houthis, or the Red Sea. Because there is no relevant evidence supporting or refuting the claim, it remains unverified.",
+              "sources": null
+            },
+            "fieldStatus": {
+              "claim": "ok",
+              "verdict": "ok",
+              "reasoning": "ok",
+              "sources": "missing"
+            },
+            "warnings": [
+              "The response does not include: URLs or names of the sources the answer cites"
+            ],
+            "signal": "0x1e25d3cf60a5bc9ac3282a34d0c04f058feb90e2b84a960d6d63c09e402dbbd0",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x1e25d3cf60a5bc9ac3282a34d0c04f058feb90e2b84a960d6d63c09e402dbbd0",
+            "costUsd": 0.01,
+            "latencyMs": 3172,
+            "error": null,
+            "raw": {
+              "claim": "Houthis claim missile hit on container ship HULDA MAERSK in the Red Sea",
+              "reasoning": "The claim states that Houthis said a missile hit the container ship HULDA MAERSK in the Red Sea. The provided passages from en.wikipedia.org only list historical shipwrecks from 1918 and notable Danish people, and contain no information about a recent missile incident, Houthis, or the Red Sea. Because there is no relevant evidence supporting or refuting the claim, it remains unverified.",
+              "sources": [],
+              "verdict": "Unverified"
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (Quay)",
+            "ok": true,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "HULDA MAERSK",
+              "speed_knots": 0,
+              "latitude": 51.93554833333334,
+              "longitude": 4.059993333333334,
+              "course_deg": 208.3,
+              "observed_at": "2026-11-27T09:59:52.226Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "ok",
+              "latitude": "ok",
+              "longitude": "ok",
+              "course_deg": "ok",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0x9c4d707b7e400bbffdec080970e8c592401939150515e2c4b8882cea8b2a842d",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x9c4d707b7e400bbffdec080970e8c592401939150515e2c4b8882cea8b2a842d",
+            "costUsd": 0.01,
+            "latencyMs": 4270,
+            "error": null,
+            "raw": {
+              "age_minutes": 3,
+              "callsign": "OYSK2",
+              "course_deg": 208.3,
+              "destination": "NLRTM",
+              "eta": "11-26 14:30 UTC (as reported by the ship)",
+              "heading_deg": 70,
+              "imo": "9399363",
+              "last_heard": null,
+              "latitude": 51.93554833333334,
+              "longitude": 4.059993333333334,
+              "matched_by": "name",
+              "mmsi": "219278000",
+              "name": "HULDA MAERSK",
+              "nav_status": "moored",
+              "observed_at": "2026-11-27T09:59:52.226Z",
+              "other_ships_with_same_name": 0,
+              "source": "Live AIS broadcast via aisstream.io terrestrial receivers",
+              "speed_knots": 0,
+              "status": "live",
+              "vessel": "HULDA MAERSK"
+            },
+            "verified": true
+          },
+          {
+            "label": "Sanctions screen",
+            "ok": true,
+            "status": 200,
+            "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+            "miner": "Counterproof Sanctions Screener",
+            "minerId": "731002",
+            "answer": {
+              "name": "HULDA MAERSK",
+              "matched": false,
+              "matches": null,
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "match_score": 0
+            },
+            "fieldStatus": {
+              "name": "ok",
+              "matched": "ok",
+              "matches": "missing",
+              "lists": "ok",
+              "match_score": "ok"
+            },
+            "warnings": [
+              "The response does not include: Matching sanctions-list entries"
+            ],
+            "signal": "0x937b035155125aba421490c9763796b024b55eadc8c3047d68401df3939706c9",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x937b035155125aba421490c9763796b024b55eadc8c3047d68401df3939706c9",
+            "costUsd": 0.01,
+            "latencyMs": 7447,
+            "error": null,
+            "raw": {
+              "answer": "Clear. HULDA MAERSK does not appear on the OFAC, UN, EU or UK sanctions lists. This covers the lists as published, not ownership or adverse media.",
+              "confidence": 1,
+              "is_match": false,
+              "label": "CLEAR",
+              "list_versions": {
+                "EU": "2026-10-23",
+                "UK": "2026-11-10",
+                "UN": "2026-11-12",
+                "US": "2026-11-09"
+              },
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "match_score": 0,
+              "matched": false,
+              "matches": [],
+              "name": "HULDA MAERSK",
+              "notice": null,
+              "regimes": {
+                "EU": "clear",
+                "UK": "clear",
+                "UN": "clear",
+                "US": "clear"
+              },
+              "screened_at": "2026-11-27T10:02:45.750Z",
+              "summary": "Clear. HULDA MAERSK does not appear on the OFAC, UN, EU or UK sanctions lists. This covers the lists as published, not ownership or adverse media."
+            },
+            "verified": true
+          }
+        ],
+        "totalUsd": 0.03,
+        "checkedAt": "2026-11-27T10:02:52.064Z"
+      }
+    },
+    {
+      "rule": "'Went dark' while it is transmitting",
+      "text": "ferry VIKING GLORY went dark near the Aland Islands",
+      "check": {
+        "kind": "ship",
+        "extracted": {
+          "text": "ferry VIKING GLORY went dark near the Aland Islands",
+          "ships": [
+            "VIKING GLORY"
+          ],
+          "imos": [],
+          "mmsis": [],
+          "claims": [
+            "dark"
+          ],
+          "places": [],
+          "media": [],
+          "urls": []
+        },
+        "shipQuery": "VIKING GLORY",
+        "shipName": "VIKING GLORY",
+        "identity": {
+          "imo": "9827877",
+          "mmsi": "230041000",
+          "name": "VIKING GLORY",
+          "callsign": "OJTC"
+        },
+        "evidence": {
+          "hasShip": true,
+          "claims": [
+            "dark"
+          ],
+          "places": [],
+          "fixes": [
+            {
+              "source": "Quay",
+              "operator": "Quay",
+              "lat": 60.08184166666667,
+              "lon": 20.939796666666666,
+              "speed": 20.8,
+              "course": 270.6,
+              "at": "2026-11-27T09:26:28.000Z",
+              "navStatus": "under way using engine",
+              "destination": "FITKU<>FIMHQ/FILAN<>",
+              "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xba6b2ccbeb5b4b4804db0bca1e1e3146e5dcf86eafe1a7a1afa2bf1db8ad006e",
+              "region": "Baltic Sea"
+            },
+            {
+              "source": "VesselWire",
+              "operator": "VesselWire",
+              "lat": 60.12228,
+              "lon": 20.608298,
+              "speed": 18.8,
+              "course": 306,
+              "at": "2026-11-27T10:01:34.403Z",
+              "navStatus": "under way using engine",
+              "destination": "FITKU<>FIMHQ/FILAN<>",
+              "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xe47275f3670650c1bcc114a3bce8ea38111c67229b69d820fc1b002e6f06b2d4",
+              "region": "Baltic Sea"
+            }
+          ],
+          "noData": [],
+          "skipped": [],
+          "sameName": 0,
+          "identity": {
+            "imo": "9827877",
+            "mmsi": "230041000",
+            "name": "VIKING GLORY",
+            "callsign": "OJTC"
+          },
+          "sanctions": {
+            "telegraph": {
+              "ok": true,
+              "matched": false,
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "matches": [],
+              "score": 0,
+              "source": "Counterproof Sanctions Screener"
+            },
+            "ofac": {
+              "checked": true,
+              "matches": [],
+              "listSize": 1570
+            }
+          },
+          "factCheck": {
+            "ok": true,
+            "verdict": "Unverified",
+            "reasoning": "The claim states that ferry VIKING GLORY went dark near the Aland Islands. The provided passages from en.wikipedia.org only describe the vessel's specifications, ownership, and related ships, and do not mention any incident of the ferry going dark or its location near the Aland Islands. Because no source in the evidence supports or refutes the claim, there is insufficient credible information to verify it, leading to an Unverified verdict.",
+            "source": "TelegraphIntent"
+          },
+          "media": [],
+          "now": "2026-11-27T10:03:03.043Z"
+        },
+        "result": {
+          "verdict": {
+            "key": "DISAGREES",
+            "icon": "⚠️",
+            "label": "Tracking disagrees with the rumour"
+          },
+          "confidence": 90,
+          "reasons": [
+            {
+              "sign": 1,
+              "text": "Position reported 1 min ago."
+            },
+            {
+              "sign": 1,
+              "text": "VesselWire and Quay (different operators) agree on where it is (18.9 km apart, consistent with the time between reports)."
+            },
+            {
+              "sign": 1,
+              "text": "The rumour says it went dark, but it was transmitting within the last hour."
+            },
+            {
+              "sign": 0,
+              "text": "A fact-check miner found no reliable source either way (\"Unverified\")."
+            }
+          ],
+          "flags": [],
+          "best": {
+            "source": "VesselWire",
+            "operator": "VesselWire",
+            "lat": 60.12228,
+            "lon": 20.608298,
+            "speed": 18.8,
+            "course": 306,
+            "at": "2026-11-27T10:01:34.403Z",
+            "navStatus": "under way using engine",
+            "destination": "FITKU<>FIMHQ/FILAN<>",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xe47275f3670650c1bcc114a3bce8ea38111c67229b69d820fc1b002e6f06b2d4",
+            "region": "Baltic Sea"
+          },
+          "ageMin": 1.4773333333333334,
+          "stale": false,
+          "operators": [
+            "VesselWire",
+            "Quay"
+          ],
+          "sourcesAgree": true,
+          "sanctions": "clear-two-sources"
+        },
+        "purchases": [
+          {
+            "label": "Position (Quay)",
+            "ok": true,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "VIKING GLORY",
+              "speed_knots": 20.8,
+              "latitude": 60.08184166666667,
+              "longitude": 20.939796666666666,
+              "course_deg": 270.6,
+              "observed_at": "2026-11-27T09:26:28.000Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "ok",
+              "latitude": "ok",
+              "longitude": "ok",
+              "course_deg": "ok",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0xba6b2ccbeb5b4b4804db0bca1e1e3146e5dcf86eafe1a7a1afa2bf1db8ad006e",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xba6b2ccbeb5b4b4804db0bca1e1e3146e5dcf86eafe1a7a1afa2bf1db8ad006e",
+            "costUsd": 0.01,
+            "latencyMs": 2863,
+            "error": null,
+            "raw": {
+              "age_minutes": 36,
+              "callsign": "OJTC",
+              "course_deg": 270.6,
+              "destination": "FITKU<>FIMHQ/FILAN<>",
+              "eta": "11-27 17:55 UTC (as reported by the ship)",
+              "heading_deg": 271,
+              "imo": "9827877",
+              "last_heard": null,
+              "latitude": 60.08184166666667,
+              "longitude": 20.939796666666666,
+              "matched_by": "name",
+              "mmsi": "230041000",
+              "name": "VIKING GLORY",
+              "nav_status": "under way using engine",
+              "observed_at": "2026-11-27T09:26:28.000Z",
+              "other_ships_with_same_name": 0,
+              "source": "Live AIS broadcast via aisstream.io terrestrial receivers",
+              "speed_knots": 20.8,
+              "status": "live",
+              "vessel": "VIKING GLORY"
+            },
+            "verified": true
+          },
+          {
+            "label": "Sanctions screen",
+            "ok": true,
+            "status": 200,
+            "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+            "miner": "Counterproof Sanctions Screener",
+            "minerId": "731002",
+            "answer": {
+              "name": "VIKING GLORY",
+              "matched": false,
+              "matches": null,
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "match_score": 0
+            },
+            "fieldStatus": {
+              "name": "ok",
+              "matched": "ok",
+              "matches": "missing",
+              "lists": "ok",
+              "match_score": "ok"
+            },
+            "warnings": [
+              "The response does not include: Matching sanctions-list entries"
+            ],
+            "signal": "0x94c68036715406256c1f8003844dcdf5981862b2d6cff7753e8657d293dea76d",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x94c68036715406256c1f8003844dcdf5981862b2d6cff7753e8657d293dea76d",
+            "costUsd": 0.01,
+            "latencyMs": 7678,
+            "error": null,
+            "raw": {
+              "answer": "Clear. VIKING GLORY does not appear on the OFAC, UN, EU or UK sanctions lists. This covers the lists as published, not ownership or adverse media.",
+              "confidence": 1,
+              "is_match": false,
+              "label": "CLEAR",
+              "list_versions": {
+                "EU": "2026-10-23",
+                "UK": "2026-11-10",
+                "UN": "2026-11-12",
+                "US": "2026-11-09"
+              },
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "match_score": 0,
+              "matched": false,
+              "matches": [],
+              "name": "VIKING GLORY",
+              "notice": null,
+              "regimes": {
+                "EU": "clear",
+                "UK": "clear",
+                "UN": "clear",
+                "US": "clear"
+              },
+              "screened_at": "2026-11-27T10:02:53.917Z",
+              "summary": "Clear. VIKING GLORY does not appear on the OFAC, UN, EU or UK sanctions lists. This covers the lists as published, not ownership or adverse media."
+            },
+            "verified": true
+          },
+          {
+            "label": "Fact-check",
+            "ok": true,
+            "status": 200,
+            "intent": "FACT_CHECK_GENERAL",
+            "miner": "TelegraphIntent",
+            "minerId": "83159274",
+            "answer": {
+              "claim": "ferry VIKING GLORY went dark near the Aland Islands",
+              "verdict": "Unverified",
+              "reasoning": "The claim states that ferry VIKING GLORY went dark near the Aland Islands. The provided passages from en.wikipedia.org only describe the vessel's specifications, ownership, and related ships, and do not mention any incident of the ferry going dark or its location near the Aland Islands. Because no source in the evidence supports or refutes the claim, there is insufficient credible information to verify it, leading to an Unverified verdict.",
+              "sources": null
+            },
+            "fieldStatus": {
+              "claim": "ok",
+              "verdict": "ok",
+              "reasoning": "ok",
+              "sources": "missing"
+            },
+            "warnings": [
+              "The response does not include: URLs or names of the sources the answer cites"
+            ],
+            "signal": "0x71de8099954a386f5fca4cce63057eda1a4b3344950f34f49364a30c944f051c",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x71de8099954a386f5fca4cce63057eda1a4b3344950f34f49364a30c944f051c",
+            "costUsd": 0.01,
+            "latencyMs": 10648,
+            "error": null,
+            "raw": {
+              "claim": "ferry VIKING GLORY went dark near the Aland Islands",
+              "reasoning": "The claim states that ferry VIKING GLORY went dark near the Aland Islands. The provided passages from en.wikipedia.org only describe the vessel's specifications, ownership, and related ships, and do not mention any incident of the ferry going dark or its location near the Aland Islands. Because no source in the evidence supports or refutes the claim, there is insufficient credible information to verify it, leading to an Unverified verdict.",
+              "sources": [],
+              "verdict": "Unverified"
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (VesselWire)",
+            "ok": true,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "VesselWire Verbatim AIS Reports",
+            "minerId": "751084",
+            "answer": {
+              "vessel": "230041000",
+              "speed_knots": 18.8,
+              "latitude": 60.12228,
+              "longitude": 20.608298,
+              "course_deg": 306,
+              "observed_at": "2026-11-27T10:01:34.403Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "ok",
+              "latitude": "ok",
+              "longitude": "ok",
+              "course_deg": "ok",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0xe47275f3670650c1bcc114a3bce8ea38111c67229b69d820fc1b002e6f06b2d4",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xe47275f3670650c1bcc114a3bce8ea38111c67229b69d820fc1b002e6f06b2d4",
+            "costUsd": 0.01,
+            "latencyMs": 6099,
+            "error": null,
+            "raw": {
+              "ais_positioning_system_mode": "UTC second available",
+              "ais_timestamp_scope": "Source AIS EPFS UTC-second/mode field, not a complete date or the provider location-record timestamp.",
+              "ais_utc_second": 32,
+              "as_of": "2026-11-27T10:02:59.634Z",
+              "attribution": "Source: Fintraffic / digitraffic.fi, licence CC 4.0 BY (https://creativecommons.org/licenses/by/4.0/). Modified: AIS unavailable values normalized, units converted, and source-reported claims assessed.",
+              "beam_at_least_m": null,
+              "beam_m": 36,
+              "call_sign": "OJTC",
+              "claim": null,
+              "confidence": 0.95,
+              "confidence_scope": "Compatibility field: completeness/freshness policy, not probability of independent truth.",
+              "course_over_ground_deg": 306,
+              "course_over_ground_degrees": 306.1,
+              "destination": "FITKU<>FIMHQ/FILAN<>",
+              "dimensions_scope": "Sum of reported distances from the AIS position reference point; not independently measured hull dimensions.",
+              "draught_at_least_m": null,
+              "draught_m": 6.4,
+              "eta_scope": "Self-reported AIS arrival estimate, not an observed arrival or guaranteed schedule; AIS supplies no year.",
+              "freshness": "fresh",
+              "freshness_limit_seconds": 900,
+              "heading_deg": 307,
+              "imo": 9827877,
+              "in_coverage": true,
+              "independently_verified": false,
+              "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+              "latitude": 60.12228,
+              "length_at_least_m": null,
+              "length_m": 223,
+              "longitude": 20.608298,
+              "metadata_age_seconds": 307.355,
+              "metadata_available": true,
+              "metadata_error": null,
+              "metadata_freshness": "fresh",
+              "metadata_freshness_limit_seconds": 21600,
+              "metadata_observed_at": "2026-11-27T09:57:52.279Z",
+              "metadata_source_url": "https://meri.digitraffic.fi/api/ais/v1/vessels/230041000",
+              "mmsi": 230041000,
+              "navigational_status": "under way using engine",
+              "navigational_status_code": 0,
+              "observation_age_seconds": 85.231,
+              "observed_at": "2026-11-27T10:01:34.403Z",
+              "position_accuracy_flag": true,
+              "position_fix_scope": "Static AIS metadata device type, not a current working fix, satellite count, measured accuracy or independent position verification.",
+              "position_fix_type": "GPS",
+              "position_fix_type_code": 1,
+              "raim_flag": false,
+              "rate_of_turn_deg_per_min": -14.46345342002418,
+              "rate_of_turn_direction": "left",
+              "rate_of_turn_encoding": "sensor_encoded",
+              "rate_of_turn_scope": "Approximate decoding of the quantized, source-reported AIS ROT code; special +/-127 numeric thresholds are not asserted.",
+              "raw_ais": {
+                "callSign": "OJTC",
+                "cog": 306.1,
+                "draught": 64,
+                "eta": 777335,
+                "heading": 307,
+                "imo": 9827877,
+                "navStat": 0,
+                "posAcc": true,
+                "posType": 1,
+                "raim": false,
+                "referencePointA": 25,
+                "referencePointB": 198,
+                "referencePointC": 18,
+                "referencePointD": 18,
+                "rot": -18,
+                "shipType": 60,
+                "sog": 18.8,
+                "timestamp": 32
+              },
+              "reported_eta": {
+                "complete": true,
+                "day": 27,
+                "hour": 17,
+                "minute": 55,
+                "month": 11,
+                "text": "month 11, day 27, 17:55 UTC (year not transmitted)",
+                "time_zone": "UTC",
+                "year": null
+              },
+              "ship_type": "passenger ship",
+              "source": "Fintraffic Digitraffic marine AIS",
+              "source_url": "https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=230041000",
+              "speed_kmh": 34.817600000000006,
+              "speed_knots": 18.8,
+              "speed_mps": 9.671555555555557,
+              "speed_over_ground_knots": 18.8,
+              "summary": "VIKING GLORY (MMSI 230041000): speed over ground 18.8 knots (34.8 km/h). Provider location record observed 2026-11-27T10:01:34.403Z (fresh). Evidence: Fintraffic / digitraffic.fi (CC BY 4.0), https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=230041000. AIS reports are not independent vessel verification.",
+              "verdict": "Reported",
+              "verification_scope": "Single-provider AIS report; AIS may be inaccurate or spoofed.",
+              "vessel_name": "VIKING GLORY",
+              "warnings": []
+            },
+            "verified": true
+          }
+        ],
+        "totalUsd": 0.04,
+        "checkedAt": "2026-11-27T10:03:03.043Z"
+      }
+    },
+    {
+      "rule": "Sanctioned tanker, no tracking coverage",
+      "text": "Sanctioned tanker ADRIAN DARYA 1 seized by IRGC in the Strait of Hormuz",
+      "check": {
+        "kind": "ship",
+        "extracted": {
+          "text": "Sanctioned tanker ADRIAN DARYA 1 seized by IRGC in the Strait of Hormuz",
+          "ships": [
+            "ADRIAN DARYA 1"
+          ],
+          "imos": [],
+          "mmsis": [],
+          "claims": [
+            "seized"
+          ],
+          "places": [
+            "Strait of Hormuz"
+          ],
+          "media": [],
+          "urls": []
+        },
+        "shipQuery": "ADRIAN DARYA 1",
+        "shipName": "ADRIAN DARYA 1",
+        "identity": {
+          "imo": "9116412",
+          "mmsi": "355271000",
+          "name": "ADRIAN DARYA 1",
+          "callsign": null
+        },
+        "evidence": {
+          "hasShip": true,
+          "claims": [
+            "seized"
+          ],
+          "places": [
+            "Strait of Hormuz"
+          ],
+          "fixes": [],
+          "noData": [
+            {
+              "source": "Quay",
+              "reason": "the miner had no data for this"
+            },
+            {
+              "source": "VesselWire",
+              "reason": "needs an MMSI to find this ship"
+            },
+            {
+              "source": "TxLens",
+              "reason": "the miner had no data for this"
+            }
+          ],
+          "skipped": [],
+          "sameName": 0,
+          "identity": {
+            "imo": "9116412",
+            "mmsi": "355271000",
+            "name": "ADRIAN DARYA 1",
+            "callsign": null
+          },
+          "sanctions": {
+            "telegraph": {
+              "ok": true,
+              "matched": true,
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "matches": [
+                "ADRIAN DARYA 1"
+              ],
+              "score": 1,
+              "source": "Counterproof Sanctions Screener"
+            },
+            "ofac": {
+              "checked": true,
+              "matches": [
+                {
+                  "name": "ADRIAN DARYA 1",
+                  "aka": [],
+                  "program": "SDGT",
+                  "flag": "Iran",
+                  "vesselType": "Crude Oil Tanker",
+                  "imo": "9116412",
+                  "mmsi": null
+                }
+              ],
+              "listSize": 1570
+            }
+          },
+          "factCheck": {
+            "ok": true,
+            "verdict": "Unverified",
+            "reasoning": "The claim states that the IRGC seized the sanctioned tanker ADRIAN DARYA 1 in the Strait of Hormuz. The only provided passage from en.wikipedia.org describes Iran's geography and population and does not mention any tanker seizure, the vessel, or related events. Because there is no evidence supporting or refuting the claim, it remains unverified due to lack of relevant information.",
+            "source": "TelegraphIntent"
+          },
+          "media": [],
+          "now": "2026-11-27T10:03:27.904Z"
+        },
+        "result": {
+          "verdict": {
+            "key": "UNVERIFIED",
+            "icon": "❓",
+            "label": "Can't verify from tracking"
+          },
+          "confidence": 30,
+          "reasons": [
+            {
+              "sign": -1,
+              "text": "No tracking source has a position for this ship (Quay: the miner had no data for this; VesselWire: needs an MMSI to find this ship; TxLens: the miner had no data for this). Coverage is from coastal receivers, so ships far offshore can go unheard."
+            },
+            {
+              "sign": 0,
+              "text": "A fact-check miner found no reliable source either way (\"Unverified\")."
+            }
+          ],
+          "flags": [
+            "🚩 Sanctions: a Telegraph screening miner matched it; OFAC's own SDN list has it (IMO 9116412, SDGT)."
+          ],
+          "best": null,
+          "ageMin": null,
+          "stale": true,
+          "operators": [],
+          "sourcesAgree": null,
+          "sanctions": "listed"
+        },
+        "purchases": [
+          {
+            "label": "Fact-check",
+            "ok": true,
+            "status": 200,
+            "intent": "FACT_CHECK_GENERAL",
+            "miner": "TelegraphIntent",
+            "minerId": "83159274",
+            "answer": {
+              "claim": "Sanctioned tanker ADRIAN DARYA 1 seized by IRGC in the Strait of Hormuz",
+              "verdict": "Unverified",
+              "reasoning": "The claim states that the IRGC seized the sanctioned tanker ADRIAN DARYA 1 in the Strait of Hormuz. The only provided passage from en.wikipedia.org describes Iran's geography and population and does not mention any tanker seizure, the vessel, or related events. Because there is no evidence supporting or refuting the claim, it remains unverified due to lack of relevant information.",
+              "sources": null
+            },
+            "fieldStatus": {
+              "claim": "ok",
+              "verdict": "ok",
+              "reasoning": "ok",
+              "sources": "missing"
+            },
+            "warnings": [
+              "The response does not include: URLs or names of the sources the answer cites"
+            ],
+            "signal": "0xad9dc73b5786aa472fb18dde9721ea16b0b2bebc43242f18e6560a381ccac5a8",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xad9dc73b5786aa472fb18dde9721ea16b0b2bebc43242f18e6560a381ccac5a8",
+            "costUsd": 0.01,
+            "latencyMs": 3150,
+            "error": null,
+            "raw": {
+              "claim": "Sanctioned tanker ADRIAN DARYA 1 seized by IRGC in the Strait of Hormuz",
+              "reasoning": "The claim states that the IRGC seized the sanctioned tanker ADRIAN DARYA 1 in the Strait of Hormuz. The only provided passage from en.wikipedia.org describes Iran's geography and population and does not mention any tanker seizure, the vessel, or related events. Because there is no evidence supporting or refuting the claim, it remains unverified due to lack of relevant information.",
+              "sources": [],
+              "verdict": "Unverified"
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (Quay)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "ADRIAN DARYA 1",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": null
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "missing"
+            },
+            "warnings": [],
+            "signal": "0x7b17368ee0a757c15e940b09056e18bd82b286540d64d0ebfbd29cda66ab5825",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x7b17368ee0a757c15e940b09056e18bd82b286540d64d0ebfbd29cda66ab5825",
+            "costUsd": 0.01,
+            "latencyMs": 4704,
+            "error": "the miner had no data for this",
+            "raw": {
+              "course_deg": null,
+              "latitude": null,
+              "longitude": null,
+              "observed_at": null,
+              "speed_knots": null,
+              "status": "not_seen",
+              "summary": "No AIS report heard for \"ADRIAN DARYA 1\" in the last 14 days. Coverage is terrestrial: ships far offshore can go unheard. Quay does not guess a position.",
+              "vessel": "ADRIAN DARYA 1"
+            },
+            "verified": true
+          },
+          {
+            "label": "Sanctions screen",
+            "ok": true,
+            "status": 200,
+            "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+            "miner": "Counterproof Sanctions Screener",
+            "minerId": "731002",
+            "answer": {
+              "name": "ADRIAN DARYA 1",
+              "matched": true,
+              "matches": [
+                "ADRIAN DARYA 1"
+              ],
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "match_score": 1
+            },
+            "fieldStatus": {
+              "name": "ok",
+              "matched": "ok",
+              "matches": "ok",
+              "lists": "ok",
+              "match_score": "ok"
+            },
+            "warnings": [],
+            "signal": "0x7cd4f14ce5147aebb9cb5e5b57fe74df4c1f74a10d176ee232df4c12039c16a0",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x7cd4f14ce5147aebb9cb5e5b57fe74df4c1f74a10d176ee232df4c12039c16a0",
+            "costUsd": 0.01,
+            "latencyMs": 7451,
+            "error": null,
+            "raw": {
+              "answer": "Listed. ADRIAN DARYA 1 matches \"ADRIAN DARYA 1\" on the US OFAC list. Block the transaction and check the official notice.",
+              "confidence": 1,
+              "is_match": true,
+              "label": "BLOCK",
+              "list_versions": {
+                "EU": "2026-10-23",
+                "UK": "2026-11-10",
+                "UN": "2026-11-12",
+                "US": "2026-11-09"
+              },
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "match_score": 1,
+              "matched": true,
+              "matches": [
+                {
+                  "list": "US",
+                  "list_name": "US OFAC SDN list",
+                  "name": "ADRIAN DARYA 1",
+                  "score": 1,
+                  "verdict": "BLOCK"
+                }
+              ],
+              "name": "ADRIAN DARYA 1",
+              "notice": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=27304",
+              "regimes": {
+                "EU": "clear",
+                "UK": "clear",
+                "UN": "clear",
+                "US": "match"
+              },
+              "screened_at": "2026-11-27T10:03:04.962Z",
+              "summary": "Listed. ADRIAN DARYA 1 matches \"ADRIAN DARYA 1\" on the US OFAC list. Block the transaction and check the official notice."
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (VesselWire)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "VesselWire Verbatim AIS Reports",
+            "minerId": "751084",
+            "answer": {
+              "vessel": "ADRIAN DARYA 1",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": "2026-11-27T10:03:10.957Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0x0e6d61b5bccd99305230a65341ac69ea39abe2943ff9be325dd48d9f9ac2762c",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x0e6d61b5bccd99305230a65341ac69ea39abe2943ff9be325dd48d9f9ac2762c",
+            "costUsd": 0.01,
+            "latencyMs": 5136,
+            "error": "needs an MMSI to find this ship",
+            "raw": {
+              "as_of": "2026-11-27T10:03:10.957Z",
+              "candidates": [],
+              "confidence": 0,
+              "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+              "summary": "Unresolved vessel name \"ADRIAN DARYA 1\". Supply a nine-digit MMSI; no telemetry was inferred.",
+              "verdict": "Insufficient information"
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (routed by Telegraph)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "TxLens",
+            "minerId": "9002",
+            "answer": {
+              "vessel": "Adrian Darya 1",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": null
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "missing"
+            },
+            "warnings": [
+              "The response does not include: Course over ground, degrees",
+              "The response does not include: Latitude",
+              "The response does not include: Longitude",
+              "The response does not include: Time of the position report",
+              "The response does not include: Speed over ground, knots"
+            ],
+            "signal": "0x5604a7ca61d087664cac6f1bf2453f3cea10afabfe151791053f5d13a7ff6424",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x5604a7ca61d087664cac6f1bf2453f3cea10afabfe151791053f5d13a7ff6424",
+            "costUsd": 0.01,
+            "latencyMs": 13617,
+            "error": "the miner had no data for this",
+            "raw": {
+              "answer": "Adrian Darya 1 (IMO 9116412, MMSI 355271000), a oil tanker, Panama flag, 330 m long, 156,880 gross tonnage. No live AIS position is available: the open live AIS feed read here (Finland and the Baltic, Digitraffic) has not heard it. Its current position, speed and destination are therefore not given rather than guessed.",
+              "call_sign": null,
+              "canonical": "vessel-telemetry:355271000",
+              "confidence": 0.7,
+              "course_deg": null,
+              "destination": null,
+              "draught_m": null,
+              "eta": null,
+              "flag": "Panama",
+              "found": true,
+              "gross_tonnage": 156880,
+              "heading_deg": null,
+              "imo": 9116412,
+              "latitude": null,
+              "length_m": 330,
+              "longitude": null,
+              "mmsi": 355271000,
+              "name": "Adrian Darya 1",
+              "navigational_status": null,
+              "operator": null,
+              "position_available": false,
+              "position_time": null,
+              "ship_type": "oil tanker",
+              "source": "Wikidata ship register (Q65634437); AIS: Digitraffic (Fintraffic)",
+              "speed_knots": null,
+              "status": "ok",
+              "summary": "Adrian Darya 1 (IMO 9116412, MMSI 355271000), a oil tanker, Panama flag, 330 m long, 156,880 gross tonnage. No live AIS position is available: the open live AIS feed read here (Finland and the Baltic, Digitraffic) has not heard it. Its current position, speed and destination are therefore not given rather than guessed."
+            },
+            "verified": true
+          }
+        ],
+        "totalUsd": 0.05,
+        "checkedAt": "2026-11-27T10:03:27.904Z"
+      }
+    },
+    {
+      "rule": "Sanctioned by EU/UK but not on OFAC's list",
+      "text": "Shadow fleet tanker EAGLE S went dark in the Gulf of Finland, IMO 9329760",
+      "check": {
+        "kind": "ship",
+        "extracted": {
+          "text": "Shadow fleet tanker EAGLE S went dark in the Gulf of Finland, IMO 9329760",
+          "ships": [
+            "EAGLE S"
+          ],
+          "imos": [
+            "9329760"
+          ],
+          "mmsis": [],
+          "claims": [
+            "dark"
+          ],
+          "places": [
+            "Gulf of Finland"
+          ],
+          "media": [],
+          "urls": []
+        },
+        "shipQuery": "IMO 9329760",
+        "shipName": "EAGLE S",
+        "identity": {
+          "imo": "9329760",
+          "mmsi": "538003031",
+          "name": "EAGLE S",
+          "callsign": null
+        },
+        "evidence": {
+          "hasShip": true,
+          "claims": [
+            "dark"
+          ],
+          "places": [
+            "Gulf of Finland"
+          ],
+          "fixes": [],
+          "noData": [
+            {
+              "source": "Quay",
+              "reason": "the miner had no data for this"
+            },
+            {
+              "source": "VesselWire",
+              "reason": "needs an MMSI to find this ship"
+            },
+            {
+              "source": "TxLens",
+              "reason": "the miner had no data for this"
+            }
+          ],
+          "skipped": [],
+          "sameName": 0,
+          "identity": {
+            "imo": "9329760",
+            "mmsi": "538003031",
+            "name": "EAGLE S",
+            "callsign": null
+          },
+          "sanctions": {
+            "telegraph": {
+              "ok": true,
+              "matched": true,
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "matches": [],
+              "score": 1,
+              "source": "Counterproof Sanctions Screener"
+            },
+            "ofac": {
+              "checked": true,
+              "matches": [],
+              "listSize": 1570
+            }
+          },
+          "factCheck": {
+            "ok": true,
+            "verdict": "Unverified",
+            "reasoning": "The claim says the shadow‑fleet tanker Eagle S went dark in the Gulf of Finland. Wikipedia passage 1 describes Eagle S as a Cook Islands‑flagged tanker but provides no information about it going dark. Wikipedia passage 4 notes that authorities recovered Eagle S’s anchor from the Gulf of Finland, indicating the ship was found there, but does not mention it disappearing from tracking. Because no source confirms the “went dark” detail, the evidence is insufficient to verify the claim.",
+            "source": "TelegraphIntent"
+          },
+          "media": [],
+          "now": "2026-11-27T10:03:46.848Z"
+        },
+        "result": {
+          "verdict": {
+            "key": "UNVERIFIED",
+            "icon": "❓",
+            "label": "Can't verify from tracking"
+          },
+          "confidence": 30,
+          "reasons": [
+            {
+              "sign": -1,
+              "text": "No tracking source has a position for this ship (Quay: the miner had no data for this; VesselWire: needs an MMSI to find this ship; TxLens: the miner had no data for this). Coverage is from coastal receivers, so ships far offshore can go unheard."
+            },
+            {
+              "sign": 0,
+              "text": "A fact-check miner found no reliable source either way (\"Unverified\")."
+            }
+          ],
+          "flags": [
+            "🚩 Sanctions: a Telegraph screening miner matched it; OFAC's SDN list does not (it may be on an EU or UK list)."
+          ],
+          "best": null,
+          "ageMin": null,
+          "stale": true,
+          "operators": [],
+          "sourcesAgree": null,
+          "sanctions": "listed"
+        },
+        "purchases": [
+          {
+            "label": "Fact-check",
+            "ok": true,
+            "status": 200,
+            "intent": "FACT_CHECK_GENERAL",
+            "miner": "TelegraphIntent",
+            "minerId": "83159274",
+            "answer": {
+              "claim": "Shadow fleet tanker EAGLE S went dark in the Gulf of Finland, IMO 9329760",
+              "verdict": "Unverified",
+              "reasoning": "The claim says the shadow‑fleet tanker Eagle S went dark in the Gulf of Finland. Wikipedia passage 1 describes Eagle S as a Cook Islands‑flagged tanker but provides no information about it going dark. Wikipedia passage 4 notes that authorities recovered Eagle S’s anchor from the Gulf of Finland, indicating the ship was found there, but does not mention it disappearing from tracking. Because no source confirms the “went dark” detail, the evidence is insufficient to verify the claim.",
+              "sources": null
+            },
+            "fieldStatus": {
+              "claim": "ok",
+              "verdict": "ok",
+              "reasoning": "ok",
+              "sources": "missing"
+            },
+            "warnings": [
+              "The response does not include: URLs or names of the sources the answer cites"
+            ],
+            "signal": "0x637b210f69d10349b8acc22204116875b6546f23f846b27b18aad20350a307a7",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x637b210f69d10349b8acc22204116875b6546f23f846b27b18aad20350a307a7",
+            "costUsd": 0.01,
+            "latencyMs": 2557,
+            "error": null,
+            "raw": {
+              "claim": "Shadow fleet tanker EAGLE S went dark in the Gulf of Finland, IMO 9329760",
+              "reasoning": "The claim says the shadow‑fleet tanker Eagle S went dark in the Gulf of Finland. Wikipedia passage 1 describes Eagle S as a Cook Islands‑flagged tanker but provides no information about it going dark. Wikipedia passage 4 notes that authorities recovered Eagle S’s anchor from the Gulf of Finland, indicating the ship was found there, but does not mention it disappearing from tracking. Because no source confirms the “went dark” detail, the evidence is insufficient to verify the claim.",
+              "sources": [],
+              "verdict": "Unverified"
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (Quay)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "Quay",
+            "minerId": "8818818",
+            "answer": {
+              "vessel": "IMO 9329760",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": null
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "missing"
+            },
+            "warnings": [],
+            "signal": "0x6d24bd1b27887a5d6f7aaa4eac517efb6cd9de841ff2b0b4364797aa08def5ae",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x6d24bd1b27887a5d6f7aaa4eac517efb6cd9de841ff2b0b4364797aa08def5ae",
+            "costUsd": 0.01,
+            "latencyMs": 4604,
+            "error": "the miner had no data for this",
+            "raw": {
+              "course_deg": null,
+              "latitude": null,
+              "longitude": null,
+              "observed_at": null,
+              "speed_knots": null,
+              "status": "not_seen",
+              "summary": "No AIS report heard for \"IMO 9329760\" in the last 14 days. Coverage is terrestrial: ships far offshore can go unheard. Quay does not guess a position.",
+              "vessel": "IMO 9329760"
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (VesselWire)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "VesselWire Verbatim AIS Reports",
+            "minerId": "751084",
+            "answer": {
+              "vessel": "IMO 9329760",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": "2026-11-27T10:03:35.984Z"
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "ok"
+            },
+            "warnings": [],
+            "signal": "0x029e9beb18c1c1d735c29918fe05fb550101ae38ed7a06a7e163e204a63b9a60",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x029e9beb18c1c1d735c29918fe05fb550101ae38ed7a06a7e163e204a63b9a60",
+            "costUsd": 0.01,
+            "latencyMs": 4916,
+            "error": "needs an MMSI to find this ship",
+            "raw": {
+              "as_of": "2026-11-27T10:03:35.984Z",
+              "candidates": [],
+              "confidence": 0,
+              "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+              "summary": "Unresolved vessel name \"IMO 9329760\". Supply a nine-digit MMSI; no telemetry was inferred.",
+              "verdict": "Insufficient information"
+            },
+            "verified": true
+          },
+          {
+            "label": "Sanctions screen",
+            "ok": true,
+            "status": 200,
+            "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+            "miner": "Counterproof Sanctions Screener",
+            "minerId": "731002",
+            "answer": {
+              "name": "EAGLE S",
+              "matched": true,
+              "matches": null,
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "match_score": 1
+            },
+            "fieldStatus": {
+              "name": "ok",
+              "matched": "ok",
+              "matches": "rejected",
+              "lists": "ok",
+              "match_score": "ok"
+            },
+            "warnings": [
+              "The response does not include: Matching sanctions-list entries"
+            ],
+            "signal": "0xed55a46eb1329290ea088ab640f9c55ff8e25a334f21fba9c3c55ae08a93e28b",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xed55a46eb1329290ea088ab640f9c55ff8e25a334f21fba9c3c55ae08a93e28b",
+            "costUsd": 0.01,
+            "latencyMs": 9112,
+            "error": null,
+            "raw": {
+              "answer": "Listed. EAGLE S matches \"EAGLE S\" on the UK Sanctions List. Block the transaction and check the official notice.",
+              "confidence": 1,
+              "is_match": true,
+              "label": "BLOCK",
+              "list_versions": {
+                "EU": "2026-10-23",
+                "UK": "2026-11-10",
+                "UN": "2026-11-12",
+                "US": "2026-11-09"
+              },
+              "lists": [
+                "US OFAC SDN and non-SDN Consolidated lists (published 2026-11-09)",
+                "UN Security Council Consolidated List (published 2026-11-12)",
+                "EU Consolidated Financial Sanctions List (published 2026-10-23)",
+                "UK Sanctions List (published 2026-11-10)"
+              ],
+              "match_score": 1,
+              "matched": true,
+              "matches": [
+                {
+                  "list": "UK",
+                  "list_name": "UK sanctions list",
+                  "name": "EAGLE S",
+                  "score": 1,
+                  "verdict": "BLOCK"
+                }
+              ],
+              "name": "EAGLE S",
+              "notice": "https://sanctionslist.fcdo.gov.uk/#RUS2778",
+              "regimes": {
+                "EU": "clear",
+                "UK": "match",
+                "UN": "clear",
+                "US": "clear"
+              },
+              "screened_at": "2026-11-27T10:03:29.836Z",
+              "summary": "Listed. EAGLE S matches \"EAGLE S\" on the UK Sanctions List. Block the transaction and check the official notice."
+            },
+            "verified": true
+          },
+          {
+            "label": "Position (routed by Telegraph)",
+            "ok": false,
+            "status": 200,
+            "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+            "miner": "TxLens",
+            "minerId": "9002",
+            "answer": {
+              "vessel": "Eagle S (IMO 9329760, MMSI 538003031)",
+              "speed_knots": null,
+              "latitude": null,
+              "longitude": null,
+              "course_deg": null,
+              "observed_at": null
+            },
+            "fieldStatus": {
+              "vessel": "ok",
+              "speed_knots": "missing",
+              "latitude": "missing",
+              "longitude": "missing",
+              "course_deg": "missing",
+              "observed_at": "missing"
+            },
+            "warnings": [
+              "The response does not include: Course over ground, degrees",
+              "The response does not include: Latitude",
+              "The response does not include: Longitude",
+              "The response does not include: Time of the position report",
+              "The response does not include: Speed over ground, knots"
+            ],
+            "signal": "0x262afc66c1344009c421f16357f1de4192453df85248e968c2528ec884221106",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x262afc66c1344009c421f16357f1de4192453df85248e968c2528ec884221106",
+            "costUsd": 0.01,
+            "latencyMs": 8192,
+            "error": "the miner had no data for this",
+            "raw": {
+              "answer": "Eagle S (IMO 9329760, MMSI 538003031), a oil tanker, Germany flag, operated or owned by Caravella, 228.6 m long, 42,010 gross tonnage. No live AIS position is available: it is not in the Finland and Baltic AIS register, the only open live AIS feed read here. Its current position, speed and destination are therefore not given rather than guessed.",
+              "call_sign": null,
+              "canonical": "vessel-telemetry:538003031",
+              "confidence": 0.7,
+              "course_deg": null,
+              "destination": null,
+              "draught_m": null,
+              "eta": null,
+              "flag": "Germany",
+              "found": true,
+              "gross_tonnage": 42010,
+              "heading_deg": null,
+              "imo": 9329760,
+              "latitude": null,
+              "length_m": 228.6,
+              "longitude": null,
+              "mmsi": 538003031,
+              "name": "Eagle S",
+              "navigational_status": null,
+              "operator": "Caravella",
+              "position_available": false,
+              "position_time": null,
+              "ship_type": "oil tanker",
+              "source": "Wikidata ship register (Q105764703); AIS: Digitraffic (Fintraffic)",
+              "speed_knots": null,
+              "status": "ok",
+              "summary": "Eagle S (IMO 9329760, MMSI 538003031), a oil tanker, Germany flag, operated or owned by Caravella, 228.6 m long, 42,010 gross tonnage. No live AIS position is available: it is not in the Finland and Baltic AIS register, the only open live AIS feed read here. Its current position, speed and destination are therefore not given rather than guessed."
+            },
+            "verified": true
+          }
+        ],
+        "totalUsd": 0.05,
+        "checkedAt": "2026-11-27T10:03:46.848Z"
+      }
+    },
+    {
+      "rule": "No ship named: only the claim is checked",
+      "text": "Iran closed the Strait of Hormuz to all shipping today",
+      "check": {
+        "kind": "claim",
+        "extracted": {
+          "text": "Iran closed the Strait of Hormuz to all shipping today",
+          "ships": [],
+          "imos": [],
+          "mmsis": [],
+          "claims": [
+            "blocked"
+          ],
+          "places": [
+            "Strait of Hormuz"
+          ],
+          "media": [],
+          "urls": []
+        },
+        "shipQuery": null,
+        "shipName": null,
+        "identity": {
+          "imo": null,
+          "mmsi": null,
+          "name": null
+        },
+        "evidence": {
+          "hasShip": false,
+          "claims": [
+            "blocked"
+          ],
+          "places": [
+            "Strait of Hormuz"
+          ],
+          "fixes": [],
+          "noData": [],
+          "skipped": [],
+          "sameName": 0,
+          "identity": {
+            "imo": null,
+            "mmsi": null,
+            "name": null
+          },
+          "sanctions": {
+            "telegraph": null,
+            "ofac": null
+          },
+          "factCheck": {
+            "ok": true,
+            "verdict": "Unverified",
+            "reasoning": "The claim says Iran closed the Strait of Hormuz to all shipping today. The provided passages from en.wikipedia.org discuss closures and blockades in 2026, not any event occurring today, and do not confirm a current closure. Because there is no recent or credible evidence in the sources about a present-day closure, the claim remains unverified.",
+            "source": "TelegraphIntent"
+          },
+          "media": [],
+          "now": "2026-11-27T10:03:55.961Z"
+        },
+        "result": {
+          "verdict": {
+            "key": "UNVERIFIED",
+            "icon": "❓",
+            "label": "Can't verify from tracking"
+          },
+          "confidence": 30,
+          "reasons": [
+            {
+              "sign": 0,
+              "text": "No ship was named, so there is nothing to track. Only the claim itself was checked."
+            },
+            {
+              "sign": 0,
+              "text": "A fact-check miner found no reliable source either way (\"Unverified\")."
+            }
+          ],
+          "flags": [],
+          "best": null,
+          "ageMin": null,
+          "stale": true,
+          "operators": [],
+          "sourcesAgree": null,
+          "sanctions": "not-applicable"
+        },
+        "purchases": [
+          {
+            "label": "Fact-check",
+            "ok": true,
+            "status": 200,
+            "intent": "FACT_CHECK_GENERAL",
+            "miner": "TelegraphIntent",
+            "minerId": "83159274",
+            "answer": {
+              "claim": "Iran closed the Strait of Hormuz to all shipping today",
+              "verdict": "Unverified",
+              "reasoning": "The claim says Iran closed the Strait of Hormuz to all shipping today. The provided passages from en.wikipedia.org discuss closures and blockades in 2026, not any event occurring today, and do not confirm a current closure. Because there is no recent or credible evidence in the sources about a present-day closure, the claim remains unverified.",
+              "sources": null
+            },
+            "fieldStatus": {
+              "claim": "ok",
+              "verdict": "ok",
+              "reasoning": "ok",
+              "sources": "missing"
+            },
+            "warnings": [
+              "The response does not include: URLs or names of the sources the answer cites"
+            ],
+            "signal": "0xde0003dadd165e2419565696e4f6b5966e002f65c73ee23620bebfcdfaddd6c3",
+            "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xde0003dadd165e2419565696e4f6b5966e002f65c73ee23620bebfcdfaddd6c3",
+            "costUsd": 0.01,
+            "latencyMs": 8804,
+            "error": null,
+            "raw": {
+              "claim": "Iran closed the Strait of Hormuz to all shipping today",
+              "reasoning": "The claim says Iran closed the Strait of Hormuz to all shipping today. The provided passages from en.wikipedia.org discuss closures and blockades in 2026, not any event occurring today, and do not confirm a current closure. Because there is no recent or credible evidence in the sources about a present-day closure, the claim remains unverified.",
+              "sources": [],
+              "verdict": "Unverified"
+            },
+            "verified": true
+          }
+        ],
+        "totalUsd": 0.01,
+        "checkedAt": "2026-11-27T10:03:55.961Z"
+      }
+    }
+  ]
+}

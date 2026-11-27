@@ -57,7 +57,8 @@ export function assess(ev) {
     reasons.push({ sign: 0, text: "No ship was named, so there is nothing to track. Only the claim itself was checked." });
     confidence -= 20;
   } else if (!best) {
-    reasons.push({ sign: -1, text: "No tracking source has heard this ship, so its position is unknown." });
+    const why = (ev.noData || []).map((n) => `${n.source}: ${n.reason}`).join("; ");
+    reasons.push({ sign: -1, text: `No tracking source has a position for this ship${why ? ` (${why})` : ""}. Coverage is from coastal receivers, so ships far offshore can go unheard.` });
     confidence -= 20;
   } else if (stale) {
     reasons.push({ sign: -1, text: `Its last position report is ${fmtAge(ageMin)} old. I can't confirm where it is now.` });
@@ -85,7 +86,8 @@ export function assess(ev) {
       confidence -= 25;
     }
   } else if (best) {
-    reasons.push({ sign: -1, text: "Only one tracking source has a position, so it can't be cross-checked." });
+    const why = ev.skipped?.length ? ` The second tracker covers the Baltic only and was not asked.` : "";
+    reasons.push({ sign: -1, text: `Only one tracking source has a position, so it can't be cross-checked.${why}` });
     confidence -= 10;
   }
 
@@ -106,19 +108,33 @@ export function assess(ev) {
   let verdict = VERDICT.UNVERIFIED;
   const usable = best && !stale;
   const speed = best?.speed ?? null;
+  const nav = best?.navStatus || "";
   const placeMismatch = usable ? farFromClaimedPlace(best, ev.places || []) : null;
+  const troubleClaim = claims.some((c) => ["struck", "sinking", "fire"].includes(c));
+
+  if (ev.sameName > 0) {
+    flags.push(`${ev.sameName} other ship${ev.sameName > 1 ? "s share" : " shares"} this name. Send the IMO number to be sure it is the right one.`);
+    reasons.push({ sign: -1, text: "The name is not unique, so the position may belong to a different ship." });
+    confidence -= 15;
+  }
 
   if (usable && placeMismatch) {
     verdict = VERDICT.DISAGREES;
     reasons.push({ sign: +1, text: `The rumour places it in ${placeMismatch.place}, but it is ${Math.round(placeMismatch.km)} km away${best.region ? `, in ${best.region}` : ""}.` });
+  } else if (usable && claims.includes("aground") && /aground/.test(nav)) {
+    verdict = VERDICT.CONSISTENT;
+    reasons.push({ sign: +1, text: `The ship itself is broadcasting the status "aground".` });
+  } else if (usable && troubleClaim && /not under command|restricted/.test(nav)) {
+    verdict = VERDICT.CONSISTENT;
+    reasons.push({ sign: +1, text: `The ship itself is broadcasting "${nav}", which fits a ship in trouble. Crews also use it for engine failures, so it is not proof of an attack.` });
   } else if (usable && claims.includes("dark")) {
     if (fresh) {
       verdict = VERDICT.DISAGREES;
       reasons.push({ sign: +1, text: "The rumour says it went dark, but it was transmitting within the last hour." });
     }
-  } else if (usable && claims.includes("sinking") && speed !== null && speed >= UNDERWAY_KNOTS && fresh) {
+  } else if (usable && (claims.includes("sinking") || claims.includes("aground")) && speed !== null && speed >= UNDERWAY_KNOTS && fresh) {
     verdict = VERDICT.DISAGREES;
-    reasons.push({ sign: +1, text: `It is reporting ${speed} kn, making way normally, which a sinking ship would not. A transmitter can keep sending after damage, so this is not proof.` });
+    reasons.push({ sign: +1, text: `It is reporting ${speed} kn, making way normally, which a ${claims.includes("sinking") ? "sinking" : "grounded"} ship would not. A transmitter can keep sending after damage, so this is not proof.` });
   } else if (!usable && claims.includes("dark") && best) {
     verdict = VERDICT.CONSISTENT;
     reasons.push({ sign: +1, text: `It has been quiet for ${fmtAge(ageMin)}, which fits the rumour that it went dark.` });
@@ -127,7 +143,7 @@ export function assess(ev) {
   if (verdict === VERDICT.UNVERIFIED && usable) {
     const events = claims.filter((c) => c !== "dark" && c !== "blocked");
     if (events.length) reasons.push({ sign: 0, text: `Tracking can show where a ship is and how fast it moves, not whether it was ${events.map(claimLabel).join(" or ")}.` });
-    if (speed !== null && speed < 1) reasons.push({ sign: 0, text: "It is stopped or at anchor. That neither confirms nor rules out damage." });
+    if (speed !== null && speed < 1) reasons.push({ sign: 0, text: `It is stopped${nav ? ` (the ship reports "${nav}")` : ""}. That neither confirms nor rules out damage.` });
   }
 
   // 5. Fact-check and media checks are shown beside the tracking result, never averaged into it.

@@ -77,3 +77,28 @@ test("confidence is always within 5..90", () => {
   const r = assess({ claims: ["sinking"], fixes: [fix("Quay", 60.08, 20.94, 20, 1), fix("VW", 60.081, 20.941, 20, 1)], sanctions: clean, factCheck: { ok: true, verdict: "False" }, now: NOW });
   assert.ok(r.confidence <= 90 && r.confidence >= 5);
 });
+
+test("the ship broadcasting 'aground' matches an aground rumour; 'not under command' fits a ship in trouble", () => {
+  const ag = assess({ claims: ["aground"], fixes: [{ ...fix("Quay", 30.0, 32.57, 0, 10), navStatus: "aground" }], sanctions: clean, now: NOW });
+  assert.equal(ag.verdict.key, "CONSISTENT");
+  const nuc = assess({ claims: ["struck"], fixes: [{ ...fix("Quay", 13.0, 43.0, 1, 10), navStatus: "not under command" }], sanctions: clean, now: NOW });
+  assert.equal(nuc.verdict.key, "CONSISTENT");
+  assert.ok(nuc.reasons.some((r) => /not proof of an attack/.test(r.text)));
+});
+
+test("an aground rumour vs a ship making way at speed → disagrees", () => {
+  const r = assess({ claims: ["aground"], fixes: [fix("Quay", 30.0, 32.57, 12, 5)], sanctions: clean, now: NOW });
+  assert.equal(r.verdict.key, "DISAGREES");
+});
+
+test("a name shared by other ships is flagged and lowers confidence", () => {
+  const base = { claims: ["sinking"], fixes: [fix("Quay", 60.08, 20.94, 20, 5)], sanctions: clean, now: NOW };
+  const a = assess(base), b = assess({ ...base, sameName: 2 });
+  assert.ok(b.confidence < a.confidence);
+  assert.ok(b.flags.some((f) => /2 other ships share this name/.test(f)));
+});
+
+test("no position: the reason names each tracker's answer", () => {
+  const r = assess({ claims: ["struck"], fixes: [], noData: [{ source: "Quay", reason: "not heard by its receivers in the last 14 days" }], sanctions: clean, now: NOW });
+  assert.ok(r.reasons.some((x) => /Quay: not heard by its receivers in the last 14 days/.test(x.text)));
+});

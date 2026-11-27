@@ -22,7 +22,7 @@ function fakeTelegraph(map) {
       const a = map(intent, miner, params);
       if (!a) return { ok: false, intent, miner, minerId: miner, costUsd: 0, signalUrl: null, error: "the miner had no data for this" };
       budget?.reserve(0.01);
-      return { ok: true, intent, miner: a.miner || miner, minerId: miner, answer: a.answer, signalUrl: `https://node/engine/v1/signal/0x${calls.length}`, costUsd: 0.01 };
+      return { ok: true, intent, miner: a.miner || miner, minerId: miner, answer: a.answer, signal: `0x${calls.length}`, signalUrl: `https://node/engine/v1/signal/0x${calls.length}`, costUsd: 0.01 };
     },
   };
 }
@@ -51,12 +51,13 @@ test("full check: two trackers, sanctions hit from OFAC by former name, fact-che
   assert.equal(c.kind, "ship");
   assert.equal(c.result.verdict.key, "DISAGREES"); // fresh fixes near Gibraltar, far from the Red Sea
   assert.equal(c.result.sanctions, "listed"); // the miner missed it, OFAC caught the former name
-  assert.equal(c.purchases.length, 4);
-  assert.equal(c.totalUsd, 0.04);
+  assert.equal(c.purchases.length, 3); // the Baltic-only tracker is not paid to look near Gibraltar
+  assert.deepEqual(c.evidence.skipped, ["VesselWire (covers the Baltic only)"]);
+  assert.equal(c.totalUsd, 0.03);
   const html = formatCheck(c, { budgetLeftUsd: budget.remainingUsd() });
   assert.match(html, /Tracking disagrees/);
   assert.match(html, /🚩 Sanctions: OFAC's own SDN list has it \(IMO 9116412/);
-  assert.equal((html.match(/receipt \d/g) || []).length, 4);
+  assert.equal((html.match(/receipt \d/g) || []).length, 3);
   assert.ok(html.length < 4096);
 });
 
@@ -162,4 +163,21 @@ test("bot: in a group, plain chatter is ignored and /check as a reply checks the
   assert.equal(sent.length, 0);
   await bot.handle({ update_id: 2, message: { message_id: 2, chat: { id: -5, type: "group", title: "friends" }, text: "/check", reply_to_message: { text: "tanker ELISE hit near Hormuz" } } });
   assert.ok(sent.some((s) => s.method === "editMessageText" && /ELISE/.test(s.body.text)));
+});
+
+test("signal enrichment: the tracker's raw IMO feeds the OFAC match and the second tracker is asked by MMSI", async () => {
+  const ofac = new OfacList({ fetchImpl: async () => new Response(SDN) });
+  await ofac.load();
+  const base = fakeTelegraph((intent, miner, params) => {
+    if (intent === "VESSEL_TELEMETRY_VERIFY_GENERAL" && miner === "8818818") return { answer: { latitude: 60.1, longitude: 26.5, speed_knots: 0, observed_at: NOW.toISOString() } };
+    if (intent === "VESSEL_TELEMETRY_VERIFY_GENERAL" && miner === "751084" && params.vessel === "422123456") return { answer: { latitude: 60.101, longitude: 26.501, speed_knots: 0, observed_at: NOW.toISOString() } };
+    return null;
+  });
+  const tg = { ...base, ask: base.ask, signal: async () => ({ raw: { imo: "9116412", mmsi: "422123456", nav_status: "at_anchor", other_ships_with_same_name: 0 }, verified: true }) };
+  const c = await runCheck("tanker MYSTERY seized in the Gulf of Finland", { telegraph: tg, budget: new Budget({ dailyCapUsd: 1 }), ofac, now: () => NOW });
+  assert.equal(c.identity.imo, "9116412");
+  assert.ok(base.calls.some((x) => x.miner === "751084" && x.params.vessel === "422123456"));
+  assert.equal(c.result.sanctions, "listed");
+  assert.equal(c.result.best.navStatus, "at anchor");
+  assert.equal(c.result.sourcesAgree, true);
 });

@@ -82,6 +82,27 @@ export class Telegraph {
     const j = await r.json();
     return { availableUsd: Number(j.available ?? 0) / 1e6, chargedUsd: Number(j.charged ?? 0) / 1e6 };
   }
+
+  // The public signal record behind a receipt (free, no key): who paid, which miner, the miner's full raw answer,
+  // and the node's keccak256 commitment check. The paid answer is trimmed to the intent's fields; this is not.
+  async signal(hash) {
+    if (!hash) return null;
+    try {
+      const r = await this.fetch(`${this.node}/engine/v1/signal/${hash}`, { signal: AbortSignal.timeout(15_000) });
+      if (!r.ok) return null;
+      const j = await r.json();
+      return {
+        raw: j?.result?.execution?.result || j?.payload?.response || null,
+        payer: j?.signal?.wallet_address || j?.payload?.wallet_address || null,
+        miner: j?.signal?.miner_slug || null,
+        intent: j?.signal?.intent_id || null,
+        verified: j?.verification?.verified === true,
+        createdAt: j?.signal?.created_at || null,
+      };
+    } catch {
+      return null;
+    }
+  }
 }
 
 export function signalUrl(hash, node = NODE) {
