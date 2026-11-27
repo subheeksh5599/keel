@@ -24,8 +24,8 @@ Times vary with the testnet: a check usually takes 10 to 30 seconds.
 
 | Command | Expected |
 |---|---|
-| `npm ci && npm test` | `pass 64`, `fail 0`, no network |
-| `node scripts/verify-receipts.mjs` | `signals 29 · verified 29 · not found 0 · mismatched 0` (more as receipts are added) |
+| `npm ci && npm test` | `pass 68`, `fail 0`, no network |
+| `node scripts/verify-receipts.mjs` | `signals 65 · verified 65 · not found 0 · mismatched 0` (more as receipts are added) |
 | `node scripts/dashboard.mjs` | Rebuilds `docs/index.html`, the receipts dashboard |
 
 ## With a funded testnet key (spends a few cents of test USDC)
@@ -34,6 +34,7 @@ Times vary with the testnet: a check usually takes 10 to 30 seconds.
 |---|---|
 | `npm run check -- "ferry VIKING GLORY went dark near the Aland Islands"` | `⚠️ disagrees`: it was transmitting minutes ago |
 | `node --env-file=.env scripts/evidence.mjs` | The six-row table in the README, re-run live (about $0.22) |
+| `node --env-file=.env scripts/evidence.mjs evidence/preregistered-2026-11-27.json` | The pre-registered set, compared with expectations written before the first run |
 | `TELEGRAPH_PRIVATE_KEY=0x... node examples/buy-position.mjs` | One paid position and its verified receipt ([tutorial](docs/TUTORIAL.md)) |
 
 ## What it should refuse to do

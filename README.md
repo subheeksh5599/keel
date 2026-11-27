@@ -5,9 +5,10 @@
 ### Forward a war or shipping rumour to a Telegram bot. It checks it against live ship tracking it buys on Telegraph, and shows you a receipt for every check.
 
 [![test](https://github.com/subheeksh5599/keel/actions/workflows/test.yml/badge.svg)](https://github.com/subheeksh5599/keel/actions/workflows/test.yml)
-![Tests](https://img.shields.io/badge/tests-64%20passing-2ecc71)
+![Tests](https://img.shields.io/badge/tests-68%20passing-2ecc71)
 [![Bot](https://img.shields.io/badge/Telegram-%40keel567__bot-26a5e4?logo=telegram)](https://t.me/keel567_bot)
-[![Receipts](https://img.shields.io/badge/receipts-29%2F29%20verified-0b7285)](#verify-every-claim-in-one-command)
+[![Receipts](https://img.shields.io/badge/receipts-65%2F65%20verified-0b7285)](#verify-every-claim-in-one-command)
+![Pre-registered](https://img.shields.io/badge/pre--registered%20verdicts-8%2F8-0b7285)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
 ![Stack](https://img.shields.io/badge/Node%2020%2B%20·%20viem%20·%20Telegram%20Bot%20API%20·%20Telegraph%20testnet-14151a)
 
@@ -29,12 +30,14 @@ Keel never calls a rumour false on tracking alone. A ship that is moored can sti
 |---|---|---|
 | Telegram bot [@keel567_bot](https://t.me/keel567_bot) | Live, 24/7 on a VPS under pm2 | Forward it a rumour; `/stats` shows what it has checked |
 | Paid Telegraph asks | Live on the testnet, escrow-paid | Payer `0x2925d43C1e21888706D8b3b2223050aF14dDAEd4`; 15 test USDC [deposited](https://sepolia.etherscan.io/tx/0xa4b2e4387444d58ed2ce9dff038fe4629d12cc37908b8e888072b69f0595290e) on Ethereum Sepolia |
-| Evidence run | 6 rumours, 22 paid answers (plus two one-off command-line checks: 7 more) | [`receipts/evidence-2026-11-27T10-03-55-961Z.json`](receipts/evidence-2026-11-27T10-03-55-961Z.json) |
-| Receipt check | 29 / 29 signals verified on the node | `node scripts/verify-receipts.mjs`, output [below](#verify-every-claim-in-one-command) |
+| Evidence run | 6 rumours, 22 paid answers | [`receipts/evidence-2026-11-27T10-03-55-961Z.json`](receipts/evidence-2026-11-27T10-03-55-961Z.json) |
+| Pre-registered run | 8 new rumours, expected verdicts [committed first](evidence/preregistered-2026-11-27.json) (commit `0db8c3c`), then run live: **8 of 8 matched** | [`receipts/preregistered-2026-11-27T16-12-37-714Z.json`](receipts/preregistered-2026-11-27T16-12-37-714Z.json) |
+| Watches | Two ships watched from the public group (one sanctioned); every poll is logged with its receipts | `receipts/telegram/watch-log.jsonl`, pulled by `scripts/pull-receipts.sh` |
+| Receipt check | 65 / 65 signals verified on the node | `node scripts/verify-receipts.mjs`, output [below](#verify-every-claim-in-one-command) |
 | Public verdict group | Bot posts each verdict (no user identity) | [keelverdict](https://t.me/+Kzl7YJUEUedhZmY1) |
 | Receipts dashboard | Every saved check, each answer linked to its signal | [subheeksh5599.github.io/keel](https://subheeksh5599.github.io/keel/), built by `scripts/dashboard.mjs` |
 | Tutorial | Buy one live ship position in about 40 lines | [`docs/TUTORIAL.md`](docs/TUTORIAL.md), [`examples/buy-position.mjs`](examples/buy-position.mjs) |
-| Tests | 64 passing, no network needed | `npm test`, and CI on every push |
+| Tests | 68 passing, no network needed | `npm test`, and CI on every push |
 
 ## For judges: try it in two minutes
 
@@ -54,7 +57,7 @@ Keel never calls a rumour false on tracking alone. A ship that is moored can sti
 
 Conflict news at sea arrives as unsourced posts: "struck", "sinking", "seized", "went dark". The checks that settle them already exist: where the ship actually is, whether it is moving, whether it is a sanctioned shadow-fleet tanker. But they sit in paid ship-tracking tools priced per seat, which is why nobody runs them on a rumour in a group chat.
 
-Keel buys exactly the checks one rumour needs, for a few cents, from ranked miners on Telegraph, and shows what each one cost and what it said. **A rumour checked in about 15 seconds for $0.03 to $0.05, with every input on the record.**
+Keel buys exactly the checks one rumour needs, for a few cents, from ranked miners on Telegraph, and shows what each one cost and what it said. **A rumour checked in about 15 seconds for $0.01 to $0.05, with every input on the record.**
 
 ## Table of contents
 
@@ -117,11 +120,11 @@ The two positions are 21 km apart because one report is 40 minutes older than th
 
 ## Verify every claim in one command
 
-No key and no wallet. The script opens every signal saved under `receipts/` on the Telegraph node and checks three things: the payer is Keel's wallet, the intent is the one bought, and the node's keccak256 commitment check passes.
+No key and no wallet. The script opens every signal saved under `receipts/` (including the checks people ran through Telegram and every watch poll, once pulled from the server) on the Telegraph node and checks three things: the payer is Keel's wallet, the intent is the one bought, and the node's keccak256 commitment check passes.
 
 ```
 $ node scripts/verify-receipts.mjs
-signals 29 · verified 29 · not found 0 · mismatched 0 · paid by 0x2925d43c1e21888706d8b3b2223050af14ddaed4 · $0.29 test USDC across 3 file(s)
+signals 65 · verified 65 · not found 0 · mismatched 0 · paid by 0x2925d43c1e21888706d8b3b2223050af14ddaed4 · $0.65 test USDC across 5 file(s)
 ```
 
 ## What Keel is NOT
@@ -143,12 +146,14 @@ What a checker has to get right is mostly about restraint. A moored ship can be 
 - **A rumour parser** that pulls ship names (after `tanker`, `MV`, `LNG carrier`…, in quotes, or in capitals), IMO numbers (check digit validated), MMSI numbers, the claim (struck, sinking, fire, seized, aground, gone dark, diverted, blocked), places (Hormuz, Bab el-Mandeb, Gulf of Finland…) and media links. `src/extract.mjs`
 - **A Telegraph client** that asks a named miner or lets the node route, answers the node's HTTP 402 with an escrow signature, and records the signal hash, the miner and the price. A failed delivery is never billed and comes back off the spending count. `src/telegraph.mjs`
 - **Spending limits enforced in code before anything is signed**: $0.30 per check and $2 per UTC day, kept on disk so a restart cannot reset them. `src/budget.mjs`
-- **Two tracking sources from different operators**, read by miner id. One listens to terrestrial AIS receivers worldwide. The other relays Finland's official AIS feed and is asked only when the ship is in the Baltic, by the MMSI the first source reported. If neither has the ship, one more ask is routed by the node to whichever miner ranks best. `src/check.mjs`
+- **Two tracking sources from different operators**, read by miner id. One listens to terrestrial AIS receivers worldwide. The other relays Finland's official AIS feed and finds ships by MMSI, so it is asked only when the ship is in the Baltic and an MMSI is known (from the rumour or the first source). If the first tracker errors out, one more ask is routed by the node to whichever miner ranks best; when it answers "not heard in 14 days", Keel does not pay to ask again. `src/check.mjs`
 - **The free public signal behind each receipt**, read after every tracking purchase. It carries the miner's full answer: IMO, MMSI, the status the ship itself broadcasts ("moored", "aground", "not under command"), its destination, and how many other ships share its name. `src/telegraph.mjs`, `src/check.mjs`
 - **A second, independent sanctions source**: OFAC's own SDN list (1,570 vessels), downloaded from treasury.gov and refreshed once a day, and matched on the IMO or MMSI the tracker reported, or the exact name or a former name. `src/ofac.mjs`
 - **A verdict engine** that is a pure function of the evidence, with a test for every rule. `src/assess.mjs`
 - **The Telegram bot**: forwards and pasted rumours in private chats, `/check` in groups, a map pin with each verdict, a **Watch this ship** button, `/watch`, `/receipts`, `/stats`, a public verdict group, rate limits, and a 10-minute cache so the same rumour is never paid for twice. `src/bot.mjs`, `src/watch.mjs`, `src/format.mjs`, `src/store.mjs`
-- **Evidence tooling**: a fixed set of six rumours that each exercise one rule (`scripts/evidence.mjs`), and a keyless verifier for every saved receipt (`scripts/verify-receipts.mjs`).
+- **Receipts for everything the live bot buys**: each Telegram check is saved as a receipt file (the rumour, every purchase and signal hash, no chat id), and every watch poll is logged with what it bought and what it alerted. `scripts/pull-receipts.sh` copies them from the server, re-verifies them and rebuilds the dashboard.
+- **A low-balance warning**: the bot reads its escrow balance every hour and warns once a day when it drops under $3, so it never stops quietly.
+- **Evidence tooling**: a fixed set of six rumours that each exercise one rule, a pre-registered set whose expected verdicts were committed before the run (`scripts/evidence.mjs`), and a keyless verifier for every saved receipt (`scripts/verify-receipts.mjs`).
 
 ## Architecture
 
@@ -230,8 +235,8 @@ sequenceDiagram
 1. **Parse.** `extract()` finds the ship, its IMO or MMSI, what is claimed and where. No ship and no claim means nothing is bought.
 2. **Start the side checks.** The sanctions screen and the fact-check go to the node at once, routed to the best-ranked miner for each.
 3. **First tracker.** Ask miner 8818818 by id. Then read the free signal for the IMO, MMSI, navigational status, destination and same-name count.
-4. **Second tracker, only where it can see.** Miner 751084 covers the Baltic. It is asked with the MMSI from step 3 when the first position is in the Baltic, or when there is no position yet. Otherwise it is skipped, and the reply says why.
-5. **Fallback.** If no pinned tracker has a position, one more ask is routed by the node.
+4. **Second tracker, only where it can see.** Miner 751084 covers the Baltic and finds ships by MMSI. It is asked with the MMSI from step 3 when the first position is in the Baltic, or when there is no position yet but an MMSI is known. Otherwise it is skipped, and the reply says why.
+5. **Fallback.** If the pinned trackers failed without a definite answer, one more ask is routed by the node. A definite "not heard in 14 days" is not asked again.
 6. **OFAC.** Match the local copy of OFAC's list on the IMO or MMSI (including ones a tracker reported) or the exact name or a former name.
 7. **Assess.** `assess()` turns the evidence into a verdict, a confidence, reasons and flags.
 8. **Reply.** Edit the acknowledgement into the verdict, attach the map pin, post the same verdict to the public group, and log it with its receipts.
@@ -249,6 +254,8 @@ sequenceDiagram
 | A failed sanctions check is never a clean bill | `src/assess.mjs` | `sanctions: a hit from either source is flagged; a failed check is never a clean bill` |
 | A shared ship name lowers confidence and asks for the IMO | `src/assess.mjs` | `a name shared by other ships is flagged and lowers confidence` |
 | A tracker answer with no position is not evidence | `src/check.mjs` | `a tracker that answers without a position is not counted, and triggers the routed fallback` |
+| No money spent on asks that cannot help | `src/check.mjs` | `the MMSI-only tracker is not paid to look up a bare name nobody else found`, `no routed re-ask after a worldwide tracker says it has not heard the ship in days` |
+| Every live purchase is on the record, and a low balance warns | `src/bot.mjs`, `src/watch.mjs` | `bot: each Telegram check is saved as a receipt file, and a low escrow balance warns once a day`, `every watch poll is logged with what it bought and what it alerted` |
 | An answer with every field empty is "no data" | `src/telegraph.mjs` | `an answer with every field null is 'no data', not evidence` |
 | Nothing is signed over the daily cap | `src/telegraph.mjs`, `src/budget.mjs` | `over the daily cap: nothing is signed` |
 | An undelivered answer is released from the count | `src/telegraph.mjs` | `a failed delivery is released from the budget (the node does not bill it)` |
@@ -289,7 +296,7 @@ A disagreement from one source is capped at 70, a "can't verify" at 60, and noth
 - **What they use today.** A per-seat annual maritime-intelligence subscription, if the desk has one, and a person who looks the ship up by hand. Neither is used on a forwarded post in a group chat, so most rumours are never checked at all.
 - **What one check costs.**
   - $0.01 per answer.
-  - $0.03 to $0.05 per rumour: two tracking answers, a sanctions screen and a fact-check, plus one routed fallback when nobody has the ship.
+  - $0.03 to $0.04 per rumour about a ship: one or two tracking answers, a sanctions screen and a fact-check. $0.01 when no ship is named.
   - $0.12 to $0.24 a day for a watched ship.
   - The cost of every check is printed in the reply.
 - **Why per answer.** Paying per answer means a check is only bought when a rumour arrives, and it costs the same few cents whoever asks. A desk running 200 checks a day spends about $8.
@@ -302,19 +309,22 @@ A disagreement from one source is capped at 70, a "can't verify" at 60, and noth
 
 ## Measured so far
 
-From the first 26 paid answers in `receipts/` (27 Nov 2026; the evidence run and the one-command check). Re-run `node scripts/verify-receipts.mjs` to check the counts against the node.
+From all 65 paid answers in `receipts/` (27 Nov 2026). Re-run `node scripts/verify-receipts.mjs` to check the counts against the node.
 
 | Measure | Result | How it is measured |
 |---|---|---|
+| Pre-registered verdicts | 8 of 8 matched | Expected verdicts committed in [`evidence/preregistered-2026-11-27.json`](evidence/preregistered-2026-11-27.json) (commit `0db8c3c`) before the live run |
 | Cost per signal | $0.01 | Every answer bought cost $0.01 of test USDC |
-| Cost per rumour | $0.01 to $0.05 | Per-check totals in the evidence run |
-| Answer latency | median 6.1 s, 90th percentile 10.3 s, slowest 13.6 s | `latencyMs` on each purchase, request to delivered answer |
-| Latency by check | tracking 4.9 s, fact-check 3.8 s, sanctions 8.4 s (medians) | The same, grouped by what was bought |
-| Freshness | The position used was 1 to 3 minutes old in every row that had one | `observed_at` against check time |
-| Evidence completeness | 16 of 22 answers in the evidence run carried data | Rows 4 and 5: three tracking answers each came back empty, billed and shown as ✗ |
-| Agreement where two operators cover | 3 of 3 Baltic checks agreed (18.9 to 21.1 km apart, explained by report age) | `sourcesAgree` in the receipts |
-| Failure cases | Reproducible: rows 4 and 5 (no coverage), row 6 (no ship named) | `scripts/evidence.mjs` |
-| Missed or false watch alerts | Not measured yet | Watches have run for under a day; there is no labelled history to score them against |
+| Cost per rumour | $0.01 to $0.05 | Per-check totals; the $0.05 rows are from before Keel stopped re-asking after a definite "not heard" (now $0.03) |
+| Answer latency | median 6.2 s, 90th percentile 10.3 s, slowest 13.7 s | `latencyMs` on each purchase, request to delivered answer |
+| Latency by check | tracking 5.0 s, fact-check 7.6 s, sanctions 7.7 s (medians) | The same, grouped by what was bought |
+| Whole check | 11 to 18 s | `elapsedMs` per check in the pre-registered run |
+| Freshness | Under 3 minutes old in every evidence-run row that had a position; 17 minutes in one later one-off check (a moored ship reports less often) | `observed_at` against check time |
+| Agreement where two operators cover | 7 of 7 Baltic checks agreed (0.3 to 21 km apart, explained by report age) | `sourcesAgree` in the receipts |
+| Evidence completeness | 36 of 55 answers in the two evidence runs carried data | The rest are billed empty answers (no coverage, no fact-check verdict), kept in the receipts and shown as ✗ |
+| False "disagrees" | None found in 8 "disagrees" verdicts | Each re-read against the ship's own broadcast in the signal record (position, speed, status); 7 of the 8 were backed by two operators |
+| Failure cases | Reproducible: no coverage, a ship that does not exist, no ship named | Both evidence runs |
+| Missed or false watch alerts | Not measured yet | Watches started on 27 Nov; the log is in `receipts/telegram/watch-log.jsonl` |
 
 ## Engineering decisions & the traps that taught me something
 
@@ -330,7 +340,7 @@ From the first 26 paid answers in `receipts/` (27 Nov 2026; the evidence run and
 
 | Item | Status | Proof |
 |---|---|---|
-| Escrow-paid asks on the Telegraph testnet | Live | 29 signals in `receipts/`, re-verified by `scripts/verify-receipts.mjs` |
+| Escrow-paid asks on the Telegraph testnet | Live | 65 signals in `receipts/`, re-verified by `scripts/verify-receipts.mjs` |
 | Two tracking operators, cross-checked | Live where both cover (the Baltic); one source elsewhere, and the reply says so | Evidence rows 1 and 3; `test/assess.test.mjs` |
 | Sanctions from two independent sources | Live | Evidence rows 4 and 5; `test/pipeline.test.mjs` |
 | Signal enrichment (IMO, MMSI, nav status, same-name count) | Live | `src/check.mjs`; `signal enrichment: …` test |
@@ -395,15 +405,17 @@ src/
   store.mjs        check log (hashed chat ids), JSON stores
 scripts/
   check.mjs            run one check from the command line, save the evidence
-  evidence.mjs         the six-rumour evidence run
+  evidence.mjs         the six-rumour evidence run, or a pre-registered scenario file
+  pull-receipts.sh     copy the live bot's receipts from the server, verify, rebuild the dashboard
   verify-receipts.mjs  keyless re-read of every saved receipt
   dashboard.mjs        builds docs/index.html from receipts/
   fund.mjs             mint test USDC and deposit it into escrow
   probe.mjs            one raw paid ask, for debugging
 deploy/start.sh    server start script (reads /etc/keel/keel.env)
 assets/land-50m.json   Natural Earth land polygons
-receipts/          evidence files with every purchase and signal hash
-test/              64 tests, no network
+receipts/          evidence files with every purchase and signal hash; receipts/telegram/ holds the live bot's
+evidence/          pre-registered expectations, committed before each run
+test/              68 tests, no network
 examples/buy-position.mjs  standalone paid ask + receipt read (the tutorial's code)
 docs/TUTORIAL.md   buy a live ship position on Telegraph in about 40 lines
 docs/index.html    the receipts dashboard (GitHub Pages)
@@ -418,7 +430,7 @@ You need Node 20+, a Telegram bot token from @BotFather, and a testnet key with 
 git clone https://github.com/subheeksh5599/keel && cd keel
 npm ci
 cp .env.example .env            # fill in TELEGRAM_BOT_TOKEN and TELEGRAPH_PRIVATE_KEY
-npm test                        # 64 tests, no network
+npm test                        # 68 tests, no network
 npm run fund -- 20 15           # mint 20 test USDC, deposit 15 into escrow (needs Sepolia ETH for gas)
 npm run check -- "tanker HULDA MAERSK hit by a missile in the Red Sea"
 npm start                       # the bot; message it on Telegram
@@ -435,11 +447,13 @@ The test USDC (`0xcc194e1a843B658526D0D5C431f670028582Ae17`) can be minted by an
 | `npm run check -- "<rumour>"` | One live check from the terminal; saves `receipts/check-*.json` |
 | `npm run fund -- [mint] [deposit]` | Mint test USDC and deposit it into escrow |
 | `node --env-file=.env scripts/evidence.mjs` | The six-rumour evidence run (about $0.22) |
+| `node --env-file=.env scripts/evidence.mjs evidence/preregistered-2026-11-27.json` | Re-run the pre-registered set and compare with the expectations (about $0.30) |
+| `KEEL_HOST=user@server scripts/pull-receipts.sh` | Copy the live bot's receipts and watch log, verify them, rebuild the dashboard |
 | `node scripts/verify-receipts.mjs` | Keyless check of every saved receipt |
 | `node scripts/dashboard.mjs` | Rebuild the receipts dashboard in `docs/index.html` |
 | `node --env-file=.env scripts/probe.mjs <INTENT> '<params json>' [minerId]` | One raw paid ask |
 
-Settings in `.env`: `KEEL_DAILY_CAP_USD` (default 2), `KEEL_MAX_CHECK_USD` (0.30), `KEEL_VERDICT_CHAT_ID` (optional; otherwise the first group whose title contains "verdict" is used), `KEEL_DATA_DIR` (default `data`).
+Settings in `.env`: `KEEL_DAILY_CAP_USD` (default 2), `KEEL_MAX_CHECK_USD` (0.30), `KEEL_VERDICT_CHAT_ID` (optional; otherwise the first group whose title contains "verdict" is used), `KEEL_DATA_DIR` (default `data`), `KEEL_OWNER_CHAT_ID` (where the low-balance warning goes; otherwise the verdict group), `KEEL_LOW_ESCROW_USD` (default 3).
 
 ## How I deploy it
 
@@ -458,20 +472,35 @@ The evidence run, 27 Nov 2026, each row a live check on the testnet ([`receipts/
 | Sanctioned by EU/UK but not on OFAC's list | ❓ can't verify | 30 | listed | 2/5 | $0.05 |
 | No ship named: only the claim is checked | ❓ can't verify | 30 | n/a | 1/1 | $0.01 |
 
-Rows 4 and 5 bought three tracking answers each that came back empty. They are billed, kept in the receipts, and shown as ✗ in the reply. That is what an honest "no coverage" costs.
+Rows 4 and 5 bought three tracking answers each that came back empty. They are billed, kept in the receipts, and shown as ✗ in the reply. That is what an honest "no coverage" costs. (Keel now skips the third one; see the pre-registered run.)
+
+**The pre-registered run.** The expected verdict for each of 8 new rumours was written and committed first ([`evidence/preregistered-2026-11-27.json`](evidence/preregistered-2026-11-27.json), commit `0db8c3c`), then the run was made live ([`receipts/preregistered-2026-11-27T16-12-37-714Z.json`](receipts/preregistered-2026-11-27T16-12-37-714Z.json)):
+
+| Rule exercised | Expected | Got | | Confidence | Sanctions | Answers with data / bought | Cost | Time |
+|---|---|---|---|---|---|---|---|---|
+| Fast ferry in service: "sinking" vs a ship making way | disagrees | ⚠️ disagrees | ✓ | 90 | clear (2 sources) | 4/4 | $0.04 | 14 s |
+| Baltic cruise ferry placed in the Red Sea | disagrees | ⚠️ disagrees | ✓ | 90 | clear (2 sources) | 3/4 | $0.04 | 11 s |
+| Ship named only by IMO, placed in Hormuz | disagrees | ⚠️ disagrees | ✓ | 90 | clear (2 sources) | 4/4 | $0.04 | 12 s |
+| Sanctioned tanker with no tracking coverage | can't verify | ❓ can't verify | ✓ | 30 | listed | 2/5 | $0.05 | 18 s |
+| Famous ship outside the two-operator area | can't verify | ❓ can't verify | ✓ | 30 | clear (2 sources) | 2/5 | $0.05 | 15 s |
+| A ship that does not exist (failure case) | can't verify | ❓ can't verify | ✓ | 30 | clear (2 sources) | 2/5 | $0.05 | 17 s |
+| No ship named | can't verify | ❓ can't verify | ✓ | 30 | n/a | 0/1 | $0.01 | 14 s |
+| "Went dark" vs a ferry that is transmitting | disagrees | ⚠️ disagrees | ✓ | 90 | clear (2 sources) | 3/4 | $0.04 | 12 s |
+
+The run showed two wasted asks per uncovered ship (the Baltic tracker asked by name, and a routed re-ask landing on the same coverage). Both were removed right after, with tests.
 
 ## Tests
 
-64 tests, all offline, run by `npm test` and by CI on every push:
+68 tests, all offline, run by `npm test` and by CI on every push:
 
 | Suite | Tests | Covers |
 |---|---|---|
 | `test/extract.test.mjs` | 18 | 15 real-style rumours plus the IMO check digit and the MMSI prefix |
 | `test/assess.test.mjs` | 18 | Every verdict rule, sanctions handling, confidence bounds |
-| `test/pipeline.test.mjs` | 14 | The full check with a stand-in node, OFAC parsing, watches, the bot's handlers |
+| `test/pipeline.test.mjs` | 18 | The full check with a stand-in node, OFAC parsing, watches, the bot's handlers |
 | `test/payments.test.mjs` | 10 | The 402 → escrow-signature flow, caps, release on failure, refusing bad challenges, empty answers |
 | `test/geo.test.mjs` | 4 | On-land test, sea areas, implied speed |
-| **Total** | **64** | |
+| **Total** | **68** | |
 
 ## Credits
 
