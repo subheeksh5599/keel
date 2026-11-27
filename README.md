@@ -7,7 +7,7 @@
 [![test](https://github.com/subheeksh5599/keel/actions/workflows/test.yml/badge.svg)](https://github.com/subheeksh5599/keel/actions/workflows/test.yml)
 ![Tests](https://img.shields.io/badge/tests-68%20passing-2ecc71)
 [![Bot](https://img.shields.io/badge/Telegram-%40keel567__bot-26a5e4?logo=telegram)](https://t.me/keel567_bot)
-[![Receipts](https://img.shields.io/badge/receipts-65%2F65%20verified-0b7285)](#verify-every-claim-in-one-command)
+[![Receipts](https://img.shields.io/badge/receipts-68%2F68%20verified-0b7285)](#verify-every-claim-in-one-command)
 ![Pre-registered](https://img.shields.io/badge/pre--registered%20verdicts-8%2F8-0b7285)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
 ![Stack](https://img.shields.io/badge/Node%2020%2B%20·%20viem%20·%20Telegram%20Bot%20API%20·%20Telegraph%20testnet-14151a)
@@ -33,7 +33,7 @@ Keel never calls a rumour false on tracking alone. A ship that is moored can sti
 | Evidence run | 6 rumours, 22 paid answers | [`receipts/evidence-2026-11-27T10-03-55-961Z.json`](receipts/evidence-2026-11-27T10-03-55-961Z.json) |
 | Pre-registered run | 8 new rumours, expected verdicts [committed first](evidence/preregistered-2026-11-27.json) (commit `0db8c3c`), then run live: **8 of 8 matched** | [`receipts/preregistered-2026-11-27T16-12-37-714Z.json`](receipts/preregistered-2026-11-27T16-12-37-714Z.json) |
 | Watches | Two ships watched from the public group (one sanctioned); every poll is logged with its receipts | `receipts/telegram/watch-log.jsonl`, pulled by `scripts/pull-receipts.sh` |
-| Receipt check | 65 / 65 signals verified on the node | `node scripts/verify-receipts.mjs`, output [below](#verify-every-claim-in-one-command) |
+| Receipt check | 68 / 68 signals verified on the node | `node scripts/verify-receipts.mjs`, output [below](#verify-every-claim-in-one-command) |
 | Public verdict group | Bot posts each verdict (no user identity) | [keelverdict](https://t.me/+Kzl7YJUEUedhZmY1) |
 | Receipts dashboard | Every saved check, each answer linked to its signal | [subheeksh5599.github.io/keel](https://subheeksh5599.github.io/keel/), built by `scripts/dashboard.mjs` |
 | Tutorial | Buy one live ship position in about 40 lines | [`docs/TUTORIAL.md`](docs/TUTORIAL.md), [`examples/buy-position.mjs`](examples/buy-position.mjs) |
@@ -125,7 +125,7 @@ No key and no wallet. The script opens every signal saved under `receipts/` (inc
 
 ```
 $ node scripts/verify-receipts.mjs
-signals 65 · verified 65 · not found 0 · mismatched 0 · paid by 0x2925d43c1e21888706d8b3b2223050af14ddaed4 · $0.65 test USDC across 5 file(s)
+signals 68 · verified 68 · not found 0 · mismatched 0 · paid by 0x2925d43c1e21888706d8b3b2223050af14ddaed4 · $0.68 test USDC across 6 file(s)
 ```
 
 ## What Keel is NOT
@@ -310,7 +310,7 @@ A disagreement from one source is capped at 70, a "can't verify" at 60, and noth
 
 ## Measured so far
 
-From all 65 paid answers in `receipts/` (27 Nov 2026). Re-run `node scripts/verify-receipts.mjs` to check the counts against the node.
+From the 65 paid answers bought by checks in `receipts/` (27 Nov 2026; watch polls are counted separately). Re-run `node scripts/verify-receipts.mjs` to check the counts against the node.
 
 | Measure | Result | How it is measured |
 |---|---|---|
@@ -341,7 +341,7 @@ From all 65 paid answers in `receipts/` (27 Nov 2026). Re-run `node scripts/veri
 
 | Item | Status | Proof |
 |---|---|---|
-| Escrow-paid asks on the Telegraph testnet | Live | 65 signals in `receipts/`, re-verified by `scripts/verify-receipts.mjs` |
+| Escrow-paid asks on the Telegraph testnet | Live | 68 signals in `receipts/`, re-verified by `scripts/verify-receipts.mjs` |
 | Two tracking operators, cross-checked | Live where both cover (the Baltic); one source elsewhere, and the reply says so | Evidence rows 1 and 3; `test/assess.test.mjs` |
 | Sanctions from two independent sources | Live | Evidence rows 4 and 5; `test/pipeline.test.mjs` |
 | Signal enrichment (IMO, MMSI, nav status, same-name count) | Live | `src/check.mjs`; `signal enrichment: …` test |
