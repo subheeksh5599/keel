@@ -19,14 +19,14 @@ const miners = [...new Set(purchases.map((p) => p.miner).filter(Boolean))];
 
 const rows = checks.map(({ file, rule, c }) => {
   const r = c.result || {};
-  const buys = (c.purchases || []).map((p) => `<li class="${p.ok ? "ok" : "no"}">${p.ok ? "✓" : "✗"} ${esc(p.label)} · ${esc(p.miner || "")} · $${(p.costUsd || 0).toFixed(2)}${p.signalUrl ? ` · <a href="${esc(p.signalUrl)}">signal</a>` : ""}${!p.ok && p.error ? ` <span class="why">${esc(p.error)}</span>` : ""}</li>`).join("");
+  const buys = (c.purchases || []).map((p) => `<li class="${p.ok ? "ok" : "no"}">${p.ok ? "✓" : "✗"} ${esc(p.label)} · ${esc(p.miner || "")} · $${(p.costUsd || 0).toFixed(2)}${p.latencyMs ? ` · ${(p.latencyMs / 1000).toFixed(1)} s` : ""}${p.signalUrl ? ` · <a href="${esc(p.signalUrl)}">signal</a>` : ""}${!p.ok && p.error ? ` <span class="why">${esc(p.error)}</span>` : ""}</li>`).join("");
   return `<article>
   <header><span class="v">${esc(r.verdict?.icon)} ${esc(r.verdict?.label || r.verdict?.key)}</span><span class="conf">${esc(r.confidence)}/100</span></header>
   <p class="rumour">“${esc(c.extracted?.text || "")}”</p>
   ${rule ? `<p class="rule">Rule exercised: ${esc(rule)}</p>` : ""}
   <ul class="reasons">${(r.reasons || []).map((x) => `<li>${x.sign > 0 ? "＋" : x.sign < 0 ? "－" : "·"} ${esc(x.text)}</li>`).join("")}${(r.flags || []).map((f) => `<li class="flag">${esc(f)}</li>`).join("")}</ul>
   <ul class="buys">${buys}</ul>
-  <footer>${esc(c.checkedAt)} · $${(c.totalUsd || 0).toFixed(2)} test USDC · <a href="https://github.com/subheeksh5599/keel/blob/main/receipts/${esc(file)}">${esc(file)}</a></footer>
+  <footer>${esc(c.checkedAt)} · $${(c.totalUsd || 0).toFixed(2)} test USDC${c.elapsedMs ? ` · ${Math.round(c.elapsedMs / 1000)} s` : ""} · <a href="https://github.com/subheeksh5599/keel/blob/main/receipts/${esc(file)}">${esc(file)}</a></footer>
 </article>`;
 }).join("\n");
 

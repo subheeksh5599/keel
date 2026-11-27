@@ -70,6 +70,7 @@ Keel buys exactly the checks one rumour needs, for a few cents, from ranked mine
 - [Where the rules are enforced](#where-the-rules-are-enforced)
 - [What the verdict measures](#what-the-verdict-measures)
 - [Who pays, and what it costs](#who-pays-and-what-it-costs)
+- [Measured so far](#measured-so-far)
 - [Engineering decisions & the traps that taught me something](#engineering-decisions--the-traps-that-taught-me-something)
 - [What's real — the status table](#whats-real--the-status-table)
 - [Attack → test](#attack--test)
@@ -279,17 +280,36 @@ A disagreement from one source is capped at 70, a "can't verify" at 60, and noth
 
 ## Who pays, and what it costs
 
-- **Who it is for.** Newsrooms and open-source investigators checking a viral claim before they repeat it; shipping and energy desks that move on headlines; war-risk insurers and charterers who need to know whether *their* ship is the one in the post; and moderators of large Telegram groups where these rumours start.
+- **Who it is for, first.** Commodities analysts and risk managers on oil, LNG and freight desks. A tanker headline moves their book within minutes, and their first question is "is that ship actually where the post says, doing what the post says?" After them: war-risk insurers and charterers checking whether *their* ship is the one in the post, newsrooms and open-source investigators deciding whether to repeat a claim, and moderators of the Telegram groups where these posts start.
+- **What they use today.** A per-seat annual maritime-intelligence subscription, if the desk has one, and a person who looks the ship up by hand. Neither is used on a forwarded post in a group chat, so most rumours are never checked at all.
 - **What one check costs.**
   - $0.01 per answer.
   - $0.03 to $0.05 per rumour: two tracking answers, a sanctions screen and a fact-check, plus one routed fallback when nobody has the ship.
   - $0.12 to $0.24 a day for a watched ship.
   - The cost of every check is printed in the reply.
-- **Why per answer.** Commercial ship tracking is sold per seat per year, so it is never used on a group-chat rumour. Paying per answer means a check is only bought when a rumour arrives, and it costs the same few cents whoever asks.
+- **Why per answer.** Paying per answer means a check is only bought when a rumour arrives, and it costs the same few cents whoever asks. A desk running 200 checks a day spends about $8.
+- **The error it must not make.** A false "tracking disagrees" is the expensive mistake, because it tells a desk to fade a true story. Every disagreement needs a fresh position (under 3 hours), a stopped ship never counts against an attack claim, and a single-source disagreement is capped at 70 confidence. Missing a true story ("can't verify") costs less, and Keel says why it could not verify.
+- **Response time it has to beat.** A headline is priced in minutes. Keel acknowledges at once and answers in about 10 to 30 seconds.
 - **Path to use.**
   - Run the bot as a public utility now, with a daily cap.
-  - Offer the same check as a paid `/check` for teams.
+  - Offer the same check as a paid `/check` for desks, with a higher cap and their own watch list.
   - Publish the verdict group as a feed others can subscribe to.
+
+## Measured so far
+
+From the 26 paid answers in `receipts/` (27 Nov 2026). Re-run `node scripts/verify-receipts.mjs` to check the counts against the node.
+
+| Measure | Result | How it is measured |
+|---|---|---|
+| Cost per signal | $0.01 | Every answer bought cost $0.01 of test USDC |
+| Cost per rumour | $0.01 to $0.05 | Per-check totals in the evidence run |
+| Answer latency | median 6.1 s, 90th percentile 10.3 s, slowest 13.6 s | `latencyMs` on each purchase, request to delivered answer |
+| Latency by check | tracking 4.9 s, fact-check 3.8 s, sanctions 8.4 s (medians) | The same, grouped by what was bought |
+| Freshness | The position used was 1 to 3 minutes old in every row that had one | `observed_at` against check time |
+| Evidence completeness | 16 of 22 answers in the evidence run carried data | Rows 4 and 5: three tracking answers each came back empty, billed and shown as ✗ |
+| Agreement where two operators cover | 3 of 3 Baltic checks agreed (18.9 to 21.1 km apart, explained by report age) | `sourcesAgree` in the receipts |
+| Failure cases | Reproducible: rows 4 and 5 (no coverage), row 6 (no ship named) | `scripts/evidence.mjs` |
+| Missed or false watch alerts | Not measured yet | Watches have run for under a day; there is no labelled history to score them against |
 
 ## Engineering decisions & the traps that taught me something
 

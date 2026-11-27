@@ -20,6 +20,7 @@ export const INTENTS = {
 };
 
 export async function runCheck(text, { telegraph, budget, ofac, maxCheckUsd = 0.3, now = () => new Date(), trackers = TRACKERS } = {}) {
+  const started = Date.now();
   const ex = extract(text);
   const purchases = [];
   const checkBudget = new CheckBudget(budget, maxCheckUsd);
@@ -122,7 +123,7 @@ export async function runCheck(text, { telegraph, budget, ofac, maxCheckUsd = 0.
   };
   const result = assess(evidence);
   const totalUsd = round(purchases.reduce((s, p) => s + (p.costUsd || 0), 0));
-  return { kind: shipQuery ? "ship" : "claim", extracted: ex, shipQuery, shipName, identity, evidence, result, purchases, totalUsd, checkedAt: evidence.now.toISOString() };
+  return { kind: shipQuery ? "ship" : "claim", extracted: ex, shipQuery, shipName, identity, evidence, result, purchases, totalUsd, elapsedMs: Date.now() - started, checkedAt: evidence.now.toISOString() };
 }
 
 function inBox(a, [lat0, lon0, lat1, lon1]) {

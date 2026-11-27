@@ -31,7 +31,7 @@ export function formatCheck(c, { budgetLeftUsd } = {}) {
   for (const x of r.reasons.slice(0, 6)) lines.push(`${x.sign > 0 ? "＋" : x.sign < 0 ? "－" : "·"} ${esc(x.text)}`);
 
   lines.push("");
-  lines.push(`<b>Checks bought on Telegraph</b> (${usd(c.totalUsd)} test USDC)`);
+  lines.push(`<b>Checks bought on Telegraph</b> (${usd(c.totalUsd)} test USDC${c.elapsedMs ? `, ${Math.max(1, Math.round(c.elapsedMs / 1000))} s` : ""})`);
   c.purchases.forEach((p, i) => {
     const status = p.ok ? "✓" : "✗";
     const what = p.ok ? summarize(p) : esc(shortErr(p.error));
