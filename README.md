@@ -37,6 +37,7 @@ Keel never calls a rumour false on tracking alone. A ship that is moored can sti
 | Public verdict group | Bot posts each verdict (no user identity) | [keelverdict](https://t.me/+Kzl7YJUEUedhZmY1) |
 | Receipts dashboard | Every saved check, each answer linked to its signal | [subheeksh5599.github.io/keel](https://subheeksh5599.github.io/keel/), built by `scripts/dashboard.mjs` |
 | Tutorial | Buy one live ship position in about 40 lines | [`docs/TUTORIAL.md`](docs/TUTORIAL.md), [`examples/buy-position.mjs`](examples/buy-position.mjs) |
+| Progress updates | Public, in the mission thread | [27 Nov](https://github.com/telegraphprotocol/bounties/issues/193#issuecomment-7223086012) |
 | Tests | 68 passing, no network needed | `npm test`, and CI on every push |
 
 ## For judges: try it in two minutes
