@@ -123,7 +123,7 @@ export class KeelBot {
     this.log.add(chat.id, c);
     const buttons = c.shipQuery ? { inline_keyboard: [[{ text: "👁 Watch this ship", callback_data: `w:${c.shipQuery}`.slice(0, 60) }]] } : undefined;
     await this.edit(chat.id, ack?.message_id, html, buttons);
-    if (c.result?.best) await this.api("sendLocation", { chat_id: chat.id, latitude: c.result.best.lat, longitude: c.result.best.lon, reply_to_message_id: ack?.message_id, disable_notification: true }).catch(() => {});
+    if (c.result?.best && c.result.ageMin != null && c.result.ageMin <= 180) await this.api("sendLocation", { chat_id: chat.id, latitude: c.result.best.lat, longitude: c.result.best.lon, reply_to_message_id: ack?.message_id, disable_notification: true }).catch(() => {});
     await this.publish(c);
     console.log(`→ ${chat.type} check ${c.result?.verdict?.key || c.kind} $${c.totalUsd} in ${Date.now() - started} ms`);
   }
@@ -192,7 +192,7 @@ export class KeelBot {
     if (!rows.length) return "No checks from this chat yet. Forward me a rumour.";
     return ["<b>Your last checks</b>", ...rows.map((r) => {
       const links = r.receipts.map((x, i) => `<a href="${esc(x.signal)}">${i + 1}</a>`).join(" ");
-      return `${r.at.slice(5, 16).replace("T", " ")} · ${esc(r.ship || "claim")} · ${r.verdict || r.kind} ${r.confidence ?? ""} · $${r.costUsd.toFixed(2)} · receipts ${links || "—"}`;
+      return `${r.at.slice(5, 16).replace("T", " ")} · ${esc(r.ship || "claim")} · ${VERDICT_LABEL[r.verdict] || r.kind} ${r.confidence ?? ""} · $${r.costUsd.toFixed(2)} · receipts ${links || "—"}`;
     })].join("\n");
   }
 
@@ -242,7 +242,8 @@ export async function telegramApi(token, method, body) {
   return j.result;
 }
 
-const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const VERDICT_LABEL = { DISAGREES: "⚠️ tracking disagrees", CONSISTENT: "✅ consistent", UNVERIFIED: "❓ can't verify" };
+const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // Entry point: node --env-file=.env src/bot.mjs
@@ -251,12 +252,13 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   for (const k of ["TELEGRAM_BOT_TOKEN", "TELEGRAPH_PRIVATE_KEY"]) if (!env[k]) { console.error(`${k} is not set`); process.exit(1); }
   const dataDir = env.KEEL_DATA_DIR || "data";
   mkdirSync(dataDir, { recursive: true });
-  const budget = new Budget({ file: `${dataDir}/spend.json`, dailyCapUsd: Number(env.KEEL_DAILY_CAP_USD || 2) });
+  const money = (k, d) => { const v = Number(env[k] ?? d); if (!(Number.isFinite(v) && v > 0)) { console.error(`${k} must be a positive number of dollars`); process.exit(1); } return v; };
+  const budget = new Budget({ file: `${dataDir}/spend.json`, dailyCapUsd: money("KEEL_DAILY_CAP_USD", 2) });
   const telegraph = new Telegraph({ privateKey: env.TELEGRAPH_PRIVATE_KEY });
   const ofac = new OfacList({ file: `${dataDir}/sdn.csv` });
   ofac.load().then((n) => console.log(`OFAC SDN vessels loaded: ${n}`));
   setInterval(() => ofac.load().catch(() => {}), 12 * 3600 * 1000).unref();
-  const bot = new KeelBot({ token: env.TELEGRAM_BOT_TOKEN, telegraph, budget, ofac, dataDir, maxCheckUsd: Number(env.KEEL_MAX_CHECK_USD || 0.3), verdictChatId: env.KEEL_VERDICT_CHAT_ID ? Number(env.KEEL_VERDICT_CHAT_ID) : null });
+  const bot = new KeelBot({ token: env.TELEGRAM_BOT_TOKEN, telegraph, budget, ofac, dataDir, maxCheckUsd: money("KEEL_MAX_CHECK_USD", 0.3), verdictChatId: env.KEEL_VERDICT_CHAT_ID ? Number(env.KEEL_VERDICT_CHAT_ID) : null });
   console.log(`payer ${telegraph.account.address}`);
   bot.start();
 }

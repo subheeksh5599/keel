@@ -5,7 +5,7 @@
 ### Forward a war or shipping rumour to a Telegram bot. It checks it against live ship tracking it buys on Telegraph, and shows you a receipt for every check.
 
 [![test](https://github.com/subheeksh5599/keel/actions/workflows/test.yml/badge.svg)](https://github.com/subheeksh5599/keel/actions/workflows/test.yml)
-![Tests](https://img.shields.io/badge/tests-60%20passing-2ecc71)
+![Tests](https://img.shields.io/badge/tests-63%20passing-2ecc71)
 [![Bot](https://img.shields.io/badge/Telegram-%40keel567__bot-26a5e4?logo=telegram)](https://t.me/keel567_bot)
 [![Receipts](https://img.shields.io/badge/receipts-29%2F29%20verified-0b7285)](#verify-every-claim-in-one-command)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
@@ -34,7 +34,7 @@ Keel never calls a rumour false on tracking alone. A ship that is moored can sti
 | Public verdict group | Bot posts each verdict (no user identity) | [keelverdict](https://t.me/+Kzl7YJUEUedhZmY1) |
 | Receipts dashboard | Every saved check, each answer linked to its signal | [subheeksh5599.github.io/keel](https://subheeksh5599.github.io/keel/), built by `scripts/dashboard.mjs` |
 | Tutorial | Buy one live ship position in about 40 lines | [`docs/TUTORIAL.md`](docs/TUTORIAL.md), [`examples/buy-position.mjs`](examples/buy-position.mjs) |
-| Tests | 60 passing, no network needed | `npm test`, and CI on every push |
+| Tests | 63 passing, no network needed | `npm test`, and CI on every push |
 
 ## For judges: try it in two minutes
 
@@ -145,7 +145,7 @@ What a checker has to get right is mostly about restraint. A moored ship can be 
 - **Spending limits enforced in code before anything is signed**: $0.30 per check and $2 per UTC day, kept on disk so a restart cannot reset them. `src/budget.mjs`
 - **Two tracking sources from different operators**, read by miner id. One listens to terrestrial AIS receivers worldwide. The other relays Finland's official AIS feed and is asked only when the ship is in the Baltic, by the MMSI the first source reported. If neither has the ship, one more ask is routed by the node to whichever miner ranks best. `src/check.mjs`
 - **The free public signal behind each receipt**, read after every tracking purchase. It carries the miner's full answer: IMO, MMSI, the status the ship itself broadcasts ("moored", "aground", "not under command"), its destination, and how many other ships share its name. `src/telegraph.mjs`, `src/check.mjs`
-- **A second, independent sanctions source**: OFAC's own SDN list (1,570 vessels), downloaded from treasury.gov at start-up and every 12 hours, and matched on the IMO or MMSI the tracker reported, or the exact name or a former name. `src/ofac.mjs`
+- **A second, independent sanctions source**: OFAC's own SDN list (1,570 vessels), downloaded from treasury.gov and refreshed once a day, and matched on the IMO or MMSI the tracker reported, or the exact name or a former name. `src/ofac.mjs`
 - **A verdict engine** that is a pure function of the evidence, with a test for every rule. `src/assess.mjs`
 - **The Telegram bot**: forwards and pasted rumours in private chats, `/check` in groups, a map pin with each verdict, a **Watch this ship** button, `/watch`, `/receipts`, `/stats`, a public verdict group, rate limits, and a 10-minute cache so the same rumour is never paid for twice. `src/bot.mjs`, `src/watch.mjs`, `src/format.mjs`, `src/store.mjs`
 - **Evidence tooling**: a fixed set of six rumours that each exercise one rule (`scripts/evidence.mjs`), and a keyless verifier for every saved receipt (`scripts/verify-receipts.mjs`).
@@ -187,7 +187,7 @@ flowchart TB
   N -. charges in the next ledger block .-> L
 ```
 
-The bot sends one HTTP request per answer to the node and gets back a 402 with an escrow challenge. It signs the challenge with the payer key (the signature proves intent and cannot move funds), and the node bills the escrow only when the answer is delivered. The only other network calls are the free signal reads and the OFAC download every 12 hours.
+The bot sends one HTTP request per answer to the node and gets back a 402 with an escrow challenge. It signs the challenge with the payer key (the signature proves intent and cannot move funds), and the node bills the escrow only when the answer is delivered. The only other network calls are the free signal reads and the daily OFAC download.
 
 ```mermaid
 sequenceDiagram
@@ -268,15 +268,18 @@ sequenceDiagram
 
 - **+20** when two operators agree.
 - **+10** for a position under an hour old.
-- **+15** for a tracking disagreement backed by two sources.
-- **−20** for a stale position or no position.
+- **+15** for a tracking disagreement backed by two sources that agree with each other.
+- **+10** for a tracking disagreement from one source (then capped at 70).
+- **+5** when a fact-check rates the claim "False" or "Misleading" alongside a tracking disagreement.
+- **−20** for a stale position, no position, or no ship named.
 - **−10** for a single source.
 - **−25** when the sources disagree.
 - **−30** for a position far inland.
+- **−25** for an impossible reported speed.
 - **−15** for a shared name.
 - **−15** when a fact-check says "True" against a tracking disagreement.
 
-A disagreement from one source is capped at 70, a "can't verify" at 60, and nothing goes above 90, because position reports can be spoofed.
+A disagreement from one source is capped at 70, a "can't verify" at 60, and nothing goes above 90, because position reports can be spoofed. A position that looks wrong (sources that disagree with each other, a fix far inland, an impossible speed, or a timestamp that can't be read) blocks every verdict: the answer stays "can't verify".
 
 **Flags** are shown whatever the verdict: a sanctions hit (and which source found it), a failed sanctions check, sources that disagree on the position, a position far inland, an impossible speed, a shared name, a media file rated "manipulated".
 
@@ -343,7 +346,9 @@ From the first 26 paid answers in `receipts/` (27 Nov 2026; the evidence run and
 | The abuse | The answer, and its test |
 |---|---|
 | Someone floods the bot to drain the escrow | 12 checks per chat per hour, $0.30 per check, $2 per day, and repeats within 10 min are free and cached. Tests: `daily cap refuses before paying, and survives a restart`, `per-check cap` |
-| A spoofed AIS position "proves" a ship is fine | Two operators must agree on a gap that fits the speed; far-inland and impossible-speed reports are flagged. Tests: `two operators far apart → …`, `a position deep inland …` |
+| A spoofed AIS position "proves" a ship is fine | Two operators must agree on a gap that fits the speed; far-inland and impossible-speed reports are flagged, and any of them blocks the verdict. Tests: `two operators far apart → …`, `a suspect position never yields 'disagrees': sources far apart, or a fix far inland` |
+| A bad timestamp makes an old position look live | An unreadable or future timestamp is an unknown age, never live. Test: `an unreadable or future timestamp is an unknown age, never live` |
+| A typo in the cap settings, or a damaged spend file, turns the caps off | The bot refuses to start with a cap that isn't a positive number, and a damaged spend file pauses payments for the day. Test: `a bad cap setting or a damaged spend file never disables the cap` |
 | Two ships with one name | The same-name count from the signal lowers confidence and asks for the IMO. Test: `a name shared by other ships …` |
 | A sanctions miner is down, and the reply reads "clean" | A failed screen is flagged "not a clean bill", and OFAC's list is checked independently. Test: `sanctions: … a failed check is never a clean bill` |
 | A miner returns an empty answer | Not counted as evidence. Tests: `an answer with every field null is 'no data', not evidence`, `a tracker that answers without a position …` |
@@ -398,7 +403,7 @@ scripts/
 deploy/start.sh    server start script (reads /etc/keel/keel.env)
 assets/land-50m.json   Natural Earth land polygons
 receipts/          evidence files with every purchase and signal hash
-test/              60 tests, no network
+test/              63 tests, no network
 examples/buy-position.mjs  standalone paid ask + receipt read (the tutorial's code)
 docs/TUTORIAL.md   buy a live ship position on Telegraph in about 40 lines
 docs/index.html    the receipts dashboard (GitHub Pages)
@@ -413,7 +418,7 @@ You need Node 20+, a Telegram bot token from @BotFather, and a testnet key with 
 git clone https://github.com/subheeksh5599/keel && cd keel
 npm ci
 cp .env.example .env            # fill in TELEGRAM_BOT_TOKEN and TELEGRAPH_PRIVATE_KEY
-npm test                        # 60 tests, no network
+npm test                        # 63 tests, no network
 npm run fund -- 20 15           # mint 20 test USDC, deposit 15 into escrow (needs Sepolia ETH for gas)
 npm run check -- "tanker HULDA MAERSK hit by a missile in the Red Sea"
 npm start                       # the bot; message it on Telegram
@@ -457,16 +462,16 @@ Rows 4 and 5 bought three tracking answers each that came back empty. They are b
 
 ## Tests
 
-60 tests, all offline, run by `npm test` and by CI on every push:
+63 tests, all offline, run by `npm test` and by CI on every push:
 
 | Suite | Tests | Covers |
 |---|---|---|
 | `test/extract.test.mjs` | 18 | 15 real-style rumours plus the IMO check digit and the MMSI prefix |
-| `test/assess.test.mjs` | 16 | Every verdict rule, sanctions handling, confidence bounds |
+| `test/assess.test.mjs` | 18 | Every verdict rule, sanctions handling, confidence bounds |
 | `test/pipeline.test.mjs` | 13 | The full check with a stand-in node, OFAC parsing, watches, the bot's handlers |
-| `test/payments.test.mjs` | 9 | The 402 → escrow-signature flow, caps, release on failure, refusing bad challenges, empty answers |
+| `test/payments.test.mjs` | 10 | The 402 → escrow-signature flow, caps, release on failure, refusing bad challenges, empty answers |
 | `test/geo.test.mjs` | 4 | On-land test, sea areas, implied speed |
-| **Total** | **60** | |
+| **Total** | **63** | |
 
 ## Credits
 

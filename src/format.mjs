@@ -3,7 +3,7 @@ import { fmtCoord } from "./geo.mjs";
 import { fmtAge } from "./assess.mjs";
 import { claimLabel } from "./extract.mjs";
 
-const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const usd = (n) => `$${Number(n || 0).toFixed(2)}`;
 
 export function formatCheck(c, { budgetLeftUsd } = {}) {
@@ -69,8 +69,17 @@ function shortErr(e) {
   return s.replace(/upstream error \d+: /, "").slice(0, 60);
 }
 
+// Telegram rejects a message over 4096 characters or with a broken tag, so cut on a line boundary.
 function clip(s) {
-  return s.length <= 4000 ? s : s.slice(0, 3990) + "\n…";
+  if (s.length <= 4000) return s;
+  const out = [];
+  let n = 0;
+  for (const line of s.split("\n")) {
+    if (n + line.length + 1 > 3980) break;
+    out.push(line);
+    n += line.length + 1;
+  }
+  return out.join("\n") + "\n…";
 }
 
 export function formatNothing() {
@@ -86,7 +95,7 @@ export function formatNothing() {
 export const HELP = [
   "<b>Keel checks war and shipping rumours against live ship tracking.</b>",
   "",
-  "• <b>Forward or paste</b> a rumour that names a ship. I buy its live position from two independent tracking miners on Telegraph, screen it against sanctions lists, fact-check the claim, and reply with a verdict and a receipt for every check.",
+  "• <b>Forward or paste</b> a rumour that names a ship. I buy its live position from tracking miners on Telegraph (two independent operators in the Baltic, one elsewhere), screen it against sanctions lists, fact-check the claim, and reply with a verdict and a receipt for every check.",
   "• In a group: reply to a message with /check, or write <code>/check tanker NAME was hit…</code>",
   "• /watch NAME or IMO — I message you if the ship goes quiet for 3+ hours or turns up somewhere unexpected.",
   "• /unwatch NAME · /watches · /receipts (last checks) · /stats · /about",

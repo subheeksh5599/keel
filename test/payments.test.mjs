@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync } from "node:fs";
+import { mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { Budget, CheckBudget, BudgetError } from "../src/budget.mjs";
@@ -104,4 +104,16 @@ test("a response lost after the paid request was sent keeps its reservation (the
   const r = await new Telegraph({ privateKey: KEY, budget, fetchImpl: node.fetchImpl }).ask({ intent: "X", params: {} });
   assert.equal(r.ok, false);
   assert.equal(budget.todayUsd(), 0.01);
+});
+
+test("a bad cap setting or a damaged spend file never disables the cap", () => {
+  assert.throws(() => new Budget({ dailyCapUsd: Number("2usd") }), /positive number/);
+  assert.throws(() => new CheckBudget(new Budget({ dailyCapUsd: 1 }), NaN), /positive number/);
+  const dir = mkdtempSync(join(tmpdir(), "keel-"));
+  for (const body of ["{}", "null", "not json"]) {
+    const file = join(dir, "spend.json");
+    writeFileSync(file, body);
+    const b = new Budget({ file, dailyCapUsd: 2 });
+    assert.throws(() => b.reserve(0.01), BudgetError);
+  }
 });

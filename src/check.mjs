@@ -103,7 +103,11 @@ export async function runCheck(text, { telegraph, budget, ofac, maxCheckUsd = 0.
   }
 
   // OFAC is matched on every identifier we hold, including the IMO/MMSI a tracker reported for a name-only rumour.
-  const ofacMatch = ofac && shipQuery ? ofac.match({ name: shipName, imo: identity.imo, mmsi: identity.mmsi }) : null;
+  // When other ships share the name, a tracker's IMO may belong to a namesake, so only identifiers from the rumour are used.
+  const trustTracked = sameName === 0;
+  const ofacMatch = ofac && shipQuery
+    ? ofac.match({ name: shipName, imo: trustTracked ? identity.imo : ex.imos[0], mmsi: trustTracked ? identity.mmsi : ex.mmsis[0] })
+    : null;
   const evidence = {
     hasShip: Boolean(shipQuery),
     claims: ex.claims,

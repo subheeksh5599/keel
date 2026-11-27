@@ -109,3 +109,18 @@ test("a big sea is judged by its extent: a ship in the western Mediterranean is 
   const yemen = assess({ claims: ["struck"], places: ["Yemen coast"], fixes: [fix("Quay", 51.94, 4.06, 0, 5)], sanctions: clean, now: NOW });
   assert.equal(yemen.verdict.key, "DISAGREES");
 });
+
+test("a suspect position never yields 'disagrees': sources far apart, or a fix far inland", () => {
+  const apart = assess({ claims: ["struck"], places: ["Red Sea"], fixes: [fix("Quay", 51.94, 4.06, 0, 5), { ...fix("VesselWire", 20.0, 38.5, 0, 6), operator: "VesselWire" }], sanctions: clean, now: NOW });
+  assert.equal(apart.verdict.key, "UNVERIFIED");
+  const inland = assess({ claims: ["struck"], places: ["Persian Gulf"], fixes: [fix("Quay", 33.0, 44.0, 0, 5)], sanctions: clean, now: NOW });
+  assert.equal(inland.verdict.key, "UNVERIFIED");
+});
+
+test("an unreadable or future timestamp is an unknown age, never live", () => {
+  const bad = assess({ claims: ["dark"], fixes: [{ ...fix("Quay", 60.08, 20.94, 18, 5), at: "garbage" }], sanctions: clean, now: NOW });
+  assert.equal(bad.ageMin, null);
+  assert.equal(bad.verdict.key, "UNVERIFIED");
+  const future = assess({ claims: ["dark"], fixes: [{ ...fix("Quay", 60.08, 20.94, 18, 5), at: new Date(NOW.getTime() + 3600e3).toISOString() }], sanctions: clean, now: NOW });
+  assert.equal(future.verdict.key, "UNVERIFIED");
+});

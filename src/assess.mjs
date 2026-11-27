@@ -45,9 +45,12 @@ export function assess(ev) {
   const fixes = (ev.fixes || []).filter((f) => Number.isFinite(f.lat) && Number.isFinite(f.lon));
 
   // 1. Choose the freshest position and judge its age.
-  fixes.sort((a, b) => Date.parse(b.at || 0) - Date.parse(a.at || 0));
+  const t = (f) => { const v = Date.parse(f.at || ""); return Number.isFinite(v) ? v : -Infinity; };
+  fixes.sort((a, b) => t(b) - t(a));
   const best = fixes[0] || null;
-  const ageMin = best?.at ? Math.max(0, (now - Date.parse(best.at)) / 60000) : null;
+  // An unreadable timestamp, or one more than 10 minutes in the future, is an unknown age, and unknown is never live.
+  const rawAge = best ? (now - t(best)) / 60000 : NaN;
+  const ageMin = Number.isFinite(rawAge) && rawAge >= -10 ? Math.max(0, rawAge) : null;
   const stale = ageMin == null || ageMin > STALE_HOURS * 60;
   const fresh = ageMin != null && ageMin <= FRESH_MIN;
 
@@ -93,14 +96,20 @@ export function assess(ev) {
     confidence -= 10;
   }
 
-  // 3. Spoof and bad-data checks on the best fix.
+  // 3. Spoof and bad-data checks on the best fix. Any of these blocks a verdict: a suspect position proves nothing.
+  let suspect = sourcesAgree === false;
+  if (best && ageMin == null && best.at) {
+    reasons.push({ sign: -1, text: "The position's timestamp can't be read, so its age is unknown." });
+  }
   if (best) {
     if (onLand(best)) {
+      suspect = true;
       flags.push("The reported position is far inland: a bad or spoofed position report.");
       reasons.push({ sign: -1, text: "Position falls far inland, which a seagoing ship can't do." });
       confidence -= 30;
     }
     if ((best.speed ?? 0) > MAX_SHIP_KNOTS) {
+      suspect = true;
       flags.push(`Reported speed ${best.speed} kn is impossible for a merchant ship.`);
       confidence -= 25;
     }
@@ -108,7 +117,8 @@ export function assess(ev) {
 
   // 4. Compare the rumour with what tracking can actually show.
   let verdict = VERDICT.UNVERIFIED;
-  const usable = best && !stale;
+  const usable = best && !stale && !suspect;
+  if (best && !stale && suspect) reasons.push({ sign: 0, text: "The position looks wrong (see the flags), so no verdict is drawn from it." });
   const speed = best?.speed ?? null;
   const nav = best?.navStatus || "";
   const placeMismatch = usable ? farFromClaimedPlace(best, ev.places || []) : null;
@@ -137,7 +147,7 @@ export function assess(ev) {
   } else if (usable && (claims.includes("sinking") || claims.includes("aground")) && speed !== null && speed >= UNDERWAY_KNOTS && fresh) {
     verdict = VERDICT.DISAGREES;
     reasons.push({ sign: +1, text: `It is reporting ${speed} kn, making way normally, which a ${claims.includes("sinking") ? "sinking" : "grounded"} ship would not. A transmitter can keep sending after damage, so this is not proof.` });
-  } else if (!usable && claims.includes("dark") && best) {
+  } else if (best && stale && ageMin != null && !suspect && claims.includes("dark")) {
     verdict = VERDICT.CONSISTENT;
     reasons.push({ sign: +1, text: `It has been quiet for ${fmtAge(ageMin)}, which fits the rumour that it went dark.` });
   }
@@ -193,7 +203,7 @@ export function assess(ev) {
 
   // The DISAGREES verdict needs a fresh fix; a single source caps how sure it can be.
   if (verdict === VERDICT.DISAGREES && operators.size < 2) confidence = Math.min(confidence + 10, 70);
-  else if (verdict === VERDICT.DISAGREES) confidence += 15;
+  else if (verdict === VERDICT.DISAGREES && sourcesAgree === true) confidence += 15;
   if (verdict === VERDICT.UNVERIFIED) confidence = Math.min(confidence, 60);
 
   return {
