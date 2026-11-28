@@ -22,7 +22,7 @@
 
 </div>
 
-"Tanker hit and sinking in Hormuz." A post like that moves oil prices within minutes, and a lot of them are wrong. Keel is a Telegram bot you forward the rumour to. It pulls the ship out of the message, **buys the ship's live position from two tracking miners run by different operators**, screens it against sanctions lists (a Telegraph screening miner **and** OFAC's own list, read directly), fact-checks the claim, and replies with a verdict, a 0-100 confidence with its reasons, a map pin, and **the price and a public receipt for every answer it bought**. Every purchase is paid from an escrow balance on the Telegraph testnet. Every receipt is a signal anyone can open, and the node confirms it with a keccak256 commitment.
+"Tanker hit and sinking in Hormuz." A post like that moves oil prices within minutes, and a lot of them are wrong. Keel is a Telegram bot you forward the rumour to. It pulls the ship out of the message, **buys the ship's live position from Telegraph tracking miners** (two run by different operators in the Baltic, where both have coverage; one elsewhere), screens it against sanctions lists (a Telegraph screening miner **and** OFAC's own list, read directly), fact-checks the claim, and replies with a verdict, a 0-100 confidence with its reasons, a map pin, and **the price and a public receipt for every answer it bought**. Every purchase is paid from an escrow balance on the Telegraph testnet. Every receipt is a signal anyone can open, and the node confirms it with a keccak256 commitment.
 
 ```
 A POSITION REPORT ≠ PROOF        ONE SOURCE ≠ AGREEMENT        A FAILED CHECK ≠ A CLEAN BILL
