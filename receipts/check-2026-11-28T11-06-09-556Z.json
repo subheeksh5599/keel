@@ -1,0 +1,748 @@
+{
+  "input": "BREAKING: fast ferry MEGASTAR sinking after an explosion in the Gulf of Finland",
+  "payer": "0x2925d43C1e21888706D8b3b2223050aF14dDAEd4",
+  "kind": "ship",
+  "extracted": {
+    "text": "BREAKING: fast ferry MEGASTAR sinking after an explosion in the Gulf of Finland",
+    "ships": [
+      "MEGASTAR"
+    ],
+    "imos": [],
+    "mmsis": [],
+    "claims": [
+      "sinking",
+      "struck"
+    ],
+    "places": [
+      "Gulf of Finland"
+    ],
+    "media": [],
+    "urls": []
+  },
+  "shipQuery": "MEGASTAR",
+  "shipName": "MEGASTAR",
+  "identity": {
+    "imo": "9773064",
+    "mmsi": "276829000",
+    "name": "MEGASTAR",
+    "callsign": "ESKL"
+  },
+  "evidence": {
+    "hasShip": true,
+    "claims": [
+      "sinking",
+      "struck"
+    ],
+    "places": [
+      "Gulf of Finland"
+    ],
+    "fixes": [
+      {
+        "source": "Quay",
+        "operator": "Quay",
+        "lat": 60.148015,
+        "lon": 24.91477,
+        "speed": 0,
+        "course": 356.8,
+        "at": "2026-11-28T11:04:52.689Z",
+        "navStatus": "under way using engine",
+        "destination": "EEVAN-FIHEL",
+        "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x38dc399db898d685226e7ea2eabebd9e8f67a511b8d9e564779d29e60cd4e159",
+        "region": "Gulf of Finland"
+      },
+      {
+        "source": "VesselWire",
+        "operator": "VesselWire",
+        "lat": 60.148028,
+        "lon": 24.914767,
+        "speed": 0,
+        "course": 356.7,
+        "at": "2026-11-28T11:05:32.757Z",
+        "navStatus": "under way using engine",
+        "destination": "EEVAN-FIHEL",
+        "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x55bd7924c88cffc566320d6ebc0a9e9e8b285a2c7fe4e34e1d37c9d248febb07",
+        "region": "Gulf of Finland"
+      }
+    ],
+    "noData": [],
+    "skipped": [],
+    "sameName": 0,
+    "identity": {
+      "imo": "9773064",
+      "mmsi": "276829000",
+      "name": "MEGASTAR",
+      "callsign": "ESKL"
+    },
+    "sanctions": {
+      "telegraph": {
+        "ok": true,
+        "matched": false,
+        "lists": [
+          "OFAC SDN",
+          "OFAC Consolidated (non-SDN)",
+          "UK Sanctions List (entities only)",
+          "Canada autonomous sanctions (entities only)",
+          "EU Financial Sanctions (entities only)",
+          "US BIS Entity List (export controls)",
+          "US BIS Military End User List (export controls)",
+          "US BIS Denied Persons List (dated standard export-denial orders)",
+          "UK Sanctions List (ships)",
+          "US BIS Entity List (additional primary-row corroborated records)",
+          "Canada autonomous sanctions (November 5 additional entities)",
+          "Canada autonomous sanctions (corroborated ships)",
+          "Canada autonomous sanctions (November 5 Iranian entity amendment)"
+        ],
+        "matches": [],
+        "score": 0,
+        "source": "Sanctions Name Evidence"
+      },
+      "ofac": {
+        "checked": true,
+        "matches": [],
+        "listSize": 1570
+      }
+    },
+    "factCheck": {
+      "ok": true,
+      "verdict": "Unverified",
+      "reasoning": "No usable source evidence was retrieved for a supported assertion. Missing coverage or retrieval failure does not establish falsity.",
+      "source": "FactWire Fact Check"
+    },
+    "media": [],
+    "now": "2026-11-28T11:06:09.526Z"
+  },
+  "result": {
+    "verdict": {
+      "key": "UNVERIFIED",
+      "icon": "❓",
+      "label": "Can't verify from tracking"
+    },
+    "confidence": 60,
+    "reasons": [
+      {
+        "sign": 1,
+        "text": "Position reported under a minute ago."
+      },
+      {
+        "sign": 1,
+        "text": "VesselWire and Quay (different operators) agree on where it is (0.0 km apart, consistent with the time between reports)."
+      },
+      {
+        "sign": 0,
+        "text": "Tracking can show where a ship is and how fast it moves, not whether it was sinking or struck or attacked."
+      },
+      {
+        "sign": 0,
+        "text": "It is stopped (the ship reports \"under way using engine\"). That neither confirms nor rules out damage."
+      },
+      {
+        "sign": 0,
+        "text": "A fact-check miner found no reliable source either way (\"Unverified\")."
+      }
+    ],
+    "flags": [],
+    "best": {
+      "source": "VesselWire",
+      "operator": "VesselWire",
+      "lat": 60.148028,
+      "lon": 24.914767,
+      "speed": 0,
+      "course": 356.7,
+      "at": "2026-11-28T11:05:32.757Z",
+      "navStatus": "under way using engine",
+      "destination": "EEVAN-FIHEL",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x55bd7924c88cffc566320d6ebc0a9e9e8b285a2c7fe4e34e1d37c9d248febb07",
+      "region": "Gulf of Finland"
+    },
+    "ageMin": 0.6128166666666667,
+    "stale": false,
+    "operators": [
+      "VesselWire",
+      "Quay"
+    ],
+    "sourcesAgree": true,
+    "sanctions": "clear-two-sources"
+  },
+  "purchases": [
+    {
+      "label": "Position (Quay)",
+      "ok": true,
+      "status": 200,
+      "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+      "miner": "Quay",
+      "minerId": "8818818",
+      "answer": {
+        "vessel": "MEGASTAR",
+        "speed_knots": 0,
+        "latitude": 60.148015,
+        "longitude": 24.91477,
+        "course_deg": 356.8,
+        "observed_at": "2026-11-28T11:04:52.689Z"
+      },
+      "fieldStatus": {
+        "vessel": "ok",
+        "speed_knots": "ok",
+        "latitude": "ok",
+        "longitude": "ok",
+        "course_deg": "ok",
+        "observed_at": "ok"
+      },
+      "warnings": [],
+      "signal": "0x38dc399db898d685226e7ea2eabebd9e8f67a511b8d9e564779d29e60cd4e159",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x38dc399db898d685226e7ea2eabebd9e8f67a511b8d9e564779d29e60cd4e159",
+      "costUsd": 0.01,
+      "latencyMs": 5669,
+      "error": null,
+      "raw": {
+        "age_minutes": 1,
+        "callsign": "ESKL",
+        "course_deg": 356.8,
+        "destination": "EEVAN-FIHEL",
+        "eta": "11-28 13:30 UTC (as reported by the ship)",
+        "heading_deg": 209,
+        "imo": "9773064",
+        "last_heard": null,
+        "latitude": 60.148015,
+        "longitude": 24.91477,
+        "matched_by": "name",
+        "mmsi": "276829000",
+        "name": "MEGASTAR",
+        "nav_status": "under way using engine",
+        "observed_at": "2026-11-28T11:04:52.689Z",
+        "other_ships_with_same_name": 0,
+        "source": "Live AIS broadcast via aisstream.io terrestrial receivers",
+        "speed_knots": 0,
+        "status": "live",
+        "vessel": "MEGASTAR"
+      },
+      "verified": true
+    },
+    {
+      "label": "Fact-check",
+      "ok": true,
+      "status": 200,
+      "intent": "FACT_CHECK_GENERAL",
+      "miner": "FactWire Fact Check",
+      "minerId": "7420",
+      "answer": {
+        "claim": "BREAKING: fast ferry MEGASTAR sinking after an explosion in the Gulf of Finland",
+        "verdict": "Unverified",
+        "reasoning": "No usable source evidence was retrieved for a supported assertion. Missing coverage or retrieval failure does not establish falsity.",
+        "sources": null
+      },
+      "fieldStatus": {
+        "claim": "ok",
+        "verdict": "ok",
+        "reasoning": "ok",
+        "sources": "missing"
+      },
+      "warnings": [
+        "The response does not include: URLs or names of the sources the answer cites"
+      ],
+      "signal": "0xeb2af8d7aacc481af7d6477f7e079eee1fa542b12658e9592885013244535966",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xeb2af8d7aacc481af7d6477f7e079eee1fa542b12658e9592885013244535966",
+      "costUsd": 0.01,
+      "latencyMs": 8695,
+      "error": null,
+      "raw": {
+        "answer": "Unverified. No usable source evidence was retrieved for a supported assertion. Missing coverage or retrieval failure does not establish falsity.",
+        "as_of": "2026-11-28T11:05:57.041Z",
+        "assessment_method": "Deterministic source retrieval and complete-assertion parsing; no model-generated facts, labels or confidence.",
+        "claim": "BREAKING: fast ferry MEGASTAR sinking after an explosion in the Gulf of Finland",
+        "corroboration": "not_established_for_entire_claim",
+        "evidence": [],
+        "intent": "FACT_CHECK_GENERAL",
+        "primary_sentence_match": false,
+        "reasoning": "No usable source evidence was retrieved for a supported assertion. Missing coverage or retrieval failure does not establish falsity.",
+        "retrieval_errors": [],
+        "retrieval_version": "source-grounded-v18-complete-conjunctions",
+        "scope": "Explicit corroborated publication metadata, dated Nobel awards, Nobel-linked person birth/death periods, completed age at death and exact-date historical life/age with a closed lifespan, chemical-element identity/symbol/atomic-number assertions and supported planetary-order/size/naming/temperature/moon-count grammars; up to two complete supported assertions joined conjunctively. Other claims receive attributed context, not a lexical truth verdict.",
+        "source_unit_discrepancies": [],
+        "sources": [],
+        "summary": "Unverified. No usable source evidence was retrieved for a supported assertion. Missing coverage or retrieval failure does not establish falsity.",
+        "unresolved_field_comparisons": [],
+        "verdict": "Unverified"
+      },
+      "verified": true
+    },
+    {
+      "label": "Position (VesselWire)",
+      "ok": true,
+      "status": 200,
+      "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+      "miner": "VesselWire Verbatim AIS Reports",
+      "minerId": "751084",
+      "answer": {
+        "vessel": "276829000",
+        "speed_knots": 0,
+        "latitude": 60.148028,
+        "longitude": 24.914767,
+        "course_deg": 356.7,
+        "observed_at": "2026-11-28T11:05:32.757Z"
+      },
+      "fieldStatus": {
+        "vessel": "ok",
+        "speed_knots": "ok",
+        "latitude": "ok",
+        "longitude": "ok",
+        "course_deg": "ok",
+        "observed_at": "ok"
+      },
+      "warnings": [],
+      "signal": "0x55bd7924c88cffc566320d6ebc0a9e9e8b285a2c7fe4e34e1d37c9d248febb07",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x55bd7924c88cffc566320d6ebc0a9e9e8b285a2c7fe4e34e1d37c9d248febb07",
+      "costUsd": 0.01,
+      "latencyMs": 4299,
+      "error": null,
+      "raw": {
+        "ais_positioning_system_mode": "UTC second available",
+        "ais_timestamp_scope": "Source AIS EPFS UTC-second/mode field, not a complete date or the provider location-record timestamp.",
+        "ais_utc_second": 31,
+        "as_of": "2026-11-28T11:06:01.472Z",
+        "attribution": "Source: Fintraffic / digitraffic.fi, licence CC 4.0 BY (https://creativecommons.org/licenses/by/4.0/). Modified: AIS unavailable values normalized, units converted, and source-reported claims assessed.",
+        "beam_at_least_m": null,
+        "beam_m": 36,
+        "call_sign": "ESKL",
+        "claim": {
+          "reason": "This predicate is not supported by the available AIS comparison rules; no verification was inferred.",
+          "scope": "Fintraffic AIS report only",
+          "text": "The request must carry these exact input values, in the endpoint's own fields: vessel=\"276829000\".",
+          "verdict": "Unverifiable"
+        },
+        "confidence": 0.95,
+        "confidence_scope": "Compatibility field: completeness/freshness policy, not probability of independent truth.",
+        "course_over_ground_deg": 357,
+        "course_over_ground_degrees": 356.7,
+        "destination": "EEVAN-FIHEL",
+        "dimensions_scope": "Sum of reported distances from the AIS position reference point; not independently measured hull dimensions.",
+        "draught_at_least_m": null,
+        "draught_m": 7,
+        "eta_scope": "Self-reported AIS arrival estimate, not an observed arrival or guaranteed schedule; AIS supplies no year.",
+        "freshness": "fresh",
+        "freshness_limit_seconds": 900,
+        "heading_deg": 209,
+        "imo": 9773064,
+        "in_coverage": true,
+        "independently_verified": false,
+        "intent": "VESSEL_TELEMETRY_VERIFY_GENERAL",
+        "latitude": 60.148028,
+        "length_at_least_m": null,
+        "length_m": 213,
+        "longitude": 24.914767,
+        "metadata_age_seconds": 325,
+        "metadata_available": true,
+        "metadata_error": null,
+        "metadata_freshness": "fresh",
+        "metadata_freshness_limit_seconds": 21600,
+        "metadata_observed_at": "2026-11-28T11:00:36.472Z",
+        "metadata_source_url": "https://meri.digitraffic.fi/api/ais/v1/vessels/276829000",
+        "mmsi": 276829000,
+        "navigational_status": "under way using engine",
+        "navigational_status_code": 0,
+        "observation_age_seconds": 28.715,
+        "observed_at": "2026-11-28T11:05:32.757Z",
+        "position_accuracy_flag": true,
+        "position_fix_scope": "Static AIS metadata device type, not a current working fix, satellite count, measured accuracy or independent position verification.",
+        "position_fix_type": "GPS",
+        "position_fix_type_code": 1,
+        "raim_flag": false,
+        "rate_of_turn_deg_per_min": 0,
+        "rate_of_turn_direction": "not turning",
+        "rate_of_turn_encoding": "sensor_encoded",
+        "rate_of_turn_scope": "Approximate decoding of the quantized, source-reported AIS ROT code; special +/-127 numeric thresholds are not asserted.",
+        "raw_ais": {
+          "callSign": "ESKL",
+          "cog": 356.7,
+          "draught": 70,
+          "eta": 779102,
+          "heading": 209,
+          "imo": 9773064,
+          "navStat": 0,
+          "posAcc": true,
+          "posType": 1,
+          "raim": false,
+          "referencePointA": 23,
+          "referencePointB": 190,
+          "referencePointC": 18,
+          "referencePointD": 18,
+          "rot": 0,
+          "shipType": 60,
+          "sog": 0,
+          "timestamp": 31
+        },
+        "reported_eta": {
+          "complete": true,
+          "day": 28,
+          "hour": 13,
+          "minute": 30,
+          "month": 11,
+          "text": "month 11, day 28, 13:30 UTC (year not transmitted)",
+          "time_zone": "UTC",
+          "year": null
+        },
+        "ship_type": "passenger ship",
+        "source": "Fintraffic Digitraffic marine AIS",
+        "source_url": "https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=276829000",
+        "speed_kmh": 0,
+        "speed_knots": 0,
+        "speed_mps": 0,
+        "speed_over_ground_knots": 0,
+        "summary": "Unverifiable against AIS only. This predicate is not supported by the available AIS comparison rules; no verification was inferred. MEGASTAR (MMSI 276829000): AIS position 60.148028, 24.914767; 0 knots (0 km/h); reported status under way using engine; course 356.7 degrees; reported destination EEVAN-FIHEL; observed 2026-11-28T11:05:32.757Z (fresh). Evidence: Fintraffic / digitraffic.fi (CC BY 4.0), https://meri.digitraffic.fi/api/ais/v1/locations?mmsi=276829000. AIS reports are not independent vessel verification.",
+        "verdict": "Unverifiable",
+        "verification_scope": "Single-provider AIS report; AIS may be inaccurate or spoofed.",
+        "vessel_name": "MEGASTAR",
+        "warnings": []
+      },
+      "verified": true
+    },
+    {
+      "label": "Sanctions screen",
+      "ok": true,
+      "status": 200,
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "miner": "Sanctions Name Evidence",
+      "minerId": "710637",
+      "answer": {
+        "name": "MEGASTAR",
+        "matched": false,
+        "matches": null,
+        "lists": [
+          "OFAC SDN",
+          "OFAC Consolidated (non-SDN)",
+          "UK Sanctions List (entities only)",
+          "Canada autonomous sanctions (entities only)",
+          "EU Financial Sanctions (entities only)",
+          "US BIS Entity List (export controls)",
+          "US BIS Military End User List (export controls)",
+          "US BIS Denied Persons List (dated standard export-denial orders)",
+          "UK Sanctions List (ships)",
+          "US BIS Entity List (additional primary-row corroborated records)",
+          "Canada autonomous sanctions (November 5 additional entities)",
+          "Canada autonomous sanctions (corroborated ships)",
+          "Canada autonomous sanctions (November 5 Iranian entity amendment)"
+        ],
+        "match_score": 0
+      },
+      "fieldStatus": {
+        "name": "ok",
+        "matched": "ok",
+        "matches": "missing",
+        "lists": "ok",
+        "match_score": "ok"
+      },
+      "warnings": [
+        "The response does not include: Matching sanctions-list entries",
+        "Some additional information was omitted from this response."
+      ],
+      "signal": "0xf52440d3775f4dbd0211320da51e99c4fe316f35eb6635d8ba46730e83dd43e3",
+      "signalUrl": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xf52440d3775f4dbd0211320da51e99c4fe316f35eb6635d8ba46730e83dd43e3",
+      "costUsd": 0.01,
+      "latencyMs": 13911,
+      "error": null,
+      "raw": {
+        "as_of": "2026-09-22",
+        "attribution": "US Treasury OFAC public data. Contains public sector information licensed under the Open Government Licence v3.0. Contains information licensed under the Open Government Licence – Canada. European Union, 2026, European Commission DG FISMA, CC BY 4.0 reuse policy. EU entity-only normalized extraction from the Financial Sanctions Database; changes indicated. US Department of Commerce ITA Consolidated Screening List and BIS Entity, Military End User and Denied Persons Lists public data; literal primary-table corroborated fields.",
+        "checked_at": "2026-11-28T11:05:56.976Z",
+        "confidence": 0.95,
+        "limits": [
+          "Ordinary exact and explicit dotted-initial candidates are combined before considering fuzzy matches. Different lists and records remain separate name alerts, never inferred identical entities.",
+          "Equal-similarity results retain source precedence, then prefer primary names, explicitly strong aliases, ungraded aliases, and explicitly weak aliases within each list. This is record presentation, not identity adjudication or alias reclassification.",
+          "Additional Canadian entities use literal current XML primary names and numbered SOR/2026-233 amendment items; exact/token-order only. Combined HTML legal items are segmented only at explicit published item numbers. No new aliases, individuals or ships. Stale PDF and Justice consolidation do not corroborate these November 5 additions.",
+          "Additional Iranian entities use numbered November 5 Canadian amendment items 242-252, English XML-primary agreement and literal French legal names linked by the same published item numbers. Legal Schedule 1 Part 1 takes precedence over XML Part 1.1. Shifted XML French fields are not admitted; French item 246 is excluded due unresolved published spelling discrepancy. No translation, ownership or identity is inferred.",
+          "Name similarity is not identity confirmation.",
+          "Non-SDN restrictions differ from SDN asset blocking.",
+          "UN and Australian lists are not checked; UK covers entities and CSV-corroborated ships; Canadian coverage includes entities and item/IMO/name-corroborated ships; EU coverage is entities only. UK individuals are excluded.",
+          "EU names are literal XML fields corroborated by CSV entry and name IDs, exact or token-order only; individual records are excluded. The EU consolidated list is administrative; adopted Official Journal texts are authoritative.",
+          "Canadian aliases are limited to PDF-corroborated single fields, exact or token-order only; compound alias fields are not checked. Its consolidated list is administrative, not law.",
+          "BIS Entity List names use literal ITA JSON values corroborated by CSV and the BIS legal table, exact or token-order only. ITA-reported licensing metadata is separate from quoted primary BIS legal-table rows; primary legal text takes precedence where they differ. Export licensing restrictions differ from asset blocking; Entity List parties can include persons and unspecified party types remain null. Military End User List names are literal ITA values corroborated in the primary BIS Supplement 7 table, exact/token-order only. Only explicitly listed subordinate institutions are included; ownership is not inferred. ITA licensing and citation metadata is separately attributed; primary table cells are quoted verbatim, including blanks. BIS DPL coverage is limited to literal primary names with explicit start/expiry dates, Standard denial, notice-only remarks whitelist and primary BIS page/CSV plus ITA JSON/CSV agreement. Date intervals are checked per request in UTC, inclusive; no order time-of-day, suspended terms, identity, aliases or party types are inferred. Other Commerce/State CSL lists are not checked. CSL file dates are HTTP Last-Modified, not individual designation dates.",
+          "Ownership-based sanctions and unlisted subsidiaries are not checked.",
+          "Additional OFAC formatted names use literal enhanced XML values corroborated in advanced XML, exact or token-order only. No unlisted transliteration or phonetic expansion is guessed.",
+          "UK ship coverage uses literal XML names/aliases and IMO numbers corroborated by CSV; ship names match only exact/token-order paths. Vessel identity and unlisted former names are not inferred; each published restriction is quoted separately from SDN blocking.",
+          "Two additional BIS Entity List records use literal published primary names with full primary-name agreement before an explicit a.k.a. boundary, independent ITA JSON/CSV and BIS address/city corroboration. Ampersand/conjunction comparison is admission-only; aliases and unspecified party types are not inferred. All names match exact/token-order only.",
+          "Canadian ship coverage is limited to literal administrative-list primary names with full item/IMO/name agreement in dated SOR/2014-58 Schedule 1.1. Duplicate legal item numbers, item/IMO/name disagreements and uncorroborated rows are excluded. Exact/token-order only; no aliases, owner/operator, vessel identity or specific prohibitions are inferred. Administrative list publication and legal consolidation dates are separately disclosed.",
+          "Dotted-initial compaction is punctuation normalization, not a new published alias or identity confirmation; a weak published alias remains weak."
+        ],
+        "lists": [
+          "OFAC SDN",
+          "OFAC Consolidated (non-SDN)",
+          "UK Sanctions List (entities only)",
+          "Canada autonomous sanctions (entities only)",
+          "EU Financial Sanctions (entities only)",
+          "US BIS Entity List (export controls)",
+          "US BIS Military End User List (export controls)",
+          "US BIS Denied Persons List (dated standard export-denial orders)",
+          "UK Sanctions List (ships)",
+          "US BIS Entity List (additional primary-row corroborated records)",
+          "Canada autonomous sanctions (November 5 additional entities)",
+          "Canada autonomous sanctions (corroborated ships)",
+          "Canada autonomous sanctions (November 5 Iranian entity amendment)"
+        ],
+        "match_score": 0,
+        "matched": false,
+        "matches": [],
+        "method": "Exact-path union before fuzzy search; NFKD casefold, accent removal, unordered tokens, bidirectional explicit dotted-initial punctuation compaction; bounded Levenshtein with conservative character-count pruning and equal-boundary trimming only without a score-1 exact hit",
+        "name": "MEGASTAR",
+        "snapshot_sha256": "d344ab4c2fa2da7e0b14d4cda8a3288c8b0dbcf911d72e0b5abff56c25a7ee3d",
+        "source": [
+          {
+            "additional_published_names": 5602,
+            "alias_corroboration_sha256": "b228a6761aad6f666386202419d97caa1fc75529c9708d937d5e8febb067fd9d",
+            "alias_corroboration_url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/ALT.CSV",
+            "alias_csv_discrepancies": [],
+            "corroboration_sha256": "7f43332dae0d1b78ce44c31692d87a3c66e4075bcd97e36d3f18585572ff55b8",
+            "corroboration_url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN.CSV",
+            "fetched_at": "2026-11-09T23:23:56.906261+00:00",
+            "license": "US federal government work, 17 USC 105",
+            "name": "OFAC SDN",
+            "name_scope": "Literal enhanced formatted names corroborated by entry/script/quality in advanced XML; additional names exact/token-order only.",
+            "name_sources": [
+              {
+                "fetched_at": "2026-11-09T23:26:09.679402+00:00",
+                "name": "OFAC enhanced XML literal names",
+                "published_at": "2026-11-09",
+                "sha256": "b74d80270db03ff92e5c23da930ac9f3f3aaafb6609c6cec3ca08fd8ef14081c",
+                "source_url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN_ENHANCED.XML"
+              },
+              {
+                "fetched_at": "2026-11-09T23:26:16.911767+00:00",
+                "name": "OFAC advanced XML corroboration",
+                "published_at": "2026-11-09",
+                "sha256": "e56b4de609bdd7df6e570852dcee25c73ad0b478e3e6239c1677b359bcf0b9bc",
+                "source_url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN_ADVANCED.XML"
+              }
+            ],
+            "published_at": "2026-11-09",
+            "records": 19563,
+            "sha256": "329a9b9c6e554518639e979c28c6867d00b72b4175352dd8869766092bb3ed0c",
+            "source_url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN.XML",
+            "update_witness": {
+              "change": "Published strong alias replaced; removed alias no longer indexed as a current literal name.",
+              "entry_id": "58138",
+              "published_at": "2026-11-09",
+              "sha256": "3ca75a390b30bff9f710fb0bfab68c42acce4c489c2d0bc76ad96e9bd8261353",
+              "source_url": "https://ofac.treasury.gov/recent-actions/20261109"
+            }
+          },
+          {
+            "additional_published_names": 55,
+            "fetched_at": "2026-11-09T01:07:35.670284+00:00",
+            "license": "US federal government work, 17 USC 105",
+            "name": "OFAC Consolidated (non-SDN)",
+            "name_scope": "Literal enhanced formatted names corroborated by entry/script/quality in advanced XML; additional names exact/token-order only.",
+            "name_sources": [
+              {
+                "fetched_at": "2026-11-09T01:07:40.108651+00:00",
+                "name": "OFAC non-SDN enhanced XML literal names",
+                "published_at": "2026-11-04",
+                "sha256": "ddc83d35bc835d7b1b3d677ff7714398adc10e535cd1bc70aa9b7204fb05f968",
+                "source_url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/CONS_ENHANCED.XML"
+              },
+              {
+                "fetched_at": "2026-11-09T01:07:44.719462+00:00",
+                "name": "OFAC non-SDN advanced XML corroboration",
+                "published_at": "2026-11-04",
+                "sha256": "599771b4fb7363f5f0be0009372bbe23f2e3d39a361ad7d624564656c9c407a0",
+                "source_url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/CONS_ADVANCED.XML"
+              }
+            ],
+            "published_at": "2026-11-04",
+            "records": 486,
+            "sha256": "e5d79f7882910b6efce71c682c3983c9fe6179d91427e3d47d9a829283cc5625",
+            "source_url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/CONSOLIDATED.XML"
+          },
+          {
+            "attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
+            "excluded_non_entities": 4753,
+            "fetched_at": "2026-11-03T17:56:41.813567+00:00",
+            "license": "Open Government Licence v3.0",
+            "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+            "name": "UK Sanctions List (entities only)",
+            "published_at": "2026-11-03",
+            "records": 1667,
+            "sha256": "b9edf715b3eae03c5e6ea0f6e060ebb19a6b3ebba06d6b98d038f5d12376d4ab",
+            "source_url": "https://sanctionslist.fcdo.gov.uk/docs/UK-Sanctions-List.xml"
+          },
+          {
+            "attribution": "Contains information licensed under the Open Government Licence – Canada.",
+            "corroboration_url": "https://www.international.gc.ca/world-monde/assets/pdfs/international_relations-relations_internationales/sanctions/sema-lmes.pdf",
+            "fetched_at": "2026-11-03T17:58:32.840855+00:00",
+            "license": "Open Government Licence - Canada v2.0",
+            "license_url": "https://open.canada.ca/en/open-government-licence-canada",
+            "name": "Canada autonomous sanctions (entities only)",
+            "note": "Administrative consolidated list, not a regulation; consult relevant law for restrictions.",
+            "published_at": "2026-09-22",
+            "records": 1450,
+            "scope": "PDF-corroborated entity primary names and 578 unsplit published aliases; individuals, ships and compound alias fields excluded.",
+            "sha256": "61a9064720d9f35884ead9387158b708882d63c615981034cb9557d038d55bcf",
+            "source_url": "https://www.international.gc.ca/world-monde/assets/office_docs/international_relations-relations_internationales/sanctions/sema-lmes.xml"
+          },
+          {
+            "attribution": "European Union, 2026, European Commission DG FISMA. Entity-only normalized extraction from the Financial Sanctions Database; changes indicated.",
+            "corroboration_sha256": "1fc5fcff6ee1777ec7f00db7d1c672ff41be7d12cdd32bee514047b6cede4868",
+            "corroboration_url": "https://webgate.ec.europa.eu/fsd/fsf/public/files/csvFullSanctionsList/content?token=dG9rZW4tMjAxNw",
+            "excluded_non_entities": 4490,
+            "fetched_at": "2026-11-04T00:55:16.577726+00:00",
+            "license": "Commission document reuse policy / CC BY 4.0",
+            "license_url": "https://commission.europa.eu/legal-notice_en",
+            "name": "EU Financial Sanctions (entities only)",
+            "published_at": "2026-10-23",
+            "records": 1779,
+            "regulatory_note": "Administrative consolidated financial sanctions list; adopted Official Journal texts are authoritative.",
+            "scope": "Enterprise-classified entities only. Literal XML names corroborated by CSV ID/name fields; exact or token-order only. Individuals excluded.",
+            "sha256": "636800c3e494b2ef8934f51f5e23c914a6208a383ac850e674b1b35a7d49d34f",
+            "source_url": "https://webgate.ec.europa.eu/fsd/fsf/public/files/xmlFullSanctionsList_1_1/content?token=dG9rZW4tMjAxNw"
+          },
+          {
+            "attribution": "US Department of Commerce, ITA Consolidated Screening List; BIS Entity List. Literal names; restricted to legal-table corroborated fields.",
+            "corroboration_sha256": "f9bae754537e7f61fdc954ed8d6c6075c6e7ebf6ed38746bc96eb076920ce7a9",
+            "corroboration_url": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+            "date_basis": "HTTP Last-Modified of official CSL JSON and CSV, not each designation date",
+            "fetched_at": "2026-11-04T05:58:37.990559+00:00",
+            "legal_source_sha256": "d1910606b3ea48fb8ce8d2bccc375ef7aef54c348ce012a0129a6009efea7168",
+            "legal_source_url": "https://www.bis.gov/regulations/ear/744#supplement-4-744",
+            "license": "US federal government work, 17 USC 105",
+            "name": "US BIS Entity List (export controls)",
+            "published_at": "2026-11-04",
+            "records": 3349,
+            "scope": "BIS Entity List parties only, exact/token-order literal names; unspecified party types remain null. Export licensing restrictions differ from asset blocking. ITA-reported metadata is distinguished from literal primary BIS legal-table fields; discrepancies disclosed without an invented legal conclusion.",
+            "sha256": "862ca9a7498828434c32fb3b5117a2680f4e79e97947898554e74d8acadfbc90",
+            "source_url": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.json"
+          },
+          {
+            "corroboration_sha256": "e0abf12c6d4241b1a7f3375b2ef60086026277b0618a93a034eea50e1971bf24",
+            "corroboration_url": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+            "date_basis": "HTTP Last-Modified of CSL JSON, not an individual designation date",
+            "fetched_at": "2026-11-09T03:16:04.589153+00:00",
+            "legal_source_sha256": "fbb37353801d0ae1ce27087ab4cf95f14b849abc9b30941c060175777c8da700",
+            "legal_source_url": "https://www.bis.gov/regulations/ear/744#supplement-7-744",
+            "license": "US federal government work, 17 USC 105(a)",
+            "name": "US BIS Military End User List (export controls)",
+            "published_at": "2026-11-09",
+            "records": 70,
+            "scope": "Literal ITA primary/alias names corroborated in current primary BIS Supplement 7 table; exact/token-order only. Explicitly listed subordinate institutions only, never inferred ownership. Unspecified party types remain null.",
+            "sha256": "04e9b230a522c9d8efc7937f05215a93c243ef254d6cfe3353c8f232a450bf8a",
+            "source_url": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.json"
+          },
+          {
+            "admitted_remarks": [
+              "",
+              "ADDITION, F.R. NOTICE ADDED",
+              "F.R. NOTICE ADDED",
+              "FEDERAL REGISTER NOTICE ADDED",
+              "FEDERAL REGISTER NOTICE UPDATED",
+              "FR NOTICE ADDED",
+              "FR NOTICE UPDATED",
+              "STANDARD ORDER"
+            ],
+            "corroboration_sha256": "32cadf19a0483e51b39579fd9bdec05395c9dd6be3fabb1589377cb375d57bd3",
+            "corroboration_url": "https://media.bis.gov/sites/default/files/dpl_10232026%20%2810-27-update%29.csv",
+            "date_basis": "Primary BIS page Last updated on; not an individual order date. Linked CSV filename indicates 2026-10-27 update.",
+            "fetched_at": "2026-11-09T05:12:39.208106+00:00",
+            "ita_mirror_sha256": "7f3c0b4a7086af73e2fc243c481ddf7c8169c8a50dacc8042b373dbe9d7bd39e",
+            "ita_mirror_url": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.json",
+            "license": "US federal government work, 17 USC 105(a)",
+            "name": "US BIS Denied Persons List (dated standard export-denial orders)",
+            "published_at": "2026-11-03",
+            "records": 252,
+            "scope": "Only literal primary names with explicit currently effective start/end dates, Standard denial, conservative notice-only CSL remarks whitelist, and complete BIS page/CSV plus ITA JSON/CSV agreement. Exact/token-order only; no inferred aliases or persons/companies. Expired, undated, nonstandard, suspended or other ambiguous remarks are excluded.",
+            "sha256": "66a8a0b662a4ba3eb488b61df9f20996f6f29d4e8b08fe176110e9751a8a0681",
+            "source_url": "https://www.bis.gov/licensing/end-user-guidance/denied-persons-list-dpl"
+          },
+          {
+            "attribution": "Contains public sector information licensed under the Open Government Licence v3.0.",
+            "corroboration_sha256": "f7961683dc54300b448aee60f43b1fbffc0d3064ae91253f2ec0d3a8edb4fc8c",
+            "corroboration_url": "https://sanctionslist.fcdo.gov.uk/docs/UK-Sanctions-List.csv",
+            "date_basis": "Latest LastUpdated designation date in the fetched XML, not retrieval date",
+            "fetched_at": "2026-11-09T18:17:16.760378+00:00",
+            "license": "Open Government Licence v3.0",
+            "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+            "name": "UK Sanctions List (ships)",
+            "published_at": "2026-11-03",
+            "records": 683,
+            "scope": "CSV-corroborated literal ship names/aliases, IMO numbers and designation/restriction facts; exact/token-order only. No owner/operator or individual data; no guessed aliases or IMO-to-name request conversion.",
+            "sha256": "b9edf715b3eae03c5e6ea0f6e060ebb19a6b3ebba06d6b98d038f5d12376d4ab",
+            "source_url": "https://sanctionslist.fcdo.gov.uk/docs/UK-Sanctions-List.xml"
+          },
+          {
+            "corroboration_sha256": "42a51d11fc6647df75939ebc179fc9098a6e0d5b1956893bf164061e7eb8ace5",
+            "corroboration_url": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+            "date_basis": "CSL JSON HTTP Last-Modified, not a designation date",
+            "fetched_at": "2026-11-09T19:36:48.203798+00:00",
+            "legal_source_sha256": "21ccb05c3157a4858c080a65d0ce9e3bc1c141c566cb8f0fbab58b342ec67b07",
+            "legal_source_url": "https://www.bis.gov/regulations/ear/744#supplement-4-744",
+            "license": "US federal government work, 17 USC 105(a)",
+            "name": "US BIS Entity List (additional primary-row corroborated records)",
+            "published_at": "2026-11-09",
+            "records": 2,
+            "scope": "Two additional Entity List records, three literal published names. Primary-name agreement before explicit a.k.a. boundary plus independent address/city corroboration. Ampersand/conjunction comparison is admission-only, not runtime expansion. No aliases, party types or legal eligibility inferred.",
+            "sha256": "29c0912172a9c7aa3ae78b3ceea475eb909e48de011fee1807266bc7efb952bf",
+            "source_url": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.json"
+          },
+          {
+            "attribution": "Contains information licensed under the Open Government Licence – Canada.",
+            "corroboration_sha256": "a566db9824c55c0f74e940874bc6b66f1efb7b8f2430e2d69c28c1d326097470",
+            "corroboration_url": "https://www.international.gc.ca/world-monde/international_relations-relations_internationales/sanctions/russia_regulations-reglement_russie5.aspx?lang=eng",
+            "date_basis": "Current consolidated-list page says updated November 5, 2026; HTTP November 9 is retrieval/export modification, not legal designation date.",
+            "fetched_at": "2026-11-09T23:50:35.952807+00:00",
+            "license": "Open Government Licence - Canada v2.0",
+            "license_url": "https://open.canada.ca/en/open-government-licence-canada",
+            "name": "Canada autonomous sanctions (November 5 additional entities)",
+            "published_at": "2026-11-05",
+            "records": 38,
+            "scope": "38 literal entity primaries corroborated by numbered SOR/2026-233 items 862-899, including explicit item-number segmentation of combined HTML li elements. Exact/token-order only. No individuals, ships, generated names or aliases.",
+            "sha256": "d44c33444e0a10f0166e4b962ed7abc42582aa1678768cafd352bcf0740035b4",
+            "source_url": "https://www.international.gc.ca/world-monde/assets/office_docs/international_relations-relations_internationales/sanctions/sema-lmes.xml"
+          },
+          {
+            "attribution": "Contains information licensed under the Open Government Licence – Canada.",
+            "corroboration_sha256": "9781fa6e0cbc007b800fb9c583e19825ada9e8bd6517588109796792bbbf6d43",
+            "corroboration_url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2014-58/FullText.html",
+            "date_basis": "List publisher states last updated November 5, 2026; XML HTTP Last-Modified is November 10, not a legal designation date.",
+            "fetched_at": "2026-11-12T00:47:40.193364+00:00",
+            "law_current_to": "2026-10-19",
+            "legal_source_sha256": "9781fa6e0cbc007b800fb9c583e19825ada9e8bd6517588109796792bbbf6d43",
+            "legal_source_url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2014-58/FullText.html",
+            "license": "Open Government Licence - Canada v2.0",
+            "license_url": "https://open.canada.ca/en/open-government-licence-canada",
+            "name": "Canada autonomous sanctions (corroborated ships)",
+            "published_at": "2026-11-05",
+            "records": 667,
+            "scope": "Only literal XML vessel primary names with full item/IMO/name agreement in fetched SOR/2014-58 Schedule 1.1. Exact/token-order matching only. Dated administrative snapshot, not current sanctions clearance or confirmed vessel identity. Uncorroborated rows excluded.",
+            "sha256": "6768368227404852f42514db78ade4fcbf0f9a9dea86a96eeaa42f24787b4052",
+            "source_url": "https://www.international.gc.ca/world-monde/assets/office_docs/international_relations-relations_internationales/sanctions/sema-lmes.xml"
+          },
+          {
+            "administrative_license_url": "https://open.canada.ca/en/open-government-licence-canada",
+            "administrative_source_sha256": "6768368227404852f42514db78ade4fcbf0f9a9dea86a96eeaa42f24787b4052",
+            "administrative_source_url": "https://www.international.gc.ca/world-monde/assets/office_docs/international_relations-relations_internationales/sanctions/sema-lmes.xml",
+            "attribution": "Contains information licensed under the Open Government Licence – Canada.",
+            "corroboration_sha256": "4ef8c3784fe2168db62e0d7c49c6485b1c77e14e15845be1431d79594a662579",
+            "corroboration_url": "https://www.international.gc.ca/world-monde/international_relations-relations_internationales/sanctions/iran_regulations-reglements12.aspx?lang=fra",
+            "date_basis": "Global Affairs Canada Iran page explicitly records amendment entered into force November 5, 2026; legal-page modification date is November 6.",
+            "effective_date_witness_sha256": "b08f7e9f086276c5f89d119377cebfd8c6e64e6173a199128475d553958fac9e",
+            "effective_date_witness_url": "https://www.international.gc.ca/world-monde/international_relations-relations_internationales/sanctions/iran.aspx?lang=eng",
+            "fetched_at": "2026-11-12T20:26:32.566123+00:00",
+            "legal_reproduction_notice": "Unofficial literal name extraction; numbered source items retained. Not an official version of the regulation.",
+            "license": "Reproduction of Federal Law Order SI/97-5 (legal text); Open Government Licence - Canada v2.0 (administrative data)",
+            "license_url": "https://laws-lois.justice.gc.ca/eng/regulations/SI-97-5/page-1.html",
+            "name": "Canada autonomous sanctions (November 5 Iranian entity amendment)",
+            "published_at": "2026-11-05",
+            "records": 11,
+            "scope": "11 entity English primaries and 9 distinct French legal names from numbered amendment items 242-252; exact/token-order only. French item 246 excluded due source spelling disagreement. Legal Schedule 1 Part 1 controls over XML Part 1.1 metadata. Shifted XML French translations are not aliases; literal numbered French legal names are used.",
+            "sha256": "42aa8b6d61fae44fa2131628652f43b0d233c37613c0224f9f3fea964a758fd9",
+            "source_url": "https://www.international.gc.ca/world-monde/international_relations-relations_internationales/sanctions/iran_regulations-reglements12.aspx?lang=eng"
+          }
+        ],
+        "status": "ok",
+        "summary": "MEGASTAR: no name match at threshold 0.88 in the dated OFAC SDN/non-SDN, UK entity/ship, Canadian entity/corroborated-ship and November 5 Iranian bilingual legal-name, EU entity and BIS Entity/MEU and dated standard DPL snapshots, including two additional primary-row corroborated BIS Entity List records. Not sanctions clearance; UN/Australia, UK/Canada/EU individuals, uncorroborated Canadian ships and ownership are not checked. Source dates supplied below.",
+        "threshold": 0.88,
+        "total_matches": 0,
+        "truncated": false
+      },
+      "verified": true
+    }
+  ],
+  "totalUsd": 0.04,
+  "elapsedMs": 14700,
+  "checkedAt": "2026-11-28T11:06:09.526Z"
+}

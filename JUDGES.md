@@ -1,5 +1,7 @@
 # Keel: the judges' checklist
 
+Demo video (about 2 minutes): https://youtu.be/2_0ge0ViQG0
+
 Each line is something you can check yourself, and what you should see. Nothing here needs a wallet except the last section.
 
 ## In Telegram (two minutes, nothing to install)
@@ -25,7 +27,7 @@ Times vary with the testnet: a check usually takes 10 to 30 seconds.
 | Command | Expected |
 |---|---|
 | `npm ci && npm test` | `pass 68`, `fail 0`, no network |
-| `node scripts/verify-receipts.mjs` | `signals 68 · verified 68 · not found 0 · mismatched 0` (more as receipts are added) |
+| `node scripts/verify-receipts.mjs` | `signals 100 · verified 100 · not found 0 · mismatched 0` (more as receipts are added) |
 | `node scripts/dashboard.mjs` | Rebuilds `docs/index.html`, the receipts dashboard |
 
 ## With a funded testnet key (spends a few cents of test USDC)

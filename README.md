@@ -7,12 +7,18 @@
 [![test](https://github.com/subheeksh5599/keel/actions/workflows/test.yml/badge.svg)](https://github.com/subheeksh5599/keel/actions/workflows/test.yml)
 ![Tests](https://img.shields.io/badge/tests-68%20passing-2ecc71)
 [![Bot](https://img.shields.io/badge/Telegram-%40keel567__bot-26a5e4?logo=telegram)](https://t.me/keel567_bot)
-[![Receipts](https://img.shields.io/badge/receipts-68%2F68%20verified-0b7285)](#verify-every-claim-in-one-command)
+[![Receipts](https://img.shields.io/badge/receipts-100%2F100%20verified-0b7285)](#verify-every-claim-in-one-command)
 ![Pre-registered](https://img.shields.io/badge/pre--registered%20verdicts-8%2F8-0b7285)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
 ![Stack](https://img.shields.io/badge/Node%2020%2B%20·%20viem%20·%20Telegram%20Bot%20API%20·%20Telegraph%20testnet-14151a)
 
-**[ Try the bot ↗ ](https://t.me/keel567_bot)** · **[ Receipts dashboard ↗ ](https://subheeksh5599.github.io/keel/)** · **[ For judges ↓ ](#for-judges-try-it-in-two-minutes)** · **[ Verify every receipt ↓ ](#verify-every-claim-in-one-command)** · **[ The rules ↓ ](#what-the-verdict-measures)** · **[ Status table ↓ ](#whats-real--the-status-table)**
+**[ ▶ Demo video ↗ ](https://youtu.be/2_0ge0ViQG0)** · **[ Try the bot ↗ ](https://t.me/keel567_bot)** · **[ Receipts dashboard ↗ ](https://subheeksh5599.github.io/keel/)** · **[ For judges ↓ ](#for-judges-try-it-in-two-minutes)** · **[ Verify every receipt ↓ ](#verify-every-claim-in-one-command)** · **[ The rules ↓ ](#what-the-verdict-measures)** · **[ Status table ↓ ](#whats-real--the-status-table)**
+
+<br><br>
+
+<a href="https://youtu.be/2_0ge0ViQG0"><img src="assets/demo-thumbnail.svg" alt="Keel demo video: forward a shipping rumour, get the evidence" width="720"></a>
+
+<sub>▶ The demo: a "sinking" ferry that is making way, a public receipt, a sanctioned tanker nobody can hear, and a check in a group.</sub>
 
 </div>
 
@@ -28,12 +34,14 @@ Keel never calls a rumour false on tracking alone. A ship that is moored can sti
 
 | Surface | Status | The evidence |
 |---|---|---|
+| Demo video | About 2 minutes, recorded in Telegram | [youtu.be/2_0ge0ViQG0](https://youtu.be/2_0ge0ViQG0) |
 | Telegram bot [@keel567_bot](https://t.me/keel567_bot) | Live, 24/7 on a VPS under pm2 | Forward it a rumour; `/stats` shows what it has checked |
 | Paid Telegraph asks | Live on the testnet, escrow-paid | Payer `0x2925d43C1e21888706D8b3b2223050aF14dDAEd4`; 15 test USDC [deposited](https://sepolia.etherscan.io/tx/0xa4b2e4387444d58ed2ce9dff038fe4629d12cc37908b8e888072b69f0595290e) on Ethereum Sepolia |
 | Evidence run | 6 rumours, 22 paid answers | [`receipts/evidence-2026-11-27T10-03-55-961Z.json`](receipts/evidence-2026-11-27T10-03-55-961Z.json) |
 | Pre-registered run | 8 new rumours, expected verdicts [committed first](evidence/preregistered-2026-11-27.json) (commit `0db8c3c`), then run live: **8 of 8 matched** | [`receipts/preregistered-2026-11-27T16-12-37-714Z.json`](receipts/preregistered-2026-11-27T16-12-37-714Z.json) |
-| Watches | Two ships watched from the public group (one sanctioned); every poll is logged with its receipts | `receipts/telegram/watch-log.jsonl`, pulled by `scripts/pull-receipts.sh` |
-| Receipt check | 68 / 68 signals verified on the node | `node scripts/verify-receipts.mjs`, output [below](#verify-every-claim-in-one-command) |
+| Checks through Telegram | 5 on 28 Nov (private chat and the group), each saved as a receipt with no chat id | [`receipts/telegram/`](receipts/telegram/) |
+| Watches | 19 polls on 3 ships in the first 18 hours, $0.20 in all; one alert (sanctioned EAGLE S gone quiet), and VIKING GLORY found on every poll | [`receipts/telegram/watch-log.jsonl`](receipts/telegram/watch-log.jsonl), pulled by `scripts/pull-receipts.sh` |
+| Receipt check | 100 / 100 signals verified on the node | `node scripts/verify-receipts.mjs`, output [below](#verify-every-claim-in-one-command) |
 | Public verdict group | Bot posts each verdict (no user identity) | [keelverdict](https://t.me/+Kzl7YJUEUedhZmY1) |
 | Receipts dashboard | Every saved check, each answer linked to its signal | [subheeksh5599.github.io/keel](https://subheeksh5599.github.io/keel/), built by `scripts/dashboard.mjs` |
 | Tutorial | Buy one live ship position in about 40 lines | [`docs/TUTORIAL.md`](docs/TUTORIAL.md), [`examples/buy-position.mjs`](examples/buy-position.mjs) |
@@ -125,7 +133,7 @@ No key and no wallet. The script opens every signal saved under `receipts/` (inc
 
 ```
 $ node scripts/verify-receipts.mjs
-signals 68 · verified 68 · not found 0 · mismatched 0 · paid by 0x2925d43c1e21888706d8b3b2223050af14ddaed4 · $0.68 test USDC across 6 file(s)
+signals 100 · verified 100 · not found 0 · mismatched 0 · paid by 0x2925d43c1e21888706d8b3b2223050af14ddaed4 · $1.00 test USDC across 11 file(s)
 ```
 
 ## What Keel is NOT
@@ -325,7 +333,7 @@ From the 65 paid answers bought by checks in `receipts/` (27 Nov 2026; watch pol
 | Evidence completeness | 36 of 55 answers in the two evidence runs carried data | The rest are billed empty answers (no coverage, no fact-check verdict), kept in the receipts and shown as ✗ |
 | False "disagrees" | None found in 8 "disagrees" verdicts | Each re-read against the ship's own broadcast in the signal record (position, speed, status); 7 of the 8 were backed by two operators |
 | Failure cases | Reproducible: no coverage, a ship that does not exist, no ship named | Both evidence runs |
-| Missed or false watch alerts | Not measured yet | Watches started on 27 Nov; the log is in `receipts/telegram/watch-log.jsonl` |
+| Watch alerts | 1 alert in 19 polls, and it was right (EAGLE S unheard for 14 days); no alert fired for the ferry that kept transmitting | `receipts/telegram/watch-log.jsonl`; too few days yet to measure missed alerts |
 
 ## Engineering decisions & the traps that taught me something
 
@@ -341,7 +349,7 @@ From the 65 paid answers bought by checks in `receipts/` (27 Nov 2026; watch pol
 
 | Item | Status | Proof |
 |---|---|---|
-| Escrow-paid asks on the Telegraph testnet | Live | 68 signals in `receipts/`, re-verified by `scripts/verify-receipts.mjs` |
+| Escrow-paid asks on the Telegraph testnet | Live | 100 signals in `receipts/`, re-verified by `scripts/verify-receipts.mjs` |
 | Two tracking operators, cross-checked | Live where both cover (the Baltic); one source elsewhere, and the reply says so | Evidence rows 1 and 3; `test/assess.test.mjs` |
 | Sanctions from two independent sources | Live | Evidence rows 4 and 5; `test/pipeline.test.mjs` |
 | Signal enrichment (IMO, MMSI, nav status, same-name count) | Live | `src/check.mjs`; `signal enrichment: …` test |
@@ -375,6 +383,7 @@ From the 65 paid answers bought by checks in `receipts/` (27 Nov 2026; watch pol
 - **The fact-check miners rarely have fresh events,** so they mostly answer "Unverified". The verdict never leans on them alone.
 - **Ship names are parsed with rules, not a language model.** Odd phrasing can miss a name; sending the IMO always works.
 - **Telegram photos are not checked.** A file link from Telegram carries the bot token, so it is never sent to a miner. Links to images or videos in the text are checked.
+- **Miners have outages.** On 28 Nov the Baltic tracker returned errors for about ten minutes. Those asks were not billed, and the replies said there was only one source, as designed.
 - **Testnet.** Prices are test USDC, and the testnet node, its miners and their ranks change week to week.
 
 ## Security

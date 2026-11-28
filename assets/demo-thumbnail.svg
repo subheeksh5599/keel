@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b1b2b"/>
+      <stop offset="1" stop-color="#05101a"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#sea)"/>
+  <g stroke="#123047" stroke-width="1" opacity="0.9">
+    <path d="M0 380 Q120 365 240 380 T480 380 T720 380 T960 380" fill="none"/>
+    <path d="M0 410 Q120 395 240 410 T480 410 T720 410 T960 410" fill="none"/>
+    <path d="M0 440 Q120 425 240 440 T480 440 T720 440 T960 440" fill="none"/>
+  </g>
+  <g transform="translate(70 300)" fill="#4cc2ff">
+    <path d="M0 40 L210 40 L185 72 L22 72 Z" opacity="0.9"/>
+    <rect x="60" y="14" width="80" height="26" rx="3" opacity="0.75"/>
+    <rect x="80" y="0" width="16" height="14" opacity="0.6"/>
+  </g>
+  <text x="70" y="120" font-family="Helvetica, Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="10" fill="#e6edf3">KEEL</text>
+  <text x="70" y="172" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#9fb3c8">Forward a shipping rumour. Get the evidence.</text>
+  <text x="70" y="212" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#6e859b">Live ship tracking · sanctions · a receipt for every check</text>
+  <g transform="translate(790 300)">
+    <circle r="66" fill="#e6edf3" opacity="0.95"/>
+    <path d="M-20 -32 L36 0 L-20 32 Z" fill="#0b1b2b"/>
+  </g>
+  <text x="790" y="402" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="600" fill="#e6edf3">Watch the demo</text>
+  <text x="790" y="432" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#6e859b">YouTube</text>
+</svg>
