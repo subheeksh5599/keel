@@ -1,0 +1,43 @@
+name: I tried Keel
+description: Tell us what you tried, what happened and what broke.
+title: "Tried it: "
+labels: ["tester-report"]
+body:
+  - type: dropdown
+    id: how
+    attributes:
+      label: What did you try?
+      options:
+        - The Telegram bot (@keel567_bot)
+        - The bot in a group (/check or a forward)
+        - The tutorial (examples/buy-position.mjs) with my own testnet key
+        - Cloned the repo and ran it (npm test / npm run check / npm start)
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: What you sent or ran
+      description: The rumour text or the command.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: What happened
+      description: The verdict you got, a receipt link, or the output. Screenshots welcome.
+    validations:
+      required: true
+  - type: input
+    id: when
+    attributes:
+      label: When (date and rough time, with timezone)
+  - type: input
+    id: wallet
+    attributes:
+      label: Your testnet wallet address (only if you ran the tutorial or the repo with your own key)
+      description: Public address only. Never paste a private key.
+  - type: textarea
+    id: feedback
+    attributes:
+      label: What was wrong, confusing or missing?
